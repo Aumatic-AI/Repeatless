@@ -1,6 +1,7 @@
 "use client";
 import { ArrowRightCircle } from "lucide-react";
 import { motion, Variants } from "framer-motion";
+import CaseStudyAbstract from "../../components/CaseStudyAbstract";
 
 type BodySection = {
   title?: string;
@@ -12,7 +13,7 @@ type BodySection = {
   bullets?: string[];
 };
 
-type BodyProps = { sections: BodySection[] };
+type BodyProps = { sections: BodySection[]; solution: string };
 
 // ✅ Fade-up variants
 const fadeUpVariants: Variants = {
@@ -24,9 +25,9 @@ const fadeUpVariants: Variants = {
   }),
 };
 
-export default function BlogBody({ sections }: BodyProps) {
+export default function BlogBody({ sections, solution }: BodyProps) {
   return (
-    <section className="relative flex flex-col items-center px-6 sm:px-12 lg:px-[150px] py-12 sm:py-16 lg:py-[80px] w-full max-w-[1440px] mx-auto text-white">
+    <section className="relative flex flex-col items-center px-6 sm:px-12 lg:px-[150px] py-12 sm:py-16 lg:py-[80px] w-full max-w-[1440px] mx-auto">
       <div className="flex flex-col gap-16 sm:gap-20 lg:gap-[90px] w-full max-w-[940px]">
         {sections.map((section, idx) => (
           <motion.div
@@ -41,7 +42,7 @@ export default function BlogBody({ sections }: BodyProps) {
               <motion.h2
                 variants={fadeUpVariants}
                 custom={0}
-                className="text-2xl sm:text-3xl lg:text-[46px] leading-snug sm:leading-[48px] lg:leading-[66px] font-medium tracking-tight"
+                className="text-2xl sm:text-3xl lg:text-[46px] leading-snug sm:leading-[48px] lg:leading-[60px] font-display font-semibold tracking-tight text-ink"
               >
                 {section.title}
               </motion.h2>
@@ -55,7 +56,7 @@ export default function BlogBody({ sections }: BodyProps) {
                     key={i}
                     variants={fadeUpVariants}
                     custom={i + 1}
-                    className="text-base sm:text-lg lg:text-[18px] leading-relaxed sm:leading-[26px] lg:leading-[29px] font-normal text-white/60 text-justify"
+                    className="text-base sm:text-lg lg:text-[18px] leading-relaxed sm:leading-[26px] lg:leading-[29px] font-normal text-slate"
                   >
                     {t}
                   </motion.p>
@@ -64,7 +65,7 @@ export default function BlogBody({ sections }: BodyProps) {
                 <motion.p
                   variants={fadeUpVariants}
                   custom={1}
-                  className="text-base sm:text-lg lg:text-[18px] leading-relaxed sm:leading-[26px] lg:leading-[29px] font-normal text-white/60 text-justify"
+                  className="text-base sm:text-lg lg:text-[18px] leading-relaxed sm:leading-[26px] lg:leading-[29px] font-normal text-slate"
                 >
                   {section.text}
                 </motion.p>
@@ -85,21 +86,21 @@ export default function BlogBody({ sections }: BodyProps) {
                     key={i}
                     variants={fadeUpVariants}
                     custom={i + 4}
-                    className="flex items-center gap-3 text-base sm:text-lg text-white/60"
+                    className="flex items-center gap-3 text-base sm:text-lg text-slate"
                   >
-                    <ArrowRightCircle className="text-[#8400FF]" size={22} />
+                    <ArrowRightCircle className="text-sky" size={22} />
                     <span>{item}</span>
                   </motion.div>
                 ))}
               </motion.div>
             )}
 
-            {/* Media: prefer video if provided, else image */}
+            {/* Media: prefer video if provided, else the animated abstract */}
             {(section.video || section.image) && (
               <motion.div
                 variants={fadeUpVariants}
                 custom={4}
-                className="w-full h-[220px] sm:h-[300px] lg:h-[390px] rounded-xl overflow-hidden"
+                className="w-full h-[220px] sm:h-[300px] lg:h-[390px] rounded-xl overflow-hidden bg-[#0B0E1A]"
               >
                 {section.video ? (
                   section.video.includes("youtube.com") || section.video.includes("youtu.be") ? (
@@ -120,11 +121,9 @@ export default function BlogBody({ sections }: BodyProps) {
                     <video src={section.video} className="w-full h-full object-cover" controls />
                   )
                 ) : (
-                  <img
-                    src={section.image as string}
-                    alt="Blog Section"
-                    className="w-full h-full object-cover"
-                  />
+                  <div className="flex h-full w-full items-center justify-center p-6">
+                    <CaseStudyAbstract solution={solution} active className="h-full w-full" />
+                  </div>
                 )}
               </motion.div>
             )}
@@ -134,7 +133,7 @@ export default function BlogBody({ sections }: BodyProps) {
               <motion.ul
                 variants={fadeUpVariants}
                 custom={5}
-                className="list-disc list-inside space-y-2 sm:space-y-3 text-base sm:text-lg lg:text-[18px] text-white/60"
+                className="list-disc list-inside space-y-2 sm:space-y-3 text-base sm:text-lg lg:text-[18px] text-slate"
               >
                 {section.bullets.map((b, i) => (
                   <motion.li key={i} variants={fadeUpVariants} custom={i + 6}>

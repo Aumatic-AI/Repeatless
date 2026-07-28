@@ -3,118 +3,115 @@
 import { motion } from "framer-motion";
 import { FiArrowUpRight, FiCheck } from "react-icons/fi";
 
+const CALENDLY = "https://calendly.com/chandannetha/30min";
+
 const deliverables = [
   {
-    title: "Done-For-You Build",
-    desc: "Your automation is fully built, tested, and deployed by me — not handed to a junior. Ready in 7–10 days.",
+    title: "Done-for-you build",
+    desc: "Fully built, tested and deployed by senior specialists — your first system live in days, not quarters.",
   },
   {
-    title: "1 Month Free Support",
-    desc: "Every system I build comes with 1 month of free support — bug fixes, tweaks, and questions included. No extra charge.",
+    title: "1 month free support",
+    desc: "Free bug fixes and tweaks for 30 days after launch — no extra charge.",
   },
   {
-    title: "Full Maintenance Included",
-    desc: "Monitoring, alerts, fixes, optimizations, and updates — all handled as part of maintenance. One less thing to worry about.",
+    title: "Ongoing maintenance",
+    desc: "After that, monitoring, alerts and optimisations continue — nothing breaks silently.",
   },
   {
-    title: "ROI Dashboard",
-    desc: "A live dashboard showing hours saved, tasks automated, and real business impact — every single week.",
+    title: "ROI dashboard",
+    desc: "A live dashboard showing hours saved, tasks automated and real business impact — every week.",
   },
   {
-    title: "30-Day Guarantee",
-    desc: "If your automation doesn't deliver measurable results within 30 days, I fix or rebuild it at no charge.",
+    title: "30-day guarantee",
+    desc: "If it doesn't deliver measurable results within 30 days, we fix or rebuild it at no charge.",
   },
   {
-    title: "$499 Template Pack — Free",
-    desc: "Every client gets my personal library of pre-built n8n templates. Plug in, customize, and launch in minutes.",
+    title: "One unified infrastructure",
+    desc: "Every automation lives in one system — not a patchwork of disconnected bots.",
   },
 ];
 
 export default function OfferBanner() {
   return (
-    <section id="contact" className="w-full bg-[#04051B] py-20 sm:py-28 px-4 sm:px-10">
-      <div className="max-w-6xl mx-auto">
-
-        {/* Card */}
+    <section className="relative bg-paper py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-6">
         <motion.div
-          className="relative rounded-3xl overflow-hidden border border-purple-500/20 bg-gradient-to-br from-[#0d0630] via-[#08021f] to-[#04051B] p-8 sm:p-14"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          initial={{ opacity: 0, y: 30, scale: 0.97 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+          className="relative overflow-hidden rounded-[2rem] bg-ink px-7 py-12 shadow-[0_44px_100px_-44px_rgba(8,18,26,0.7)] sm:px-14 sm:py-16"
         >
           {/* Glow accents */}
-          <div className="absolute -top-20 -left-20 w-80 h-80 bg-purple-600 opacity-20 blur-[100px] rounded-full pointer-events-none" />
-          <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-blue-600 opacity-10 blur-[120px] rounded-full pointer-events-none" />
+          <div className="pointer-events-none absolute -left-24 -top-24 h-80 w-80 rounded-full bg-sky/30 blur-[120px]" />
+          <div className="pointer-events-none absolute -bottom-24 -right-24 h-80 w-80 rounded-full bg-sky/20 blur-[130px]" />
 
           <div className="relative flex flex-col gap-10">
-
             {/* Header */}
-            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
-              <div className="flex flex-col gap-3 max-w-xl">
-                <span className="text-purple-400 font-dmSans text-sm font-medium tracking-widest uppercase">
-                  What You Get When You Work With Me
-                </span>
-                <h2 className="text-white font-poppins font-semibold text-3xl sm:text-5xl leading-tight tracking-tight">
-                  Everything to Automate,<br className="hidden sm:block" /> Scale &amp; Stay Ahead.
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+              <div className="max-w-xl">
+                <p className="eyebrow text-skybright">What you get</p>
+                <h2
+                  className="mt-4 font-display text-3xl font-semibold leading-tight tracking-tight text-white sm:text-5xl"
+                  style={{ textWrap: "balance" } as React.CSSProperties}
+                >
+                  Everything to automate, scale and stay ahead.
                 </h2>
-                <p className="text-white/50 font-dmSans text-base leading-relaxed">
-                  Not a template. Not an offshore team. You get me — building, running, and optimizing
-                  your systems personally.
+                <p className="mt-4 leading-relaxed text-white/60">
+                  No templates. No offshore team. A senior team building, running and optimising your
+                  systems — with the guarantees to back it.
                 </p>
               </div>
-
-              {/* CTA — desktop */}
               <a
-                href="https://calendly.com/chandannetha/30min"
+                href={CALENDLY}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden sm:flex items-center gap-2 bg-[#4D00FF] hover:bg-[#3700cc] text-white font-poppins font-medium text-sm px-8 py-4 rounded-full shadow-[0_0_32px_rgba(77,0,255,0.4)] transition-all duration-300 whitespace-nowrap shrink-0 self-start"
+                className="group hidden shrink-0 items-center gap-2 self-start rounded-xl bg-sky px-6 py-3.5 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-skydeep sm:inline-flex"
               >
-                Book a Free Audit <FiArrowUpRight className="w-4 h-4" />
+                Book a strategy call
+                <FiArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
             </div>
 
-            {/* Divider */}
-            <div className="w-full h-px bg-white/8" />
+            <div className="h-px w-full bg-white/10" />
 
-            {/* Deliverables grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {deliverables.map((item, idx) => (
+            {/* Deliverables — checklist, not boxes */}
+            <div className="grid gap-x-10 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
+              {deliverables.map((d, idx) => (
                 <motion.div
-                  key={idx}
-                  className="flex flex-col gap-3 p-5 rounded-2xl bg-white/[0.03] border border-white/8 hover:border-purple-500/30 transition-all duration-300"
-                  initial={{ opacity: 0, y: 20 }}
+                  key={d.title}
+                  initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.07 }}
+                  transition={{ duration: 0.4, delay: idx * 0.06 }}
                 >
-                  <div className="flex items-center gap-2">
-                    <div className="w-5 h-5 rounded-full bg-purple-500/20 flex items-center justify-center shrink-0">
-                      <FiCheck className="w-3 h-3 text-purple-400" />
-                    </div>
-                    <h3 className="text-white font-poppins font-medium text-sm">{item.title}</h3>
+                  <div className="flex items-center gap-2.5">
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-sky/25">
+                      <FiCheck className="h-3 w-3 text-skybright" />
+                    </span>
+                    <h3 className="font-medium text-white">{d.title}</h3>
                   </div>
-                  <p className="text-white/45 font-dmSans text-sm leading-relaxed">{item.desc}</p>
+                  <p className="mt-2 pl-[30px] text-sm leading-relaxed text-white/50">{d.desc}</p>
                 </motion.div>
               ))}
             </div>
 
-            {/* CTA — mobile */}
+            {/* Mobile CTA */}
             <a
-              href="https://calendly.com/chandannetha/30min"
+              href={CALENDLY}
               target="_blank"
               rel="noopener noreferrer"
-              className="sm:hidden flex items-center justify-center gap-2 bg-[#4D00FF] hover:bg-[#3700cc] text-white font-poppins font-medium text-sm px-8 py-4 rounded-full shadow-[0_0_32px_rgba(77,0,255,0.4)] transition-all duration-300"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-sky px-6 py-3.5 font-medium text-white transition-colors hover:bg-skydeep sm:hidden"
             >
-              Book a Free Audit <FiArrowUpRight className="w-4 h-4" />
+              Book a strategy call
+              <FiArrowUpRight className="h-4 w-4" />
             </a>
 
             {/* Trust line */}
-            <p className="text-center text-white/25 font-dmSans text-xs">
-              No contracts. No retainer required to start. 1 month free support on every build. 30-day results guarantee.
+            <p className="text-center text-xs text-white/35">
+              No contracts. No retainer to start. 1 month free support on every build. 30-day results guarantee.
             </p>
-
           </div>
         </motion.div>
       </div>

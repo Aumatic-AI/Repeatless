@@ -1,54 +1,96 @@
 "use client";
 
-import TestimonialCarousel from "./Carousel/Testimonial";
+import { useState, useEffect } from "react";
 import { TestimonialData } from "../../../public/data/testimonialData";
-import React from "react";
-import { motion, Variants } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
-const TestimonialsSection = () => {
-  // Variants for fade-up
-  const containerVariants: Variants = {
-    hidden: {},
-    show: { transition: { staggerChildren: 0.2 } },
-  };
+const items = TestimonialData;
 
-  const fadeUpVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-  };
+function initials(name: string) {
+  return name
+    .split(" ")
+    .map((w) => w[0])
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
+}
+
+export default function TestimonialsSection() {
+  const reduce = useReducedMotion();
+  const [i, setI] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (reduce || paused) return;
+    const t = setInterval(() => setI((v) => (v + 1) % items.length), 6000);
+    return () => clearInterval(t);
+  }, [reduce, paused]);
+
+  const active = items[i];
 
   return (
-    <motion.section
-    id="testimonials"
-      className="flex flex-col items-center pt-0 2xl:pt-25 pb-17 w-full bg-[#0A0118]"
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.2 }}
-      variants={containerVariants}
+    <section
+      id="testimonials"
+      className="relative bg-surface py-20 sm:py-28"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
     >
-      {/* Heading */}
-      <motion.div
-        className="flex flex-col justify-center items-center px-4 pb-[100px] w-full"
-        variants={fadeUpVariants}
-      >
-        {/* Badge */}
-        <div className="flex items-center gap-2 px-5 py-2 bg-[rgba(77,0,255,0.1)] border border-white/10 rounded-full mb-6">
-          <span className="w-3 h-3 rounded-full bg-[#8400FF] shadow-[0_0_16px_#6D21F0,0_0_8px_#1C76FD]" />
-          <span className="text-[#8400FF] text-lg font-normal">Testimonials</span>
+      <div className="mx-auto max-w-3xl px-6">
+        <p className="eyebrow text-sky">Testimonials</p>
+        <h2
+          className="mt-4 font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl"
+          style={{ textWrap: "balance" } as React.CSSProperties}
+        >
+          What clients say about working with us.
+        </h2>
+
+        {/* Active quote */}
+        <div className="mt-12 min-h-[260px] sm:min-h-[240px]">
+          <AnimatePresence mode="wait">
+            <motion.blockquote
+              key={i}
+              initial={{ opacity: 0, y: reduce ? 0 : 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: reduce ? 0 : -10 }}
+              transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+              className="border-l-2 border-sky pl-6 sm:pl-8"
+            >
+              <p className="font-display text-xl leading-relaxed text-ink sm:text-2xl">
+                &ldquo;{active.review}&rdquo;
+              </p>
+              <footer className="mt-7 flex items-center gap-3.5">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-skysoft font-monoui text-sm font-semibold text-sky">
+                  {initials(active.name)}
+                </span>
+                <span className="leading-tight">
+                  <span className="block font-medium text-ink">{active.name}</span>
+                  <span className="block text-sm text-slate2">{active.position}</span>
+                </span>
+              </footer>
+            </motion.blockquote>
+          </AnimatePresence>
         </div>
 
-        {/* Section Heading */}
-        <h2 className="text-white text-[2rem] leading-[40px] md:text-[3.375rem] md:leading-[69px] text-center font-poppins font-medium tracking-[-0.04em] max-w-[633px]">
-          What Clients Say About Working With Me
-        </h2>
-      </motion.div>
-
-      {/* Carousel */}
-      <motion.div variants={fadeUpVariants} className="w-full">
-        <TestimonialCarousel testimonialData={TestimonialData} />
-      </motion.div>
-    </motion.section>
+        {/* Selector rail — initials, no fake photos */}
+        <div className="mt-10 flex flex-wrap gap-2.5">
+          {items.map((t, idx) => (
+            <button
+              key={t.name}
+              type="button"
+              onClick={() => setI(idx)}
+              aria-label={`Read ${t.name}'s testimonial`}
+              aria-pressed={idx === i}
+              className={`flex h-11 w-11 items-center justify-center rounded-full border font-monoui text-sm transition-colors ${
+                idx === i
+                  ? "border-sky bg-sky text-white"
+                  : "border-ink/15 bg-surface text-slate2 hover:border-sky/50 hover:text-sky"
+              }`}
+            >
+              {initials(t.name)}
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
   );
-};
-
-export default TestimonialsSection;
+}

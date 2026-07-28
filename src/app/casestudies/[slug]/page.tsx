@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import BlogHero from "../components/Header";
 import BlogBody from "../components/body1";
@@ -12,6 +13,30 @@ export function generateStaticParams() {
   return blogs.map((b) => ({ slug: b.slug }));
 }
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const blog = getBlogBySlug(slug);
+  if (!blog) return {};
+
+  const title = `${blog.title} | Repeatless`;
+  return {
+    title,
+    description: blog.excerpt,
+    alternates: { canonical: `/casestudies/${blog.slug}` },
+    openGraph: {
+      title,
+      description: blog.excerpt,
+      url: `https://www.repeatless.in/casestudies/${blog.slug}`,
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: blog.excerpt,
+    },
+  };
+}
+
 export default async function BlogPage({ params }: Props) {
   const { slug } = await params;
   const blog = getBlogBySlug(slug);
@@ -24,10 +49,9 @@ export default async function BlogPage({ params }: Props) {
           title={blog.hero.title}
           description={blog.hero.description}
           meta={blog.hero.meta}
-          image={blog.hero.image}
           video={blog.hero.video}
         />
-        <BlogBody sections={blog.body.sections} />
+        <BlogBody sections={blog.body.sections} solution={blog.hero.meta.solution} />
       </section>
       <CTASection />
     </div>

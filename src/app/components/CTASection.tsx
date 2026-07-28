@@ -1,49 +1,52 @@
 "use client";
-import { FiPhoneCall } from "react-icons/fi";
-import { motion, Variants } from "framer-motion";
+
+import { FiArrowUpRight } from "react-icons/fi";
+import { FaWhatsapp } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 export default function CTASection() {
-  // Variants for fade-up
-  const fadeUpVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-  };
-
   return (
-    <section className="relative w-full bg-[#04051B] text-white overflow-hidden">
-      {/* purple blur ellipse */}
-      <div className="absolute -left-40 -top-40 w-[354px] h-[344px] bg-[#4E2FFF] opacity-80 blur-[96px]" />
+    <section id="contact" className="relative overflow-hidden bg-paper py-24 sm:py-32">
+      {/* Ambient accent */}
+      <div className="pointer-events-none absolute left-1/2 top-0 h-72 w-[36rem] -translate-x-1/2 rounded-full bg-sky/10 blur-[120px]" />
 
-      <div className="container mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between px-8 py-16 gap-6">
-        {/* Text Content */}
-        <motion.div
-          className="max-w-xl flex flex-col gap-4"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={fadeUpVariants}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+        className="relative mx-auto max-w-3xl px-6 text-center"
+      >
+        <h2
+          className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-6xl"
+          style={{ textWrap: "balance" } as React.CSSProperties}
         >
-          <h2 className="font-poppins font-medium text-[50px] leading-[60px] tracking-[-1px]">
-            Ready to Stop Doing Work <br /> <span className="text-purple-400">AI Should Handle?</span>
-          </h2>
-          <p className="text-white/80 text-lg leading-7">
-            Book a free automation audit — I&apos;ll map exactly what to automate in your business first. No pitch. No commitment. Serving businesses across the USA, Canada &amp; Europe.
-          </p>
-        </motion.div>
-
-        {/* CTA Button */}
-        <motion.a
-          href="https://calendly.com/chandannetha/30min"
-          className="flex items-center justify-center gap-2 px-5 py-3 bg-[#4D00FF] rounded-full shadow-[0_0_16px_#6D21F0,0_0_8.1px_#1C76FD] text-white font-poppins font-medium text-sm whitespace-nowrap"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={fadeUpVariants}
-        >
-          <FiPhoneCall size={16} />
-          Get a Free Automation Audit
-        </motion.a>
-      </div>
+          Ready to stop doing work <span className="text-sky">AI should handle?</span>
+        </h2>
+        <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-slate">
+          We&apos;ll map exactly what to automate first — no pitch, no commitment.
+        </p>
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+          <a
+            href="https://calendly.com/chandannetha/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 rounded-xl bg-ink px-7 py-4 font-medium text-white shadow-[0_16px_34px_-16px_rgba(8,18,26,0.7)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-skydeep"
+          >
+            Book a strategy call
+            <FiArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
+          <a
+            href="https://wa.me/919849884501"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 font-medium text-slate transition-colors hover:text-ink"
+          >
+            <FaWhatsapp className="h-4 w-4 text-sky" />
+            or message us on WhatsApp
+          </a>
+        </div>
+      </motion.div>
     </section>
   );
 }

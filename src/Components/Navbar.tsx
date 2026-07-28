@@ -10,30 +10,28 @@ const navLinks = [
   { href: "/#home", label: "Home" },
   { href: "/#solutions", label: "Solutions" },
   { href: "/casestudies", label: "Case Studies" },
-  { href: "/#testimonials", label: "About Us" },
+  { href: "/about", label: "About" },
   { href: "/#contact", label: "Contact" },
 ];
+
+const CALENDLY = "https://calendly.com/chandannetha/30min";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [visible, setVisible] = useState(true);
+  const [scrolled, setScrolled] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScroll = window.scrollY;
+      setScrolled(currentScroll > 12);
 
-      // Add threshold to avoid flickering on small scrolls
       if (Math.abs(currentScroll - lastScrollY) > 10) {
-        if (currentScroll > lastScrollY) {
-          setVisible(false); // hide on scroll down
-        } else {
-          setVisible(true); // show on scroll up
-        }
+        setVisible(currentScroll < lastScrollY || currentScroll < 80);
         setLastScrollY(currentScroll);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
@@ -41,51 +39,59 @@ const Navbar: React.FC = () => {
   return (
     <motion.header
       initial={{ y: 0 }}
-      animate={{ y: visible ? 0 : -100 }}
+      animate={{ y: visible ? 0 : -110 }}
       transition={{ duration: 0.4, ease: "easeInOut" }}
       className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-6xl"
     >
-      <nav className="flex items-center justify-between px-4 md:px-6 py-3 rounded-full border border-white/10 bg-white/10 backdrop-blur-xl shadow-[0px_6px_30px_rgba(77,0,255,0.3)]">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
+      <nav
+        className={`flex items-center justify-between px-4 md:px-6 py-3 rounded-full border border-white/10 bg-ink transition-shadow duration-300 ${
+          scrolled
+            ? "shadow-[0_14px_40px_-14px_rgba(8,18,26,0.6)]"
+            : "shadow-[0_8px_24px_-16px_rgba(8,18,26,0.5)]"
+        }`}
+      >
+        {/* Logo — white source SVG reads on the ink pill */}
+        <Link href="/" className="flex items-center gap-2" aria-label="Repeatless home">
           <Image
             src="/images/logo.svg"
-            alt="Repeatless Logo"
-            width={120}
+            alt="Repeatless"
+            width={124}
             height={40}
             className="object-contain"
+            priority
           />
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-6 lg:gap-8 text-white font-medium text-sm tracking-wide text-poppins">
+        <div className="hidden md:flex items-center gap-6 lg:gap-8 text-white/70 font-medium text-sm tracking-wide">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="hover:text-purple-400 transition"
+              className="relative py-1 transition-colors hover:text-white after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-skybright after:transition-all hover:after:w-full"
             >
               {link.label}
             </Link>
           ))}
         </div>
 
-        {/* Book a Demo Button (Desktop) */}
+        {/* Book a Demo (Desktop) — accent lives here */}
         <a
-          href="https://calendly.com/chandannetha/30min"
+          href={CALENDLY}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden md:flex items-center gap-2 w-40 h-12 rounded-full bg-[#4D00FF] hover:bg-[#3700cc] transition text-white text-poppins font-medium text-sm shadow-lg justify-center"
+          className="hidden md:flex items-center gap-2 h-11 px-5 rounded-full bg-sky hover:bg-skydeep transition-colors text-white font-medium text-sm justify-center"
         >
           <FiPhoneCall className="w-4 h-4" />
-          <span>Book a Demo</span>
+          <span>Book a strategy call</span>
         </a>
 
         {/* Mobile Toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-white text-3xl p-2"
+          className="md:hidden text-white text-2xl p-2"
           aria-label="Toggle menu"
+          aria-expanded={isOpen}
         >
           {isOpen ? <FiX /> : <FiMenu />}
         </button>
@@ -95,31 +101,30 @@ const Navbar: React.FC = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="md:hidden mt-3 mx-4 rounded-2xl border border-white/10 bg-black/70 backdrop-blur-xl shadow-xl text-white text-poppins flex flex-col items-center gap-6 py-8"
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.28, ease: "easeOut" }}
+            className="md:hidden mt-3 mx-1 rounded-3xl border border-white/10 bg-ink shadow-xl text-white flex flex-col items-center gap-5 py-8"
           >
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="text-lg font-medium hover:text-purple-400 transition"
+                className="text-lg font-medium text-white/80 hover:text-white transition"
               >
                 {link.label}
               </Link>
             ))}
-
             <a
-              href="https://calendly.com/chandannetha/30min"
+              href={CALENDLY}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 w-40 h-12 rounded-full bg-[#4D00FF] hover:bg-[#3700cc] transition text-white text-poppins font-medium text-sm justify-center"
+              className="flex items-center gap-2 h-11 px-6 rounded-full bg-sky hover:bg-skydeep transition-colors text-white font-medium text-sm justify-center"
             >
               <FiPhoneCall className="w-4 h-4" />
-              <span>Book a Demo</span>
+              <span>Book a strategy call</span>
             </a>
           </motion.div>
         )}

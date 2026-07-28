@@ -3,30 +3,29 @@ import HeroSection from "./components/AUtomation";
 import CaseStudies from "./components/casestudies";
 import CTASection from "./components/CTASection";
 import Hero from "./components/Hero";
+import FeaturesSection from "./components/Scroll";
 import FounderSection from "./components/Founder";
-// import VideoTestimonials from "./components/VideoTestimonials";
 import OfferBanner from "./components/OfferBanner";
-import PackagesSection from "./components/Packages";
 import SolutionsSection from "./components/Solutions";
-import ToolsSection from "./components/Tools";
 import TestimonialsSection from "./components/Testimonials";
-import VideoSection from "./components/Video";
+import TwoTracks from "./components/TwoTracks";
 
 export default function Home() {
   return (
     <main className="relative">
       <Hero />
+      {/* "Why Repeatless" */}
+      <div id="features-section">
+        <FeaturesSection />
+      </div>
+      <TwoTracks /> {/* How we engage: DFY vs Training & Consulting */}
       <SolutionsSection />
-      <VideoSection />
-      <HeroSection />
-      <PackagesSection />
-      <ToolsSection />
-      <CaseStudies />
+      <HeroSection /> {/* How I Work */}
+      <CaseStudies /> {/* Selected work + demo video */}
       <TestimonialsSection />
-      {/* <VideoTestimonials /> */}
-      <FounderSection />
+      <FounderSection /> {/* Founder's note */}
+      <OfferBanner /> {/* What you get */}
       <CTASection />
-      <OfferBanner />
     </main>
   );
 }

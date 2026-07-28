@@ -1,8 +1,10 @@
 "use client";
 import React, { useMemo, useState } from "react";
 import Link from "next/link";
+import { FiSearch } from "react-icons/fi";
 import CTASection from "./components/CTA";
 import { blogs } from "../../../public/data/blogs";
+import CaseStudyVisual from "../components/CaseStudyVisual";
 
 const PER_PAGE = 6;
 
@@ -24,76 +26,96 @@ export default function Page() {
   const current = filtered.slice(start, start + PER_PAGE);
 
   return (
-    <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-[150px] py-12 text-white pt-40">
-      {/* Heading + Search Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-4 sm:gap-0">
-        <h2 className="text-2xl sm:text-3xl lg:text-[32px] font-medium tracking-tight">
-          More From Blog
-        </h2>
+    <div className="bg-paper">
+      <div className="mx-auto w-full max-w-6xl px-6 pb-20 pt-36">
+        {/* Heading + search */}
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div className="max-w-2xl">
+            <p className="eyebrow text-sky">Case studies</p>
+            <h1
+              className="mt-4 font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl"
+              style={{ textWrap: "balance" } as React.CSSProperties}
+            >
+              Every system we&apos;ve shipped.
+            </h1>
+          </div>
 
-        <div className="relative w-full sm:w-[240px]">
-          <input
-            value={query}
-            onChange={(e) => {
-              setPage(1);
-              setQuery(e.target.value);
-            }}
-            placeholder="Search"
-            className="bg-transparent border border-white/20 rounded-md pl-10 pr-3 py-2 w-full text-sm focus:outline-none focus:border-white/40"
-          />
-          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-white/50">🔍</span>
+          <div className="relative w-full sm:w-64">
+            <input
+              value={query}
+              onChange={(e) => {
+                setPage(1);
+                setQuery(e.target.value);
+              }}
+              placeholder="Search"
+              aria-label="Search case studies"
+              className="w-full rounded-xl border border-ink/15 bg-surface py-2.5 pl-10 pr-3 text-sm text-ink placeholder:text-slate2 focus:border-sky focus:outline-none"
+            />
+            <FiSearch className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate2" aria-hidden />
+          </div>
         </div>
-      </div>
 
-      {/* Blog Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {current.map((b) => (
-          <Link
-            href={`/casestudies/${b.slug}`}
-            key={b.slug}
-            className="block border border-white/10 rounded-lg p-4 hover:border-white/20 transition-colors"
-          >
-            <div className="w-full h-48 rounded-md overflow-hidden mb-4 bg-white/5">
-              <img
-                src={b.image}
-                alt={b.title}
-                className="w-full h-full object-cover"
+        {/* Grid */}
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {current.map((b) => (
+            <Link
+              href={`/casestudies/${b.slug}`}
+              key={b.slug}
+              className="group block overflow-hidden rounded-2xl border border-ink/10 bg-surface shadow-[0_20px_50px_-32px_rgba(8,18,26,0.4)] transition-all duration-300 hover:-translate-y-1 hover:border-sky/40"
+            >
+              <CaseStudyVisual
+                solution={b.hero.meta.solution}
+                stat={b.hero.meta.stat}
+                className="h-48 w-full"
               />
-            </div>
-            <div className="text-[12px] uppercase text-white/60 mb-2">
-              {b.category} •{" "}
-              {new Date(b.date).toLocaleDateString(undefined, {
-                day: "2-digit",
-                month: "long",
-                year: "numeric",
-              })}
-            </div>
-            <div className="font-medium mb-2">{b.title}</div>
-            <div className="text-white/60 text-sm">{b.excerpt}</div>
-          </Link>
-        ))}
-      </div>
+              <div className="p-5">
+                <div className="eyebrow text-slate2">
+                  {b.category} ·{" "}
+                  {new Date(b.date).toLocaleDateString("en-US", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </div>
+                <div className="mt-2.5 font-display text-lg font-semibold leading-snug text-ink transition-colors group-hover:text-sky">
+                  {b.title}
+                </div>
+                <div className="mt-2 text-sm leading-relaxed text-slate">{b.excerpt}</div>
+              </div>
+            </Link>
+          ))}
+        </div>
 
-      {/* Pagination */}
-      <div className="flex items-center justify-center gap-2 mt-8">
-        <button
-          onClick={() => setPage((p) => Math.max(1, p - 1))}
-          className="px-3 py-2 border border-white/15 rounded-md text-sm disabled:opacity-40"
-          disabled={safePage === 1}
-        >
-          Prev
-        </button>
-        <span className="text-white/70 text-sm">
-          Page {safePage} of {totalPages}
-        </span>
-        <button
-          onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-          className="px-3 py-2 border border-white/15 rounded-md text-sm disabled:opacity-40"
-          disabled={safePage === totalPages}
-        >
-          Next
-        </button>
+        {filtered.length === 0 && (
+          <p className="mt-12 text-center text-slate">
+            Nothing matches &ldquo;{query}&rdquo; — try another term.
+          </p>
+        )}
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="mt-10 flex items-center justify-center gap-3">
+            <button
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              className="rounded-xl border border-ink/15 bg-surface px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-sky/50 disabled:opacity-40"
+              disabled={safePage === 1}
+            >
+              Prev
+            </button>
+            <span className="text-sm text-slate2">
+              Page {safePage} of {totalPages}
+            </span>
+            <button
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              className="rounded-xl border border-ink/15 bg-surface px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-sky/50 disabled:opacity-40"
+              disabled={safePage === totalPages}
+            >
+              Next
+            </button>
+          </div>
+        )}
       </div>
+      <CTASection />
     </div>
   );
 }

@@ -1,117 +1,78 @@
 "use client";
 
-import {
-  FiMail,
-  FiMapPin,
-  FiPhone,
-  FiInstagram
-} from "react-icons/fi";
+import { FiMail, FiMapPin, FiPhone, FiInstagram } from "react-icons/fi";
 import { FaLinkedin, FaYoutube } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, Variants } from "framer-motion";
+
+const quickLinks = [
+  { label: "Home", href: "/#home" },
+  { label: "Solutions", href: "/#solutions" },
+  { label: "Case Studies", href: "/casestudies" },
+  { label: "About", href: "/about" },
+  { label: "Book a strategy call", href: "https://calendly.com/chandannetha/30min" },
+];
+
+const socials = [
+  { icon: FiInstagram, label: "Instagram", href: "https://www.instagram.com/chandan_cheripally_" },
+  { icon: FaLinkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/chandan-kumar-cheripally-78738a253/" },
+  { icon: FaYoutube, label: "YouTube", href: "https://www.youtube.com/@chandankumarnetha" },
+];
 
 export default function Footer() {
-  // Variants for fade-up animation
-  const fadeUpVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-  };
-
   return (
-    <motion.footer
-      className="relative text-white overflow-hidden"
-      style={{
-        backgroundImage: "url('/images/fbg.png')",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-      }}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.2 }}
-      variants={fadeUpVariants}
-    >
-      {/* Decorative Ellipse */}
-      <div className="absolute w-[254px] h-[247px] -left-[127px] -top-[92px] rounded-full bg-[#4E2FFF] opacity-80 blur-[96px]" />
+    <footer className="relative overflow-hidden bg-ink text-white/70">
+      <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-sky/20 blur-[110px]" />
 
-      <div className="relative container mx-auto px-6 py-12 flex flex-col md:flex-row md:justify-between gap-10">
-        {/* Left Section */}
-        <div className="flex flex-col gap-6 max-w-[279px]">
-          {/* Logo */}
-          <div className="flex items-center gap-4">
-            <Image
-              src="/images/logo.svg"
-              alt="Repeatless Logo"
-              width={136}
-              height={46}
-              className="object-contain"
-            />
-          </div>
-
-          {/* Description */}
-          <p className="text-base leading-6 text-white/80 font-poppins">
-            AI Automation Consultant helping businesses in the USA, Canada &amp; India eliminate repetitive tasks and grow faster with custom n8n automation.
+      <div className="relative mx-auto flex max-w-6xl flex-col gap-12 px-6 py-16 md:flex-row md:justify-between">
+        {/* Brand */}
+        <div className="flex max-w-xs flex-col gap-5">
+          <Image src="/images/logo.svg" alt="Repeatless" width={132} height={44} className="object-contain" />
+          <p className="text-sm leading-relaxed text-white/60">
+            An AI automation agency helping teams across the USA, Canada &amp; Europe eliminate repetitive
+            work with custom Claude AI &amp; n8n systems.
           </p>
-
-          {/* Copyright */}
-          <p className="text-sm leading-5 text-white/60 font-poppins mt-6">
-            © 2026 Repeatless. All rights reserved.
-          </p>
+          <p className="mt-2 text-sm text-white/40">© 2026 Repeatless. All rights reserved.</p>
         </div>
 
-        {/* Quick Links */}
-        <div className="flex flex-col gap-2">
-          <h4 className="font-semibold mb-2">Quick Links</h4>
-          <Link href="#home" className="text-white/80 hover:text-white transition">Home</Link>
-          <Link href="#testimonials" className="text-white/80 hover:text-white transition">About Us</Link>
-          <Link href="#solutions" className="text-white/80 hover:text-white transition">Solutions</Link>
-          <Link href="/casestudies" className="text-white/80 hover:text-white transition">Case Studies</Link>
-          <Link href="https://calendly.com/chandannetha/30min" className="text-white/80 hover:text-white transition">Book a Demo</Link>
-        </div>
-
-        {/* Contact Us */}
+        {/* Quick links */}
         <div className="flex flex-col gap-3">
-          <h4 className="font-semibold mb-2">Contact Us</h4>
-          <div className="flex items-center gap-2 text-white/80">
-            <FiMail className="w-4 h-4 shrink-0" />
-            <span>contact@repeatless.in</span>
+          <h4 className="mb-1 font-medium text-white">Quick Links</h4>
+          {quickLinks.map((l) => (
+            <Link key={l.label} href={l.href} className="text-sm text-white/60 transition-colors hover:text-white">
+              {l.label}
+            </Link>
+          ))}
+        </div>
+
+        {/* Contact */}
+        <div className="flex flex-col gap-3">
+          <h4 className="mb-1 font-medium text-white">Contact</h4>
+          <span className="flex items-center gap-2 text-sm text-white/60">
+            <FiMail className="h-4 w-4 shrink-0 text-skybright" /> contact@repeatless.in
+          </span>
+          <span className="flex items-center gap-2 text-sm text-white/60">
+            <FiMapPin className="h-4 w-4 shrink-0 text-skybright" /> Hyderabad, L.B. Nagar
+          </span>
+          <span className="flex items-center gap-2 text-sm text-white/60">
+            <FiPhone className="h-4 w-4 shrink-0 text-skybright" /> +91 98498 84501
+          </span>
+          <div className="mt-2 flex items-center gap-3">
+            {socials.map(({ icon: Icon, label, href }) => (
+              <Link
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-white/70 transition-colors hover:border-sky/50 hover:text-white"
+              >
+                <Icon className="h-4 w-4" />
+              </Link>
+            ))}
           </div>
-          <div className="flex items-center gap-2 text-white/80">
-            <FiMapPin className="w-4 h-4 shrink-0" />
-            <span>Hyderabad, L.B. Nagar</span>
-          </div>
-          <div className="flex items-center gap-2 text-white/80">
-            <FiPhone className="w-4 h-4 shrink-0" />
-            <span>+91 9849884501</span>
-          </div>
-          <Link
-            href="https://www.instagram.com/chandan_cheripally_"
-            className="flex items-center gap-2 text-white/80 hover:text-white transition"
-          >
-            <FiInstagram className="w-4 h-4 shrink-0" />
-            <span>Instagram</span>
-          </Link>
-          <Link
-            href="https://www.linkedin.com/in/chandan-kumar-cheripally-78738a253/"
-            className="flex items-center gap-2 text-white/80 hover:text-white transition"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaLinkedin className="w-4 h-4 shrink-0" />
-            <span>LinkedIn</span>
-          </Link>
-          <Link
-            href="https://www.youtube.com/@chandankumarnetha"
-            className="flex items-center gap-2 text-white/80 hover:text-white transition"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaYoutube className="w-4 h-4 shrink-0" />
-            <span>YouTube</span>
-          </Link>
         </div>
       </div>
-    </motion.footer>
+    </footer>
   );
 }

@@ -1,17 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion, Variants } from "framer-motion";
+import CaseStudyAbstract from "../../components/CaseStudyAbstract";
 
 type HeroProps = {
   title: string;
   description: string;
   meta: { solution: string; stat: string };
-  image: string;
   video?: string;
 };
 
-// Fade-up animation variants
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: {
@@ -21,56 +19,33 @@ const fadeUp: Variants = {
   },
 };
 
-export default function BlogHero({ title, description, meta, image, video }: HeroProps) {
-  const [scrollWidth, setScrollWidth] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const maxHeight = document.body.scrollHeight - window.innerHeight;
-      const scrollTop = window.scrollY;
-      const progress = (scrollTop / maxHeight) * 100;
-      setScrollWidth(progress);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
+export default function BlogHero({ title, description, meta, video }: HeroProps) {
   return (
-    <section className="relative flex flex-col items-center justify-center px-6 sm:px-12 lg:px-[150px] pt-16 sm:pt-20 lg:pt-[100px] gap-8 sm:gap-12 lg:gap-[50px] text-white w-full max-w-[1440px] mx-auto">
-      {/* Gradient line progress (optional) */}
-      {/* <div className="absolute top-5 left-0 w-full h-[12px] bg-gradient-to-r from-[#0F6CBD] to-[#27C840] opacity-90 z-10">
-        <div
-          className="h-[12px] bg-gradient-to-r from-[#0F6CBD] to-[#27C840] transition-all duration-300 ease-out"
-          style={{ width: `${scrollWidth}%` }}
-        />
-      </div> */}
-
+    <section className="relative mx-auto flex w-full max-w-6xl flex-col items-center justify-center gap-8 px-6 pt-16 sm:gap-12 sm:pt-20 lg:pt-24">
       {/* Title + Description */}
       <motion.div
         variants={fadeUp}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
-        className="flex flex-col gap-4 sm:gap-6 w-full max-w-[1140px]"
+        className="flex w-full flex-col gap-4 sm:gap-6"
       >
-        <h1 className="text-3xl sm:text-4xl lg:text-[48px] leading-snug sm:leading-[50px] lg:leading-[66px] font-medium tracking-tight">
+        <h1
+          className="font-display text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl lg:text-5xl"
+          style={{ textWrap: "balance" } as React.CSSProperties}
+        >
           {title}
         </h1>
 
-        <p className="text-base sm:text-lg lg:text-[22px] font-light leading-relaxed sm:leading-[28px] lg:leading-[35px] text-white/60">
+        <p className="max-w-3xl text-base leading-relaxed text-slate sm:text-lg lg:text-xl">
           {description}
         </p>
 
-        {/* Meta info */}
+        {/* Meta info — what we built, what it returned */}
         <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-          <span className="text-[#0F6CBD] text-base sm:text-lg lg:text-[22px] font-medium uppercase tracking-[-0.03em]">
-            {meta.solution}
-          </span>
-          <div className="w-2 h-2 rounded-full bg-white" />
-          <span className="text-[#27C840] text-sm sm:text-base lg:text-[18px] font-medium uppercase">
-            {meta.stat}
-          </span>
+          <span className="eyebrow text-sky">{meta.solution}</span>
+          <div className="h-1.5 w-1.5 rounded-full bg-ink/20" aria-hidden />
+          <span className="eyebrow text-skydeep">{meta.stat}</span>
         </div>
       </motion.div>
 
@@ -80,7 +55,7 @@ export default function BlogHero({ title, description, meta, image, video }: Her
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
-        className="w-full max-w-[1140px] h-[220px] sm:h-[350px] lg:h-[510px] rounded-2xl overflow-hidden"
+        className="h-[220px] w-full overflow-hidden rounded-2xl border border-ink/10 bg-[#0B0E1A] shadow-[0_34px_70px_-34px_rgba(8,18,26,0.5)] sm:h-[350px] lg:h-[510px]"
       >
         {typeof video === "string" && video.length > 0 ? (
           video.includes("youtube.com") || video.includes("youtu.be") ? (
@@ -93,19 +68,17 @@ export default function BlogHero({ title, description, meta, image, video }: Her
                   : video.replace("youtu.be/", "www.youtube.com/embed/")
               }
               title="Hero Video"
-              className="w-full h-full"
+              className="h-full w-full"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
             />
           ) : (
-            <video src={video} className="w-full h-full object-cover" controls />
+            <video src={video} className="h-full w-full object-cover" controls />
           )
         ) : (
-          <img
-            src={image}
-            alt="Blog Hero"
-            className="w-full h-full object-cover"
-          />
+          <div className="flex h-full w-full items-center justify-center p-8">
+            <CaseStudyAbstract solution={meta.solution} active className="h-full w-full" />
+          </div>
         )}
       </motion.div>
     </section>

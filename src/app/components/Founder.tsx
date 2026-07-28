@@ -1,133 +1,103 @@
 "use client";
 
-import Image from "next/image";
+import { useRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { FiInstagram, FiArrowUpRight } from "react-icons/fi";
 import { FaLinkedin, FaYoutube } from "react-icons/fa";
 
-const stats = [
-  { value: "30+", label: "Businesses Automated" },
-  { value: "100+", label: "Automations Built" },
-  { value: "3+", label: "Years Experience" },
-  { value: "100K+", label: "Social Followers" },
-];
-
 const socials = [
-  {
-    icon: FiInstagram,
-    label: "Instagram",
-    sub: "35K+ followers",
-    href: "https://www.instagram.com/chandan_cheripally_",
-  },
-  {
-    icon: FaYoutube,
-    label: "YouTube",
-    sub: "Automation tutorials",
-    href: "https://www.youtube.com/@chandankumarnetha",
-  },
-  {
-    icon: FaLinkedin,
-    label: "LinkedIn",
-    sub: "B2B network",
-    href: "https://www.linkedin.com/in/chandan-kumar-cheripally-78738a253/",
-  },
+  { icon: FiInstagram, label: "Instagram", href: "https://www.instagram.com/chandan_cheripally_" },
+  { icon: FaYoutube, label: "YouTube", href: "https://www.youtube.com/@chandankumarnetha" },
+  { icon: FaLinkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/chandan-kumar-cheripally-78738a253/" },
 ];
 
 export default function FounderSection() {
+  const reduce = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const portraitY = useTransform(scrollYProgress, [0, 1], [reduce ? 0 : -28, reduce ? 0 : 28]);
+
   return (
-    <section className="relative w-full bg-[#04051B] text-white overflow-hidden py-20 sm:py-28">
-      {/* Background glow */}
-      <div className="absolute right-0 top-0 w-[500px] h-[500px] bg-[#4E2FFF] opacity-20 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute left-0 bottom-0 w-[300px] h-[300px] bg-[#4E2FFF] opacity-10 blur-[100px] rounded-full pointer-events-none" />
-
-      <div className="relative max-w-6xl mx-auto px-6 sm:px-10 flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
-
-        {/* Photo */}
+    <section id="founder" ref={sectionRef} className="relative overflow-hidden bg-paper py-20 sm:py-28">
+      <div className="mx-auto grid max-w-5xl items-center gap-12 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+        {/* Portrait — the candid, human shot */}
         <motion.div
-          className="relative shrink-0 w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_60px_rgba(77,0,255,0.25)]"
-          initial={{ opacity: 0, x: -40 }}
+          initial={{ opacity: 0, x: -32 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+          className="relative mx-auto w-full max-w-[300px] lg:max-w-none"
         >
-          <Image
-            src="/images/myavatar.png"
-            alt="Chandan Kumar — AI Automation Consultant"
-            fill
-            className="object-cover object-top"
-            priority
-          />
-          {/* Gradient fade at bottom to mask logo */}
-          <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#04051B] to-transparent" />
+          <motion.div
+            style={{ y: portraitY }}
+            className="overflow-hidden rounded-[1.75rem] border border-ink/10 bg-surface2 shadow-[0_36px_72px_-34px_rgba(8,18,26,0.4)]"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/founder-repeatless.webp"
+              alt="Chandan Kumar — founder & CEO of Repeatless"
+              className="aspect-[4/5] w-full object-cover object-top"
+            />
+          </motion.div>
         </motion.div>
 
-        {/* Content */}
+        {/* The note */}
         <motion.div
-          className="flex flex-col gap-6 max-w-xl"
-          initial={{ opacity: 0, x: 40 }}
+          initial={{ opacity: 0, x: 32 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.15 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.7, delay: 0.12, ease: [0.4, 0, 0.2, 1] }}
         >
-          {/* Label */}
-          <span className="text-purple-400 font-dmSans text-sm font-medium tracking-widest uppercase">
-            Who Is Behind Repeatless
-          </span>
+          <p className="eyebrow text-sky">A note from the founder</p>
 
-          {/* Name & title */}
-          <div>
-            <h2 className="font-poppins font-semibold text-3xl sm:text-4xl lg:text-5xl leading-tight">
-              Hi, I&apos;m Chandan Kumar.
-            </h2>
-            <p className="text-white/50 font-dmSans text-base mt-1">
-              AI Automation Consultant · Hyderabad, India
+          <div className="mt-6 space-y-5 text-lg leading-relaxed text-slate">
+            <p>
+              I started Repeatless because I couldn&apos;t stand watching good businesses drown in work
+              that software should quietly handle.
+            </p>
+            <p>
+              Today my team and I build real AI infrastructure for $5M+ businesses — the latest tools
+              like Claude and Antigravity, combined with the systems you already run —{" "}
+              <span className="font-semibold text-ink">fully done-for-you, so your team never touches the plumbing.</span>
+            </p>
+            <p>
+              Companies representing <span className="font-semibold text-ink">$100M+ in combined revenue</span>{" "}
+              move faster because we removed the busywork entirely.
             </p>
           </div>
 
-          {/* Bio */}
-          <p className="font-dmSans text-base sm:text-lg text-white/70 leading-relaxed">
-            I help businesses in the <span className="text-white">USA, Canada &amp; Europe</span> eliminate
-            the repetitive work that kills growth. I build custom{" "}
-            <span className="text-purple-400">Claude AI &amp; n8n</span> systems — from lead automation
-            and content pipelines to full operations overhauls — so you can focus on what actually
-            moves the needle.
-          </p>
+          {/* Signature */}
+          <div className="mt-8">
+            <p className="font-display text-3xl italic text-ink">Chandan Kumar</p>
+            <p className="mt-1 text-sm text-slate2">Founder &amp; CEO · Repeatless · Hyderabad, India</p>
+          </div>
 
-          <p className="font-dmSans text-base sm:text-lg text-white/70 leading-relaxed">
-            Over <span className="text-white">100,000 business owners</span> follow my automation work
-            on Instagram and YouTube. Every system I build is the same kind I share publicly —
-            battle-tested, real, and built to last.
-          </p>
-
-          {/* Socials */}
-          <div className="flex flex-wrap gap-3">
-            {socials.map(({ icon: Icon, label, sub, href }) => (
+          {/* Platforms */}
+          <div className="mt-8 flex flex-wrap items-center gap-2.5">
+            {socials.map(({ icon: Icon, label, href }) => (
               <Link
                 key={label}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl px-4 py-2.5 transition-all duration-200 group"
+                className="group inline-flex items-center gap-2 rounded-full border border-ink/10 bg-surface px-4 py-2 text-sm font-medium text-slate transition-colors hover:border-sky/40 hover:text-sky"
               >
-                <Icon className="w-4 h-4 text-purple-400" />
-                <div className="flex flex-col">
-                  <span className="font-dmSans text-sm text-white font-medium leading-none">{label}</span>
-                  <span className="font-dmSans text-[11px] text-white/40 mt-0.5">{sub}</span>
-                </div>
-                <FiArrowUpRight className="w-3 h-3 text-white/30 group-hover:text-white/60 transition-colors ml-1" />
+                <Icon className="h-4 w-4 text-sky" />
+                {label}
+                <FiArrowUpRight className="h-3.5 w-3.5 text-slate2 transition-colors group-hover:text-sky" />
               </Link>
             ))}
           </div>
 
-          {/* Stats strip */}
-          <div className="grid grid-cols-4 gap-4 pt-2 border-t border-white/10 mt-2">
-            {stats.map(({ value, label }) => (
-              <div key={label} className="flex flex-col gap-1">
-                <span className="font-poppins font-semibold text-xl sm:text-2xl text-white">{value}</span>
-                <span className="font-dmSans text-[10px] sm:text-xs text-white/40 leading-tight">{label}</span>
-              </div>
-            ))}
+          <div className="mt-6">
+            <Link
+              href="/about"
+              className="group inline-flex items-center gap-1.5 font-medium text-sky transition-colors hover:text-skydeep"
+            >
+              Meet the full team
+              <FiArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
           </div>
         </motion.div>
       </div>

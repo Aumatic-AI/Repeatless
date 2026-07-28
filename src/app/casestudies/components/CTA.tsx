@@ -1,28 +1,33 @@
-'use client';
-import { FiPhoneCall } from "react-icons/fi";
+"use client";
+import { FiArrowUpRight } from "react-icons/fi";
 
 export default function CTASection() {
   return (
-    <section className="relative w-full bg-black text-white overflow-hidden">
-      {/* Purple blur ellipse */}
-      <div className="absolute -left-36 -top-36 w-[300px] h-[300px] rounded-full  opacity-30 filter blur-3xl lg:-left-40 lg:-top-40 lg:w-[354px] lg:h-[344px]" />
+    <section className="relative w-full overflow-hidden bg-paper">
+      {/* Ambient accent */}
+      <div className="pointer-events-none absolute left-1/2 top-0 h-56 w-[30rem] -translate-x-1/2 rounded-full bg-sky/10 blur-[110px]" />
 
-      <div className="container mx-auto flex flex-col lg:flex-row items-center lg:items-center justify-between px-6 sm:px-8 py-12 sm:py-16 gap-6">
-        <div className="flex flex-col gap-4 text-center lg:text-left max-w-full lg:max-w-xl">
-          <h2 className="font-poppins font-medium text-3xl sm:text-4xl md:text-5xl leading-[1.2] sm:leading-[1.2] tracking-[-0.5px]">
-            Ready to Repeat Less &amp; <br /> Grow More?
+      <div className="relative mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 py-16 sm:py-20 lg:flex-row">
+        <div className="flex max-w-xl flex-col gap-3 text-center lg:text-left">
+          <h2
+            className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl"
+            style={{ textWrap: "balance" } as React.CSSProperties}
+          >
+            Ready to repeat less &amp; grow more?
           </h2>
-          <p className="text-white/80 text-base sm:text-lg leading-6 sm:leading-7">
-            Let’s map your automation journey together. Book your personalized demo today.
+          <p className="text-base leading-relaxed text-slate sm:text-lg">
+            We&apos;ll map exactly what to automate first — no pitch, no commitment.
           </p>
         </div>
 
         <a
           href="https://calendly.com/chandannetha/30min"
-          className="flex items-center justify-center gap-2 px-4 sm:px-5 py-3 sm:py-3 bg-[#4D00FF] rounded-full shadow-[0_0_16px_#6D21F0,0_0_8.1px_#1C76FD] text-white font-poppins font-medium text-sm sm:text-base whitespace-nowrap"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group inline-flex shrink-0 items-center gap-2 rounded-xl bg-ink px-6 py-3.5 font-medium text-white shadow-[0_16px_34px_-16px_rgba(8,18,26,0.7)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-skydeep"
         >
-          <FiPhoneCall size={16} />
-          Book a Demo
+          Book a strategy call
+          <FiArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </a>
       </div>
     </section>

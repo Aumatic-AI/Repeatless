@@ -1182,6 +1182,235 @@ export const blogs: Blog[] = [
       }
     ]
   }
+},
+{
+  slug: "taashee-full-stack-outbound-automation",
+  title: "Full-Stack Outbound & Content Automation for Taashee Linux Services",
+  category: "Case Study",
+  date: "2026-03-12",
+  excerpt:
+    "Taashee Linux Services ran five separate manual processes for outreach and content. We replaced all of them with one connected system — LinkedIn, WhatsApp, blog, email and publishing running as a single infrastructure.",
+  image: "/images/casestudies/taashee.svg",
+  hero: {
+    title: "One System Instead of Five Tools",
+    description:
+      "Taashee Linux Services was running LinkedIn outreach, WhatsApp follow-ups, blog publishing, cold email, and social image posting as five separate manual workflows — each owned by a different person, none of them talking to each other. We connected all five into one AI infrastructure.",
+    meta: { solution: "FULL-STACK AUTOMATION", stat: "Five channels, one system" },
+    image: "/images/casestudies/taashee.svg"
+  },
+  body: {
+    sections: [
+      {
+        title: "Challenge",
+        text:
+          "Taashee Linux Services was running LinkedIn outreach, WhatsApp follow-ups, blog publishing, cold email, and social image posting as five separate manual workflows — each owned by a different person, none of them talking to each other. Leads fell through the cracks between tools, content calendars slipped, and nobody had a single view of what was actually going out or who had replied."
+      },
+      {
+        title: "Solution",
+        text: [
+          "Unified Outreach Engine: LinkedIn connection requests, follow-ups and replies now run through one automated sequence, synced to the CRM in real time.",
+          "WhatsApp CRM Sync: Every WhatsApp conversation — new lead or existing client — logs automatically against the right contact record, no manual copy-paste.",
+          "Blog Automation: Keyword research, drafting and publishing to the company blog run on a fixed cadence, reviewed rather than written from scratch.",
+          "Email Outreach Sequences: Cold and warm email sequences trigger off CRM stage changes, not a separate spreadsheet.",
+          "Image & Social Publishing: Branded graphics generate and post automatically across the company's social channels on schedule.",
+          "One Shared Pipeline: LinkedIn, WhatsApp and email now feed the same CRM view — the team sees the whole relationship in one place, not five."
+        ],
+        image: "/images/casestudies/taashee.svg"
+      },
+      {
+        title: "Why It Works",
+        iconList: [
+          "Five channels, one source of truth",
+          "No more lead handoffs between tools",
+          "Content calendar runs itself",
+          "Team sees every conversation in one CRM view",
+          "New channels plug into the same system",
+          "Built to expand as the team grows"
+        ]
+      },
+      {
+        text:
+          "This wasn't about automating one channel — it was about giving Taashee one connected system instead of five disconnected habits. LinkedIn, WhatsApp, email and content now run on the same rails, and the team spends its time on conversations, not on stitching tools together."
+      },
+      {
+        title: "Impact",
+        bullets: [
+          "Outreach, follow-up and content now run from a single connected system instead of five separate tools",
+          "Every lead's LinkedIn, WhatsApp and email activity lives in one CRM record",
+          "Blog and social content publish on a fixed cadence without a content team manually scheduling each post",
+          "The team no longer manually reconciles who replied where"
+        ]
+      }
+    ]
+  }
+},
+{
+  slug: "rc-trend-setters-shopify-automation",
+  title: "Lead Capture & Cart Recovery Automation for RC Trend Setters",
+  category: "Case Study",
+  date: "2026-04-20",
+  excerpt:
+    "RC Trend Setters, a Shopify D2C brand, was losing carts and leads to manual follow-up. We built an automated system that captures leads, recovers abandoned carts, and runs broadcast campaigns without anyone touching a spreadsheet.",
+  image: "/images/casestudies/rc-trend-setters.svg",
+  hero: {
+    title: "Every Cart Followed Up, Automatically",
+    description:
+      "RC Trend Setters, a growing Shopify store, had no consistent way to follow up on abandoned carts or capture leads from campaigns — recovery emails went out late or not at all, and broadcast promotions were built and sent manually for every launch.",
+    meta: { solution: "E-COMMERCE AUTOMATION", stat: "Every cart followed up, automatically" },
+    image: "/images/casestudies/rc-trend-setters.svg"
+  },
+  body: {
+    sections: [
+      {
+        title: "Challenge",
+        text:
+          "RC Trend Setters, a growing Shopify store, had no consistent way to follow up on abandoned carts or capture leads from campaigns — recovery emails went out late or not at all, and broadcast promotions were built and sent manually for every launch."
+      },
+      {
+        title: "Solution",
+        text: [
+          "Lead Capture: On-site forms and campaign sign-ups feed directly into one automated list — no manual exports from Shopify.",
+          "Abandoned Cart Recovery: The moment a cart is abandoned, a timed recovery sequence starts automatically — no team member has to notice or trigger it.",
+          "Broadcast Campaigns: Launches and promotions go out as scheduled, segmented broadcasts instead of one-off manual sends.",
+          "Shopify-Native Triggers: Every automation is wired directly to real store events — cart, checkout, order status — not a lagging manual sync."
+        ],
+        image: "/images/casestudies/rc-trend-setters.svg"
+      },
+      {
+        title: "Why It Works",
+        iconList: [
+          "Cart recovery starts the moment a cart is abandoned",
+          "Leads captured and organized without manual exports",
+          "Campaigns scheduled and segmented, not sent one by one",
+          "Built directly on Shopify's own store events"
+        ]
+      },
+      {
+        text:
+          "The store no longer depends on someone remembering to follow up. Every abandoned cart, every new lead, every campaign now runs on rails — RC Trend Setters ships promotions and recovers carts on autopilot, and the team spends its time on the storefront, not the follow-up."
+      },
+      {
+        title: "Impact",
+        bullets: [
+          "Abandoned carts now get a recovery sequence automatically, with no manual trigger",
+          "Leads from every campaign land in one system instead of scattered exports",
+          "Broadcast campaigns launch on schedule without manual list-building each time"
+        ]
+      }
+    ]
+  }
+},
+{
+  slug: "amazinga-sportkart-voice-whatsapp-agent",
+  title: "WhatsApp & Voice AI Agent for Amazinga / SPORTKART",
+  category: "Case Study",
+  date: "2026-05-15",
+  excerpt:
+    "Amazinga (SPORTKART), a Croatian retailer, needed a way to handle customer calls and WhatsApp messages without adding headcount. We built a voice and WhatsApp AI agent on Retell AI and Twilio that answers, qualifies, and routes every conversation.",
+  image: "/images/casestudies/amazinga-sportkart.svg",
+  hero: {
+    title: "One Agent, Every Call and Message Answered",
+    description:
+      "Amazinga (SPORTKART), a Croatian sports retailer, was fielding customer calls and WhatsApp enquiries with a small team stretched across sales and support — busy hours meant missed calls, delayed WhatsApp replies, and customers left waiting.",
+    meta: { solution: "VOICE + WHATSAPP AI AGENT", stat: "Calls and messages, always answered" },
+    image: "/images/casestudies/amazinga-sportkart.svg"
+  },
+  body: {
+    sections: [
+      {
+        title: "Challenge",
+        text:
+          "Amazinga (SPORTKART), a Croatian sports retailer, was fielding customer calls and WhatsApp enquiries with a small team stretched across sales and support — busy hours meant missed calls, delayed WhatsApp replies, and customers left waiting."
+      },
+      {
+        title: "Solution",
+        text: [
+          "Voice AI Agent: Built on Retell AI and Twilio, the agent answers inbound calls, understands intent, and handles common questions or books a callback — live, not a voicemail.",
+          "WhatsApp AI Agent: The same intelligence answers WhatsApp messages, qualifying enquiries and routing anything that needs a human straight to the right person.",
+          "Always-On Coverage: Calls and messages get answered outside business hours and during peak volume, not just when someone's free.",
+          "Human Handoff: Anything the agent can't resolve is routed to the team with full context — no customer repeats themselves."
+        ],
+        image: "/images/casestudies/amazinga-sportkart.svg"
+      },
+      {
+        title: "Why It Works",
+        iconList: [
+          "Calls answered live, not left to voicemail",
+          "WhatsApp replies without a queue",
+          "Coverage extends beyond business hours",
+          "Full context handed off when a human takes over"
+        ]
+      },
+      {
+        text:
+          "Amazinga's customers now get an immediate, live response — by phone or WhatsApp — whether it's 11am on a Tuesday or 9pm on a Saturday. The team steps in exactly when a conversation needs a person, and not a moment before."
+      },
+      {
+        title: "Impact",
+        bullets: [
+          "Calls and WhatsApp messages get an immediate response instead of waiting on staff availability",
+          "The team only steps into conversations that actually need a human",
+          "Customer enquiries no longer go unanswered outside business hours"
+        ]
+      }
+    ]
+  }
+},
+{
+  slug: "true-north-homes-ai-ceo-agent",
+  title: "An AI CEO Agent for True North Homes",
+  category: "Case Study",
+  date: "2026-06-28",
+  excerpt:
+    "True North Homes, a Canadian home services company, wanted one system that could actually run the business day-to-day — not just automate a single task. We built a multi-agent AI infrastructure with a central orchestrating agent at the center.",
+  image: "/images/casestudies/true-north-homes.svg",
+  hero: {
+    title: "One Orchestrating Agent, the Whole Operation",
+    description:
+      "True North Homes had already automated pieces of the business individually — but each automation lived on its own, with no single view of what was happening across sales, scheduling and operations. The founder wanted one system smart enough to see the whole business, not five smart pieces that didn't talk to each other.",
+    meta: { solution: "MULTI-AGENT AI INFRASTRUCTURE", stat: "One agent oversees the whole operation" },
+    image: "/images/casestudies/true-north-homes.svg"
+  },
+  body: {
+    sections: [
+      {
+        title: "Challenge",
+        text:
+          "True North Homes had already automated pieces of the business individually — but each automation lived on its own, with no single view of what was happening across sales, scheduling and operations. The founder wanted one system smart enough to see the whole business, not five smart pieces that didn't talk to each other."
+      },
+      {
+        title: "Solution",
+        text: [
+          "Central Orchestrating Agent: One AI agent sits above the business's operations, delegating tasks to specialized sub-agents and tracking what's happening across the company.",
+          "Specialized Sub-Agents: Separate agents handle scheduling, lead follow-up, and reporting — each an expert in its lane, coordinated by the orchestrator.",
+          "Full Multi-Agent Orchestration: Sub-agents report back to the orchestrator, which decides what needs attention, what can run automatically, and what needs the founder's input.",
+          "One System of Record: Every agent works from the same underlying data — no automation operating on stale or duplicate information."
+        ],
+        image: "/images/casestudies/true-north-homes.svg"
+      },
+      {
+        title: "Why It Works",
+        iconList: [
+          "One agent oversees the whole operation, not just one task",
+          "Specialized sub-agents handle their own lane expertly",
+          "The founder sees what needs attention, not everything",
+          "Every agent works from the same data, always current"
+        ]
+      },
+      {
+        text:
+          "This is what \"one system, not a patchwork\" looks like at its most ambitious — an orchestrating agent that runs the operational core of the business, delegating to specialists and surfacing only what genuinely needs a founder's judgment. It's the clearest example yet of what full AI infrastructure means at Repeatless."
+      },
+      {
+        title: "Impact",
+        bullets: [
+          "Scheduling, lead follow-up and reporting now run under one orchestrating agent instead of as separate disconnected tools",
+          "The founder is only pulled in for decisions that genuinely need a person",
+          "Every part of the system works from one shared, current view of the business"
+        ]
+      }
+    ]
+  }
 }
 ];
 
