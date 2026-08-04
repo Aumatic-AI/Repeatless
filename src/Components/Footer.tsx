@@ -73,6 +73,21 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
+      {/* Oversized brand wordmark closing the page. Decorative only — the
+          accessible brand name is already carried by the logo above, so this
+          is hidden from assistive tech and excluded from selection. Sized in
+          vw (capped) so it holds the same edge-to-edge proportion at every
+          width, and clipped so it sits flush to the bottom of the page. */}
+      <div aria-hidden className="relative mt-4 border-t border-white/[0.07] pb-8 pt-10 sm:pb-12 sm:pt-14">
+        <div className="mx-auto max-w-[1600px] overflow-hidden px-4 sm:px-6">
+          {/* leading-none, not tighter: a cropped 'p' descender reads as a bug
+              rather than a deliberate crop. */}
+          <span className="block select-none bg-gradient-to-b from-white/[0.15] via-white/[0.07] to-white/[0.02] bg-clip-text text-center font-sans text-[clamp(2.75rem,18.8vw,18.4rem)] font-semibold leading-none tracking-[-0.055em] text-transparent">
+            Repeatless
+          </span>
+        </div>
+      </div>
     </footer>
   );
 }

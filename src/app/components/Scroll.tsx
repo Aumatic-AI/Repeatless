@@ -2,22 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useInView, useReducedMotion, type Variants } from "framer-motion";
-import {
-  TrendingUp,
-  Network,
-  Users,
-  ArrowUpRight,
-  Megaphone,
-  PenTool,
-  Search,
-  ShoppingBag,
-  Target,
-  Briefcase,
-  Wrench,
-  BookOpen,
-  Share2,
-  Home,
-} from "lucide-react";
+import { TrendingUp, Network, Users, ArrowUpRight, ArrowRight } from "lucide-react";
 import { tools } from "./toolsData";
 
 const rise: Variants = {
@@ -33,7 +18,69 @@ const supportingResults: Stat[] = [
   { value: 3.2, prefix: "$", suffix: "k", decimals: 1, label: "saved / month" },
 ];
 
-const teamTraits = ["Senior specialists only", "Here long after launch"];
+// Real client contexts drawn from the case studies — breadth without fabricated logos.
+const contexts = [
+  "New York ad agency",
+  "Toronto content brand",
+  "Canadian SEO publisher",
+  "Chicago luxury retail",
+  "Vancouver marketing team",
+  "Austin consulting firm",
+  "US local services",
+  "Book publisher",
+  "B2B LinkedIn brands",
+  "Ohio home services",
+];
+
+// The labels ride the rim of a dial that is never drawn: the wheel's centre sits
+// off to the left, so the label in focus is at the rim's rightmost point and the
+// ones above and below curve back and tilt by their own angle. Depth is sold
+// with blur and opacity rather than scale, the way a lens falls off focus.
+// Tilt stays gentle on purpose: these labels are sentences, not the short tokens
+// a picker usually holds, so a steep angle swings their far end clean out of the
+// frame and chops them mid-word. 12 degrees keeps the whole line inside.
+const WHEEL_STEP = 12; // degrees between neighbouring labels
+const WHEEL_RADIUS = 200; // px
+const WHEEL_REACH = 3; // labels tracked either side of focus before teleporting
+const WHEEL_DWELL = 2600;
+const WHEEL_FADE = [1, 0.42, 0.12, 0.04, 0];
+const WHEEL_BLUR = [0, 1.1, 2.4, 3.6, 4];
+const WHEEL_SCALE = [1, 0.92, 0.84, 0.78, 0.78];
+
+// Seats are rounded because these values are rendered on the server and again on
+// the client: raw trig gives -66.17387872822835 on one side and -66.1739 on the
+// other once Motion formats it, which React reports as a hydration mismatch.
+const seatRound = (n: number) => Math.round(n * 100) / 100;
+
+function wheelSeat(distance: number) {
+  const radians = (distance * WHEEL_STEP * Math.PI) / 180;
+  const depth = Math.min(Math.abs(distance), WHEEL_FADE.length - 1);
+  return {
+    x: seatRound(-WHEEL_RADIUS * (1 - Math.cos(radians))),
+    y: seatRound(WHEEL_RADIUS * Math.sin(radians)),
+    rotate: distance * WHEEL_STEP,
+    scale: WHEEL_SCALE[depth],
+    opacity: WHEEL_FADE[depth],
+    filter: `blur(${WHEEL_BLUR[depth]}px)`,
+  };
+}
+
+// Shortest signed distance from focus, so the wheel wraps instead of rewinding.
+function wheelDistance(index: number, focus: number) {
+  const half = contexts.length / 2;
+  return ((index - focus + half + contexts.length) % contexts.length) - half;
+}
+
+const teamTraits = ["Senior specialists only"];
+
+// Restates the claims the card already makes ("no offshore queue, no hand-offs")
+// and the hero's "we build it, run it, and maintain it" as three stages one team
+// carries end to end. No invented names, timestamps, or transcripts.
+const teamStages = [
+  { label: "Design", scope: "Scoped with you, not for you" },
+  { label: "Build", scope: "The same specialists who scoped it" },
+  { label: "Run", scope: "Monitored and maintained after launch" },
+];
 
 // Five generic "tool" nodes, scattered with a couple of stray/broken
 // connections (patchwork) vs. arranged around a central hub (one system).
@@ -58,28 +105,6 @@ const PATCHWORK_LINES = [
   { x1: 96, y1: 14, x2: 54, y2: 98 },
   { x1: 168, y1: 33, x2: 28, y2: 28, dashed: true },
 ];
-
-// Real client contexts drawn from the case studies — breadth without fabricated logos.
-const contexts = [
-  { label: "New York ad agency", icon: Megaphone },
-  { label: "Toronto content brand", icon: PenTool },
-  { label: "Canadian SEO publisher", icon: Search },
-  { label: "Chicago luxury retail", icon: ShoppingBag },
-  { label: "Vancouver marketing team", icon: Target },
-  { label: "Austin consulting firm", icon: Briefcase },
-  { label: "US local services", icon: Wrench },
-  { label: "Book publisher", icon: BookOpen },
-  { label: "B2B LinkedIn brands", icon: Share2 },
-  { label: "Ohio home services", icon: Home },
-];
-
-// Cascading drop-and-bounce timing for the context chips — each chip's own
-// repeat period must equal CHIP_CYCLE exactly so the wave stays in sync
-// forever instead of drifting; only the stagger delay differs per chip.
-const CHIP_STAGGER = 0.12;
-const CHIP_BOUNCE_DURATION = 0.9;
-const CHIP_CYCLE_PAUSE = 1.6;
-const CHIP_CYCLE = contexts.length * CHIP_STAGGER + CHIP_BOUNCE_DURATION + CHIP_CYCLE_PAUSE;
 
 // Counts up from 0 when it scrolls into view — proof that reads as live data,
 // not a static claim.
@@ -117,61 +142,47 @@ function StatNumber({ value, prefix = "", suffix = "", decimals = 0 }: Stat) {
   );
 }
 
-// A compact, simulated exchange — dramatizes "no ticket queues, direct line
-// to the builder" instead of stating it as a bullet point.
-function TeamChatDemo() {
+// "No hand-offs" drawn rather than asserted: one continuous rail in one colour
+// running the whole height, with the stages sitting on it. Nothing about the
+// line changes between stages, which is the entire point. It draws top to bottom
+// once on arrival and then holds — the rail is the claim, not an animation.
+function TeamRail() {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.6 });
-  const [stage, setStage] = useState(reduce ? 2 : 0);
-
-  useEffect(() => {
-    if (!inView || reduce) return;
-    const t1 = setTimeout(() => setStage(1), 650);
-    const t2 = setTimeout(() => setStage(2), 1850);
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-    };
-  }, [inView, reduce]);
+  const inView = useInView(ref, { once: true, amount: 0.5 });
+  const drawn = inView || reduce;
 
   return (
-    <div ref={ref} className="mt-6 flex flex-col gap-2">
-      <div className="ml-auto max-w-[85%] rounded-2xl rounded-tr-md bg-surface2 px-3.5 py-2 text-sm text-ink">
-        &ldquo;Can we tweak the WhatsApp flow before Friday?&rdquo;
+    <div ref={ref} className="relative mt-6 pl-6">
+      <div className="absolute inset-y-1 left-[3px] w-[2px] overflow-hidden rounded-full bg-ink/10">
+        <motion.div
+          className="h-full w-full origin-top rounded-full bg-sky"
+          initial={reduce ? false : { scaleY: 0 }}
+          animate={{ scaleY: drawn ? 1 : 0 }}
+          transition={{ duration: reduce ? 0 : 0.7, ease: [0.23, 1, 0.32, 1] }}
+        />
       </div>
-      <AnimatePresence mode="wait">
-        {stage === 1 && (
+
+      <div className="flex flex-col gap-4">
+        {teamStages.map((stage, i) => (
           <motion.div
-            key="typing"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="flex w-14 items-center justify-center gap-1 rounded-2xl rounded-tl-md bg-skysoft px-3 py-2.5"
+            key={stage.label}
+            className="relative"
+            initial={reduce ? false : { opacity: 0, x: 6 }}
+            animate={{ opacity: drawn ? 1 : 0, x: drawn ? 0 : 6 }}
+            transition={{
+              duration: reduce ? 0 : 0.4,
+              delay: reduce ? 0 : 0.25 + i * 0.13,
+              ease: [0.23, 1, 0.32, 1],
+            }}
           >
-            {[0, 1, 2].map((i) => (
-              <motion.span
-                key={i}
-                className="h-1.5 w-1.5 rounded-full bg-sky"
-                animate={{ y: [0, -3, 0], opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 0.9, repeat: Infinity, delay: i * 0.15, ease: "easeInOut" }}
-              />
-            ))}
+            {/* Ring in the card colour so the dot sits cleanly over the rail. */}
+            <span className="absolute -left-6 top-[7px] h-2 w-2 rounded-full bg-sky ring-4 ring-surface" />
+            <p className="font-display text-base font-semibold leading-snug text-ink">{stage.label}</p>
+            <p className="mt-0.5 text-sm leading-snug text-slate">{stage.scope}</p>
           </motion.div>
-        )}
-        {stage === 2 && (
-          <motion.div
-            key="reply"
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-            className="max-w-[85%] rounded-2xl rounded-tl-md bg-skysoft px-3.5 py-2 text-sm text-skydeep"
-          >
-            &ldquo;Done — pushed the fix, live now.&rdquo;{" "}
-            <span className="text-xs text-skydeep/60">Chandan · just now</span>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        ))}
+      </div>
     </div>
   );
 }
@@ -183,25 +194,36 @@ function SystemDiagram() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.6 });
   const [mode, setMode] = useState<"patchwork" | "system">("patchwork");
+  const replayTimer = useRef<number | null>(null);
 
+  // Plays once and comes to rest on "system". Looping the comparison meant half
+  // of every visit caught the card illustrating the exact thing its headline
+  // says it is not.
   useEffect(() => {
     if (reduce) {
       setMode("system");
       return;
     }
     if (!inView) return;
-    let showSystem = false;
-    const id = setInterval(() => {
-      showSystem = !showSystem;
-      setMode(showSystem ? "system" : "patchwork");
-    }, 2200);
-    return () => clearInterval(id);
+    const id = setTimeout(() => setMode("system"), 1100);
+    return () => clearTimeout(id);
   }, [inView, reduce]);
+
+  useEffect(() => () => {
+    if (replayTimer.current) window.clearTimeout(replayTimer.current);
+  }, []);
+
+  // The comparison stays available on demand rather than on a timer.
+  const replay = () => {
+    if (reduce || mode !== "system") return;
+    setMode("patchwork");
+    replayTimer.current = window.setTimeout(() => setMode("system"), 700);
+  };
 
   const nodes = mode === "system" ? SYSTEM_NODES : PATCHWORK_NODES;
 
   return (
-    <div ref={ref} className="mt-5">
+    <div ref={ref} className="mt-5" onPointerEnter={replay}>
       <AnimatePresence mode="wait">
         <motion.p
           key={mode}
@@ -239,7 +261,17 @@ function SystemDiagram() {
           ))}
         </g>
 
-        {/* Hub — only present in system mode */}
+        {/* Hub — only present in system mode. The halo gives the core weight so
+            the resting state reads as a centre, not just a fifth dot. */}
+        <motion.circle
+          cx={HUB.cx}
+          cy={HUB.cy}
+          r={18}
+          fill="var(--color-skysoft)"
+          animate={{ opacity: mode === "system" ? 1 : 0, scale: mode === "system" ? 1 : 0.5 }}
+          transition={{ duration: reduce ? 0 : 0.5, ease: [0.4, 0, 0.2, 1] }}
+          style={{ transformOrigin: `${HUB.cx}px ${HUB.cy}px` }}
+        />
         <motion.circle
           cx={HUB.cx}
           cy={HUB.cy}
@@ -269,9 +301,10 @@ function SystemDiagram() {
             animate={{ cx: n.cx, cy: n.cy }}
             transition={{ duration: reduce ? 0 : 0.6, ease: [0.4, 0, 0.2, 1] }}
             r={6}
-            fill="var(--color-surface)"
+            fill={mode === "system" ? "var(--color-skysoft)" : "var(--color-surface)"}
             stroke={mode === "system" ? "var(--color-sky)" : "rgba(10,15,20,0.3)"}
             strokeWidth="2"
+            style={{ transition: "fill 400ms cubic-bezier(0.4,0,0.2,1), stroke 400ms cubic-bezier(0.4,0,0.2,1)" }}
           />
         ))}
       </svg>
@@ -294,45 +327,51 @@ function SystemDiagram() {
   );
 }
 
-// The client-context chips drop in from above and bounce into place, one
-// after another, in an endless wave — a calm cascade, not a jiggling grid.
-function ContextGrid() {
+// No dial is drawn — only the labels moving along where its rim would be. The
+// arrow marks the focus so the sharp label reads as selected rather than as the
+// only one that happens to have stopped there. The interval only runs while the
+// wheel is on screen.
+function ContextWheel() {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.3 });
-  const active = inView && !reduce;
+  const inView = useInView(ref, { amount: 0.4 });
+  const [focus, setFocus] = useState(0);
+
+  useEffect(() => {
+    if (reduce || !inView) return;
+    const id = setInterval(() => setFocus((n) => (n + 1) % contexts.length), WHEEL_DWELL);
+    return () => clearInterval(id);
+  }, [reduce, inView]);
 
   return (
-    <div ref={ref} className="mt-5 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
-      {contexts.map(({ label, icon: Icon }, i) => (
-        <motion.div
-          key={label}
-          className="group flex items-center gap-2.5 rounded-xl border border-ink/10 bg-surface2/60 px-3 py-2.5 transition-colors duration-300 hover:border-sky/40 hover:bg-surface hover:shadow-[0_10px_24px_-16px_rgba(8,18,26,0.35)]"
-          animate={
-            active
-              ? { y: [-18, 2, -7, 1, -3, 0], opacity: [0, 1, 1, 1, 1, 1] }
-              : { y: 0, opacity: 1 }
-          }
-          transition={
-            active
-              ? {
-                  duration: CHIP_BOUNCE_DURATION,
-                  times: [0, 0.35, 0.55, 0.72, 0.86, 1],
-                  ease: "easeOut",
-                  repeat: Infinity,
-                  repeatDelay: CHIP_CYCLE - CHIP_BOUNCE_DURATION,
-                  delay: i * CHIP_STAGGER,
-                }
-              : { duration: 0 }
-          }
-          whileHover={{ y: -3 }}
-        >
-          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-skysoft text-sky transition-colors duration-300 group-hover:bg-sky group-hover:text-white">
-            <Icon className="h-3.5 w-3.5" />
-          </span>
-          <span className="text-sm text-slate transition-colors duration-300 group-hover:text-ink">{label}</span>
-        </motion.div>
-      ))}
+    <div ref={ref} className="relative mt-4 h-48 overflow-hidden">
+      <ArrowRight
+        className="absolute left-0 top-1/2 h-4 w-4 -translate-y-1/2 text-ink"
+        aria-hidden="true"
+      />
+      {contexts.map((label, i) => {
+        const distance = reduce ? (i === 0 ? 0 : WHEEL_REACH + 1) : wheelDistance(i, focus);
+        // Anything past the reach is off-frame on both sides of the wrap, so it
+        // teleports there instead of sweeping back through the focus line.
+        const tracked = Math.abs(distance) <= WHEEL_REACH;
+        return (
+          <motion.span
+            key={label}
+            className={`absolute left-9 top-1/2 -mt-[9px] whitespace-nowrap font-display text-lg leading-none ${
+              distance === 0 ? "font-semibold text-ink" : "font-medium text-slate2"
+            }`}
+            style={{ transformOrigin: "left center" }}
+            initial={false}
+            animate={wheelSeat(distance)}
+            transition={tracked ? { type: "spring", stiffness: 200, damping: 26 } : { duration: 0 }}
+            aria-hidden="true"
+          >
+            {label}
+          </motion.span>
+        );
+      })}
+      {/* The breadth is real content, so screen readers get all ten, not one. */}
+      <span className="sr-only">{contexts.join(", ")}</span>
     </div>
   );
 }
@@ -399,7 +438,7 @@ export default function FeaturesSection() {
             </div>
           </motion.div>
 
-          {/* 5 — Where it already runs, scanning like a live status board */}
+          {/* 5 — Where it already runs, one context at a time on a stepping dial */}
           <motion.div
             variants={rise}
             initial="hidden"
@@ -409,7 +448,7 @@ export default function FeaturesSection() {
             className="mt-6 rounded-3xl border border-ink/10 bg-surface p-6 shadow-[0_20px_50px_-32px_rgba(8,18,26,0.4)]"
           >
             <p className="eyebrow text-slate2">Where our automations already run</p>
-            <ContextGrid />
+            <ContextWheel />
           </motion.div>
         </div>
 
@@ -483,7 +522,7 @@ export default function FeaturesSection() {
               <h3 className="font-display text-xl font-semibold text-ink">A dedicated team, senior-led</h3>
             </div>
             <p className="mt-4 text-slate">No offshore queue. No hand-offs.</p>
-            <TeamChatDemo />
+            <TeamRail />
             <div className="mt-4 flex flex-wrap gap-2.5">
               {teamTraits.map((trait) => (
                 <span key={trait} className="rounded-full bg-surface2 px-3.5 py-1.5 text-sm font-medium text-ink">

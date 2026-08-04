@@ -22,6 +22,7 @@
   --color-skybright:  #38BDF8; /* glows, graphics, animation light */
 
   /* Type roles */
+  --font-sans:    var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
   --font-monoui:  var(--font-geist-mono), ui-monospace, Menlo, monospace;
 }
@@ -29,17 +30,21 @@
 :root {
   --hairline: rgba(10, 15, 20, 0.10);
   --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+  color-scheme: light;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
 
 body {
+  margin: 0;
   background: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   font-synthesis-weight: none;
 }
+
+::selection { background: var(--color-ink); color: var(--color-surface); }
 
 /* Uppercase mono eyebrow/label helper */
 .eyebrow {

@@ -29,8 +29,10 @@ export default function WhatsAppDemo() {
   const reduce = !!useReducedMotion();
   const stage = useStageCycle(DURATIONS, reduce);
 
+  // Status bar takes the header green; the home bar goes dark because the input
+  // bar it floats over is light.
   return (
-    <DemoPhone>
+    <DemoPhone statusBg="#075E54" indicatorTint="dark">
       {/* Header */}
       <div className="flex items-center gap-2 bg-[#075E54] px-3 py-2.5 text-white">
         <FiChevronLeft className="h-4 w-4 shrink-0 text-white/90" />
@@ -46,7 +48,9 @@ export default function WhatsAppDemo() {
       </div>
 
       {/* Chat canvas */}
-      <div className="flex h-[360px] flex-col gap-1.5 overflow-hidden bg-[#ECE5DD] px-2.5 pt-2.5 text-[12px] leading-snug text-[#111B21]">
+      {/* Trimmed from 360px: the status bar added 30px and the phone has to stay
+          inside the 490px stage the carousel reserves. */}
+      <div className="flex h-[322px] flex-col gap-1.5 overflow-hidden bg-[#ECE5DD] px-2.5 pt-2.5 text-[12px] leading-snug text-[#111B21]">
         <div className="mx-auto rounded-md bg-[#DCF2FA] px-2 py-0.5 text-[9px] font-medium uppercase tracking-wide text-[#54656F] shadow-sm">
           Today
         </div>
@@ -142,7 +146,8 @@ export default function WhatsAppDemo() {
       </div>
 
       {/* Input bar */}
-      <div className="flex items-center gap-1.5 bg-[#F0F2F5] px-2 py-2">
+      {/* Extra bottom padding leaves the home indicator clear space to sit in */}
+      <div className="flex items-center gap-1.5 bg-[#F0F2F5] px-2 pb-4 pt-2">
         <div className="flex flex-1 items-center gap-2 rounded-full bg-white px-3 py-1.5 text-[#8696A0]">
           <FiPlus className="h-3.5 w-3.5 shrink-0" />
           <span className="flex-1 text-[11px]">Type a message</span>

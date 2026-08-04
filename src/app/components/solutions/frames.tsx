@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { FiWifi } from "react-icons/fi";
 
 /**
  * Shared device frames for the solution demos. Each demo renders inside one
@@ -63,10 +64,63 @@ export function DemoWindow({
   );
 }
 
-export function DemoPhone({ children }: { children: React.ReactNode }) {
+/**
+ * Device chrome for the phone demos: status bar, camera cutout and home
+ * indicator, so the mockups read as a screenshot off a real handset rather than
+ * as a rounded rectangle.
+ *
+ * `statusBg` takes the app's own header colour because on a real phone the app
+ * paints up behind the status bar — a neutral strip above the header would give
+ * the frame a seam no real screenshot has. The cutout stays black regardless: it
+ * is a hole in the display, not a UI surface.
+ */
+export function DemoPhone({
+  children,
+  statusBg = "transparent",
+  indicatorTint = "light",
+}: {
+  children: React.ReactNode;
+  statusBg?: string;
+  indicatorTint?: "light" | "dark";
+}) {
   return (
-    <div className="w-full max-w-[290px] overflow-hidden rounded-[2.2rem] border-[6px] border-ink bg-ink shadow-[0_34px_70px_-30px_rgba(8,18,26,0.55)]">
-      <div className="relative overflow-hidden rounded-[1.85rem]">{children}</div>
+    <div className="w-full max-w-[290px] rounded-[2.6rem] border-[7px] border-ink bg-ink shadow-[0_34px_70px_-30px_rgba(8,18,26,0.55)]">
+      <div className="relative overflow-hidden rounded-[2.1rem]">
+        <div
+          className="relative flex h-[30px] items-center justify-between px-5 text-white"
+          style={{ background: statusBg }}
+        >
+          <span className="font-medium text-[11px] tabular-nums tracking-tight">9:41</span>
+
+          {/* Camera cutout */}
+          <span className="absolute left-1/2 top-[7px] h-[17px] w-[58px] -translate-x-1/2 rounded-full bg-black" />
+
+          <span className="flex items-center gap-[5px]">
+            {/* Signal, composed from primitives rather than a drawn glyph */}
+            <span className="flex items-end gap-[1.5px]">
+              {[3, 5, 7, 9].map((h) => (
+                <span key={h} className="w-[2.5px] rounded-[1px] bg-white" style={{ height: h }} />
+              ))}
+            </span>
+            <FiWifi className="h-[11px] w-[11px]" strokeWidth={2.5} />
+            <span className="flex items-center gap-[1px]">
+              <span className="flex h-[10px] w-[19px] items-center rounded-[3px] border border-white/70 p-[1.5px]">
+                <span className="h-full w-[70%] rounded-[1.5px] bg-white" />
+              </span>
+              <span className="h-[4px] w-[1.5px] rounded-r-sm bg-white/70" />
+            </span>
+          </span>
+        </div>
+
+        {children}
+
+        {/* Home indicator floats over the app, the way it does on a real device */}
+        <span
+          className={`pointer-events-none absolute bottom-[5px] left-1/2 h-[3.5px] w-[94px] -translate-x-1/2 rounded-full ${
+            indicatorTint === "dark" ? "bg-ink/30" : "bg-white/50"
+          }`}
+        />
+      </div>
     </div>
   );
 }

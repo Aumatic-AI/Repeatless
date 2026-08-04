@@ -43,59 +43,66 @@ const Navbar: React.FC = () => {
       transition={{ duration: 0.4, ease: "easeInOut" }}
       className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-6xl"
     >
-      <nav
-        className={`flex items-center justify-between px-4 md:px-6 py-3 rounded-full border border-white/10 bg-ink transition-shadow duration-300 ${
-          scrolled
-            ? "shadow-[0_14px_40px_-14px_rgba(8,18,26,0.6)]"
-            : "shadow-[0_8px_24px_-16px_rgba(8,18,26,0.5)]"
-        }`}
-      >
-        {/* Logo — white source SVG reads on the ink pill */}
-        <Link href="/" className="flex items-center gap-2" aria-label="Repeatless home">
+      <div className="flex items-center justify-between gap-3">
+        {/* Logo — sits on the page ground, ink via filter (source SVG is white) */}
+        <Link
+          href="/"
+          className="shrink-0 transition-opacity hover:opacity-70"
+          aria-label="Repeatless home"
+        >
           <Image
             src="/images/logo.svg"
             alt="Repeatless"
-            width={124}
-            height={40}
-            className="object-contain"
+            width={118}
+            height={38}
+            className="object-contain brightness-0"
             priority
           />
         </Link>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-6 lg:gap-8 text-white/70 font-medium text-sm tracking-wide">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="relative py-1 transition-colors hover:text-white after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-skybright after:transition-all hover:after:w-full"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
+        {/* The dark pill — links only, Home → Contact */}
+        <nav className="hidden md:flex flex-1 justify-center">
+          <div
+            className={`flex items-center gap-5 lg:gap-7 px-6 py-2.5 rounded-full border border-white/10 bg-ink text-white/70 font-medium text-[13px] lg:text-sm tracking-wide transition-shadow duration-300 ${
+              scrolled
+                ? "shadow-[0_14px_40px_-14px_rgba(8,18,26,0.6)]"
+                : "shadow-[0_8px_24px_-16px_rgba(8,18,26,0.5)]"
+            }`}
+          >
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="relative whitespace-nowrap py-0.5 transition-colors hover:text-white after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-skybright after:transition-all hover:after:w-full"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </nav>
 
-        {/* Book a Demo (Desktop) — accent lives here */}
+        {/* Book a call (Desktop) — outside the pill, accent lives here */}
         <a
           href={CALENDLY}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden md:flex items-center gap-2 h-11 px-5 rounded-full bg-sky hover:bg-skydeep transition-colors text-white font-medium text-sm justify-center"
+          className="hidden md:flex shrink-0 items-center gap-2 h-11 px-5 rounded-full bg-sky hover:bg-skydeep transition-colors text-white font-medium text-sm justify-center whitespace-nowrap shadow-[0_10px_28px_-14px_rgba(2,132,199,0.7)]"
         >
           <FiPhoneCall className="w-4 h-4" />
-          <span>Book a strategy call</span>
+          <span className="lg:hidden">Book a call</span>
+          <span className="hidden lg:inline">Book a strategy call</span>
         </a>
 
         {/* Mobile Toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-white text-2xl p-2"
+          className="md:hidden flex items-center justify-center w-11 h-11 rounded-full border border-ink/10 bg-surface text-ink text-xl shadow-[0_8px_24px_-16px_rgba(8,18,26,0.5)]"
           aria-label="Toggle menu"
           aria-expanded={isOpen}
         >
           {isOpen ? <FiX /> : <FiMenu />}
         </button>
-      </nav>
+      </div>
 
       {/* Mobile Menu */}
       <AnimatePresence>

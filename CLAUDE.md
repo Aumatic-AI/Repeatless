@@ -15,7 +15,7 @@ No test suite exists in this project.
 
 ## Architecture
 
-**Next.js 16 App Router**, TypeScript, Tailwind v4, Framer Motion, GSAP. Pure frontend — no backend, no database, no API routes.
+**Next.js 16 App Router**, TypeScript, Tailwind v4, Framer Motion. Pure frontend — no backend, no database, no API routes.
 
 ### Routes
 
@@ -30,15 +30,15 @@ No test suite exists in this project.
 All content lives in `public/data/*.ts` — there is no CMS or database.
 
 - **`public/data/blogs.ts`** — The primary data file. Despite the name, it powers the `/casestudies` pages. Each entry is a `Blog` object with a `hero` block (title, description, meta stat, image/video) and a `body.sections` array. Sections support: `title`, `text` (string or string[]), `iconList`, `bullets`, `stats`, `image`, `video`. Adding a new case study means adding an entry here; `generateStaticParams()` in `[slug]/page.tsx` auto-picks it up for static generation.
-- **`public/data/caseStudies.ts`** — Card data for the homepage case studies carousel (`src/app/components/casestudies.tsx`). Separate from `blogs.ts`.
 - **`public/data/testimonialData.ts`** — Testimonial content for `src/app/components/Testimonials.tsx`.
-- **`public/data/herodata.ts`** — Hero data used by the `/casestudies/[slug]` header component.
-- **`public/data/bodydata.ts`** — Additional body section data.
+- **`public/data/toolsData.ts`** — Tool/logo data for the stack strip.
+
+Other section content (the homepage case-study carousel, hero copy, process phases) is defined inline in its own component rather than in `public/data`.
 
 ### Homepage Section Order
 
 `page.tsx` renders sections in this order:
-`Hero` → `SolutionsSection` → `VideoSection` → `HeroSection (AUtomation)` → `PackagesSection` → `ToolsSection` → `CaseStudies` → `TestimonialsSection` → `CTASection` → `OfferBanner`
+`Hero` → `FeaturesSection (Scroll.tsx, "Why Repeatless")` → `TwoTracks` → `SolutionsSection` → `HeroSection (AUtomation.tsx, "How we work")` → `CaseStudies` → `TestimonialsSection` → `FounderSection` → `OfferBanner` → `CTASection`
 
 ### Layout & Chrome
 
@@ -48,11 +48,12 @@ All content lives in `public/data/*.ts` — there is no CMS or database.
 
 ### Styling Conventions
 
-- Tailwind v4 utility classes throughout
-- Custom font classes used in components: `font-poppins`, `font-dmSans`, `font-jakarta` — defined in `globals.css`
-- Dark background: `bg-[#04051B]` is the site's base color
-- Primary accent: `#4D00FF` (purple)
-- Animations: Framer Motion (`motion.*` components with `fadeUp`/`fadeUpStagger` variants defined locally per component)
+- Tailwind v4 utility classes throughout. All design tokens live in the `@theme` block in `globals.css` — use the semantic names, not raw hex.
+- **Light editorial identity.** Neutrals: `paper` `#F8FAFC` (page ground), `surface` `#FFFFFF` (cards), `surface2` `#F0F6FA`. Ink/text: `ink` `#0A0F14`, `slate` `#3B454E` (body), `slate2` `#5F6B76` (muted).
+- Accent is sky blue, not purple: `sky` `#0284C7` (links/buttons), `skydeep` `#075985` (hover), `skysoft` `#E0F2FE` (tint fills), `skybright` `#38BDF8` (glows, graphics).
+- Font roles: `font-display` (Fraunces serif — section headings), `font-sans` (Geist — body, and the hero/footer wordmark), `font-monoui` (Geist Mono — eyebrows, labels). The `.eyebrow` helper class is also in `globals.css`.
+- Animations: Framer Motion (`motion.*` with `fadeUp`/`rise` variants defined locally per component).
+- Use `overflow-x-clip`, never `overflow-x-hidden`, on `html`/`body`/section wrappers — `hidden` creates a scroll container and silently breaks `position: sticky` anywhere in the tree (the pinned "How we work" console depends on this).
 
 ### Images
 

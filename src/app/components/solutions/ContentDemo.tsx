@@ -1,100 +1,163 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { FiFileText, FiInstagram, FiLinkedin, FiCheck, FiClock } from "react-icons/fi";
+import { FiFileText, FiPlay, FiLayers, FiLinkedin, FiCheck } from "react-icons/fi";
 import { DemoWindow, useStageCycle } from "./frames";
 
-type Status = "published" | "scheduled" | "generating";
+/**
+ * A calendar, not a queue. The copy promises work "published on schedule", and a
+ * schedule is a thing people recognise on sight. A week grid shows volume,
+ * format mix and timing in one glance, where a list of rows showed none of them.
+ *
+ * Formats are told apart by icon and chip height rather than by colour: the site
+ * runs a single sky accent, and four hues would break that. Taller chips are
+ * longer pieces, the way duration reads as height on a real calendar.
+ */
 
-const ROW1 = { icon: FiFileText, title: "SEO blog — “AI in retail logistics”", meta: "1,900 words · 4 images" };
-const ROW2 = { icon: FiInstagram, title: "Reel — product teaser #14", meta: "auto-captioned · 32s" };
-const ROW3 = { icon: FiLinkedin, title: "LinkedIn post — founder note", meta: "drafted from this week’s blog" };
-const ROW4 = { icon: FiInstagram, title: "Carousel — 5 slides, client wins", meta: "queued next in the pipeline" };
+type Format = "blog" | "reel" | "carousel" | "linkedin";
 
-// Stages: row3 finishes generating → a 4th item enters the queue → it finishes too → hold, loop.
-const DURATIONS = [4000, 2500, 4000, 2500, 2200];
+const FORMATS: Record<Format, { icon: typeof FiFileText; label: string; tall: boolean; tinted: boolean }> = {
+  blog: { icon: FiFileText, label: "Blog", tall: true, tinted: false },
+  reel: { icon: FiPlay, label: "Reel", tall: false, tinted: true },
+  carousel: { icon: FiLayers, label: "Carousel", tall: false, tinted: true },
+  linkedin: { icon: FiLinkedin, label: "Post", tall: false, tinted: false },
+};
 
-function Row({ row, status }: { row: typeof ROW1; status: Status }) {
+type Piece = { id: string; day: number; format: Format };
+
+// Mon–Fri keeps each column wide enough to label a chip. Seven columns at this
+// width would leave 62px and force every chip down to an unlabelled square.
+const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+const TODAY = 2;
+
+// A full week on purpose. A sparse grid reads as an empty calendar, which argues
+// against the volume the copy claims.
+const PLACED: Piece[] = [
+  { id: "p1", day: 0, format: "blog" },
+  { id: "p2", day: 0, format: "linkedin" },
+  { id: "p3", day: 1, format: "reel" },
+  { id: "p4", day: 1, format: "carousel" },
+  { id: "p5", day: 1, format: "linkedin" },
+  { id: "p6", day: 2, format: "blog" },
+  { id: "p7", day: 2, format: "reel" },
+  { id: "p8", day: 3, format: "reel" },
+  { id: "p9", day: 3, format: "carousel" },
+  { id: "p10", day: 4, format: "blog" },
+  { id: "p11", day: 4, format: "linkedin" },
+];
+
+// Stages: the week as it stands → a reel lands on Thu → a carousel lands on Fri →
+// Wed's blog goes live → hold, loop.
+const DURATIONS = [2600, 2000, 2000, 2600, 3200];
+const ARRIVALS: Piece[] = [
+  { id: "p12", day: 3, format: "linkedin" },
+  { id: "p13", day: 4, format: "blog" },
+];
+
+function Chip({ piece, live, reduce }: { piece: Piece; live: boolean; reduce: boolean }) {
+  const f = FORMATS[piece.format];
   return (
     <motion.div
-      layout
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -8 }}
-      transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-      className="flex items-center gap-3 rounded-xl border border-ink/10 bg-surface p-3.5"
+      layout={!reduce}
+      initial={reduce ? false : { opacity: 0, y: -10, scale: 0.96 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ type: "spring", stiffness: 300, damping: 26 }}
+      className={`relative flex flex-col justify-between rounded-lg border px-1.5 py-1 ${
+        f.tall ? "h-[42px]" : "h-[30px]"
+      } ${
+        live
+          ? "border-sky/50 bg-skysoft"
+          : f.tinted
+            ? "border-sky/20 bg-skysoft/50"
+            : "border-ink/10 bg-surface2"
+      }`}
     >
-      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-skysoft text-skydeep">
-        <row.icon className="h-4 w-4" />
-      </span>
-      <div className="min-w-0 flex-1 leading-tight">
-        <p className="truncate text-sm font-medium text-ink">{row.title}</p>
-        <p className="mt-0.5 text-xs text-slate2">{row.meta}</p>
-        {status === "generating" && (
-          <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-ink/8">
-            <motion.div
-              className="h-full w-1/3 rounded-full bg-sky"
-              animate={{ x: ["-110%", "320%"] }}
-              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </div>
-        )}
+      {/* Five day columns leave 17px of text at mobile, so the label drops and the
+          icon carries the format on its own — which is what the legend decodes.
+          Chip height still separates a long piece from a short one. */}
+      <div className="flex items-center justify-center gap-1 sm:justify-start">
+        <f.icon className={`h-2.5 w-2.5 shrink-0 ${live ? "text-skydeep" : "text-slate2"}`} />
+        <span
+          className={`hidden truncate text-[9px] font-medium leading-none sm:inline ${
+            live ? "text-skydeep" : "text-slate"
+          }`}
+        >
+          {f.label}
+        </span>
       </div>
-      <AnimatePresence mode="wait">
-        {status === "published" && (
-          <motion.span
-            key="published"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="inline-flex shrink-0 items-center gap-1 rounded-full bg-skysoft px-2.5 py-1 text-[11px] font-medium text-skydeep"
-          >
-            <FiCheck className="h-3 w-3" /> Published
-          </motion.span>
-        )}
-        {status === "scheduled" && (
-          <motion.span
-            key="scheduled"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="inline-flex shrink-0 items-center gap-1 rounded-full border border-ink/15 px-2.5 py-1 text-[11px] font-medium text-slate"
-          >
-            <FiClock className="h-3 w-3" /> 14:00
-          </motion.span>
-        )}
-        {status === "generating" && (
-          <motion.span
-            key="generating"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="shrink-0 rounded-full bg-sky px-2.5 py-1 text-[11px] font-medium text-white"
-          >
-            Writing…
-          </motion.span>
-        )}
-      </AnimatePresence>
+      {live && (
+        <span className="flex items-center justify-center gap-0.5 text-[8.5px] font-medium leading-none text-skydeep sm:justify-start">
+          <FiCheck className="h-2 w-2 shrink-0" />
+          <span className="hidden sm:inline">live</span>
+        </span>
+      )}
     </motion.div>
   );
 }
 
 export default function ContentDemo() {
   const reduce = !!useReducedMotion();
-  const stage = useStageCycle(DURATIONS, reduce);
+  const stage = useStageCycle(DURATIONS, reduce, 4);
 
-  const row3Status: Status = stage >= 1 ? "published" : "generating";
-  const showRow4 = stage >= 2;
-  const row4Status: Status = stage >= 3 ? "published" : "generating";
+  const pieces = [...PLACED, ...ARRIVALS.slice(0, Math.max(0, Math.min(2, stage - 1)))];
+  const livePieceId = stage >= 3 ? "p6" : null;
 
   return (
-    <DemoWindow title="content · publishing queue">
-      <div className="flex flex-col gap-3 p-5">
-        <Row row={ROW1} status="published" />
-        <Row row={ROW2} status="scheduled" />
-        <Row row={ROW3} status={row3Status} />
-        <AnimatePresence>{showRow4 && <Row key="row4" row={ROW4} status={row4Status} />}</AnimatePresence>
+    <DemoWindow title="content · this week">
+      <div className="p-4">
+        <div className="mb-2 flex items-baseline justify-between">
+          <span className="font-monoui text-[10px] uppercase tracking-wide text-slate2">
+            Week of 27 Jul
+          </span>
+          <motion.span
+            key={pieces.length}
+            initial={reduce ? false : { opacity: 0, y: -3 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: reduce ? 0 : 0.28, ease: "easeOut" }}
+            className="font-monoui text-[10px] tabular-nums text-ink/45"
+          >
+            {pieces.length} scheduled
+          </motion.span>
+        </div>
 
-        <p className="pt-1 text-center text-xs text-slate2">
-          12 pieces this week — researched, produced and published on schedule.
-        </p>
+        <div className="grid grid-cols-5 gap-1.5">
+          {DAYS.map((day, i) => (
+            <div key={day} className="min-w-0">
+              <div
+                className={`mb-1.5 flex items-center justify-center rounded-md py-0.5 text-[9.5px] font-medium ${
+                  i === TODAY ? "bg-ink text-white" : "text-slate2"
+                }`}
+              >
+                {day}
+              </div>
+              {/* Reserved to the fullest day so columns never resize as pieces
+                  land, and no taller than that or the week reads as empty. */}
+              <div className="flex min-h-[140px] flex-col gap-1.5 rounded-lg bg-surface2/60 p-1.5">
+                <AnimatePresence initial={false}>
+                  {pieces
+                    .filter((p) => p.day === i)
+                    .map((p) => (
+                      <Chip key={p.id} piece={p} live={p.id === livePieceId} reduce={reduce} />
+                    ))}
+                </AnimatePresence>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Legend, because format is carried by icon rather than colour. */}
+        <div className="mt-3 flex flex-wrap items-center gap-x-3.5 gap-y-1.5 border-t border-ink/10 pt-3">
+          {(Object.keys(FORMATS) as Format[]).map((key) => {
+            const f = FORMATS[key];
+            return (
+              <span key={key} className="flex items-center gap-1 text-[10px] text-slate2">
+                <f.icon className="h-2.5 w-2.5 shrink-0" />
+                {f.label}
+              </span>
+            );
+          })}
+          <span className="ml-auto font-monoui text-[10px] text-ink/40">researched · produced · posted</span>
+        </div>
       </div>
     </DemoWindow>
   );

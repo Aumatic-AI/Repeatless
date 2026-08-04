@@ -1,113 +1,138 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { DemoWindow } from "./frames";
 
-// Weekly trend, plotted in a 300x110 viewBox
-const LINE = "M0 92 C 30 88, 45 74, 70 70 S 115 64, 140 52 S 190 46, 215 34 S 270 22, 300 12";
+/**
+ * Stacked weeks instead of one rising line.
+ *
+ * The panel is titled "manual work replaced", and a single line going up cannot
+ * show replacement — it only shows growth. Two opposing series can: automated
+ * rising as manual falls, in the same column, week over week. That is the claim,
+ * drawn.
+ *
+ * The chart also has to move. Previously the counters ticked to claim live data
+ * while the chart was frozen after one whileInView draw, so the panel argued with
+ * itself. Now the newest week grows on the same tick the counters do.
+ */
 
-// Small deterministic increments (not random — stays identical on every load,
-// only the elapsed-time display genuinely reflects real time passing).
-const TASK_TICKS = [3, 2, 4, 1, 3, 2];
-const LEAD_TICKS = [1, 0, 1, 0, 0, 1];
+// Share of each week's work handled without a person. Deterministic so server and
+// client agree; only the newest week moves once mounted.
+const WEEKS = [0.16, 0.24, 0.31, 0.42, 0.53, 0.63, 0.74, 0.82];
+const TICK_MS = 1000;
+const TICKS_PER_UPDATE = 5;
 
 export default function DashboardDemo() {
   const reduce = !!useReducedMotion();
-  const [tasksAutomated, setTasksAutomated] = useState(3412);
-  const [leadsCaptured, setLeadsCaptured] = useState(214);
+  const [tasks, setTasks] = useState(3412);
+  const [leads, setLeads] = useState(214);
+  const [hours, setHours] = useState(128);
   const [secondsAgo, setSecondsAgo] = useState(0);
-  const [tickIndex, setTickIndex] = useState(0);
+  const [growth, setGrowth] = useState(0);
+
+  // A ref, not a dep. Keying the interval on the tick counter tore it down and
+  // rebuilt it on every single tick, which made the cadence drift.
+  const round = useRef(0);
 
   useEffect(() => {
     if (reduce) return;
-    const t = setInterval(() => {
+    const id = setInterval(() => {
       setSecondsAgo((s) => {
-        if (s >= 4) {
-          setTasksAutomated((v) => v + TASK_TICKS[tickIndex % TASK_TICKS.length]);
-          setLeadsCaptured((v) => v + LEAD_TICKS[tickIndex % LEAD_TICKS.length]);
-          setTickIndex((i) => i + 1);
-          return 0;
-        }
-        return s + 1;
+        if (s < TICKS_PER_UPDATE - 1) return s + 1;
+        const i = round.current++;
+        setTasks((v) => v + [3, 2, 4, 1, 3, 2][i % 6]);
+        setLeads((v) => v + [1, 0, 1, 1, 0, 1][i % 6]);
+        setHours((v) => v + (i % 3 === 0 ? 1 : 0));
+        // Creeps toward, but never past, fully automated.
+        setGrowth((g) => Math.min(0.11, g + 0.012));
+        return 0;
       });
-    }, 1000);
-    return () => clearInterval(t);
-  }, [reduce, tickIndex]);
+    }, TICK_MS);
+    return () => clearInterval(id);
+  }, [reduce]);
 
-  const kpis = [
-    { value: "128", label: "hours saved / mo" },
-    { value: tasksAutomated.toLocaleString(), label: "tasks automated" },
-    { value: String(leadsCaptured), label: "leads captured" },
-  ];
+  const weeks = WEEKS.map((w, i) => (i === WEEKS.length - 1 ? Math.min(0.95, w + growth) : w));
 
   return (
     <DemoWindow title="ops · live dashboard">
       <div className="p-5">
-        {/* KPI tiles */}
+        {/* One number leads. Three identical tiles gave the eye nowhere to land. */}
         <div className="grid grid-cols-3 gap-2.5">
-          {kpis.map((k) => (
-            <div key={k.label} className="rounded-xl bg-skysoft px-3 py-3">
-              <motion.p
-                key={k.value}
-                initial={{ opacity: 0.4, y: -3 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-                className="font-display text-xl font-semibold tracking-tight text-skydeep tabular-nums sm:text-2xl"
-              >
-                {k.value}
-              </motion.p>
-              <p className="mt-0.5 text-[10.5px] leading-tight text-skydeep/70">{k.label}</p>
-            </div>
-          ))}
+          <div className="col-span-2 rounded-xl bg-skysoft px-4 py-3">
+            <motion.p
+              key={hours}
+              initial={reduce ? false : { opacity: 0.5, y: -3 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: reduce ? 0 : 0.3 }}
+              className="font-display text-3xl font-semibold tracking-tight text-skydeep tabular-nums"
+            >
+              {hours}
+            </motion.p>
+            <p className="mt-0.5 text-[11px] leading-tight text-skydeep/70">
+              hours of manual work removed this month
+            </p>
+          </div>
+          <div className="flex flex-col gap-2.5">
+            {[
+              { v: tasks.toLocaleString(), l: "tasks automated" },
+              { v: String(leads), l: "leads captured" },
+            ].map((k) => (
+              <div key={k.l} className="flex-1 rounded-xl bg-surface2 px-3 py-2">
+                <motion.p
+                  key={k.v}
+                  initial={reduce ? false : { opacity: 0.5, y: -2 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: reduce ? 0 : 0.3 }}
+                  className="font-display text-base font-semibold tabular-nums leading-none text-ink"
+                >
+                  {k.v}
+                </motion.p>
+                <p className="mt-0.5 text-[9.5px] leading-none text-slate2">{k.l}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Trend chart */}
-        <div className="mt-4 rounded-xl border border-ink/10 p-4">
+        <div className="mt-3.5 rounded-xl border border-ink/10 p-4">
           <div className="flex items-baseline justify-between">
             <p className="text-xs font-medium text-ink">Manual work replaced</p>
             <p className="text-[10.5px] text-slate2">last 8 weeks</p>
           </div>
-          <svg viewBox="0 0 300 110" className="mt-3 block w-full" aria-hidden>
-            {[22, 52, 82].map((y) => (
-              <line key={y} x1="0" y1={y} x2="300" y2={y} stroke="rgba(10,15,20,0.06)" strokeWidth="1" />
+
+          <div className="mt-3 flex h-[104px] items-end gap-1.5">
+            {weeks.map((share, i) => (
+              <div key={i} className="flex h-full flex-1 flex-col justify-end overflow-hidden rounded-md bg-ink/10">
+                {/* Grows from the bottom on a transform, so the bar animating every
+                    few seconds never triggers layout. */}
+                <motion.div
+                  className="w-full origin-bottom rounded-md bg-sky"
+                  style={{ height: "100%" }}
+                  initial={false}
+                  animate={{ scaleY: share }}
+                  transition={{ duration: reduce ? 0 : 0.7, ease: [0.23, 1, 0.32, 1] }}
+                />
+              </div>
             ))}
-            <motion.path
-              d={`${LINE} L 300 110 L 0 110 Z`}
-              fill="var(--color-skysoft)"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 0.7 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: reduce ? 0 : 0.8, delay: 0.5 }}
-            />
-            <motion.path
-              d={LINE}
-              fill="none"
-              stroke="var(--color-sky)"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              initial={{ pathLength: reduce ? 1 : 0 }}
-              whileInView={{ pathLength: 1 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: reduce ? 0 : 1.4, ease: [0.4, 0, 0.2, 1] }}
-            />
-            <circle cx="300" cy="12" r="4" fill="var(--color-sky)" />
-            {!reduce && (
-              <motion.circle
-                cx="300"
-                cy="12"
-                r="4"
-                fill="none"
-                stroke="var(--color-sky)"
-                strokeWidth="1.5"
-                animate={{ r: [4, 11], opacity: [0.6, 0] }}
-                transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut" }}
-              />
-            )}
-          </svg>
+          </div>
+
+          <div className="mt-2.5 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <span className="flex items-center gap-1.5 text-[9.5px] text-slate2">
+                <span className="h-2 w-2 rounded-sm bg-sky" /> automated
+              </span>
+              {/* Same token as the bar track — a legend swatch that does not match
+                  the series it labels is just wrong. */}
+              <span className="flex items-center gap-1.5 text-[9.5px] text-slate2">
+                <span className="h-2 w-2 rounded-sm bg-ink/10" /> still manual
+              </span>
+            </div>
+            <span className="font-monoui text-[9.5px] tabular-nums text-ink/40">
+              {Math.round(weeks[weeks.length - 1] * 100)}% this week
+            </span>
+          </div>
         </div>
 
-        {/* Live row */}
         <div className="mt-3.5 flex items-center justify-center gap-1.5">
           <span className="relative flex h-2 w-2">
             {!reduce && (

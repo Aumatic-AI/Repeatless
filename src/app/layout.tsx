@@ -49,7 +49,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} overflow-x-hidden`}>
+    /* overflow-x-clip, not -hidden: `hidden` makes these a scroll container,
+       which silently breaks `position: sticky` anywhere in the tree. `clip`
+       suppresses horizontal scrollbars without that side effect. */
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} overflow-x-clip`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/images/favicon.ico" />
@@ -102,7 +105,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className="antialiased overflow-x-hidden">
+      <body className="antialiased overflow-x-clip">
         <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
