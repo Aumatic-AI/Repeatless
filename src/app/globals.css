@@ -154,7 +154,6 @@ html {
   font-size: .64rem !important;
   letter-spacing: .15em !important;
   text-transform: uppercase;
-  color: var(--muted) !important;
 }
 
 .font-display {

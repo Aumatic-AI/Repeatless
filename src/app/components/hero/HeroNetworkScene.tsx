@@ -16,7 +16,6 @@ import {
   ArrowUpRight,
   BarChart3,
   Bot,
-  CalendarDays,
   Database,
   MessageSquare,
   Mic2,
@@ -178,34 +177,6 @@ function MiniWorkflow() {
   );
 }
 
-function MiniCalendar() {
-  return (
-    <div className="mt-3 grid grid-cols-7 gap-0.5">
-      {Array.from({ length: 21 }).map((_, index) => {
-        const active =
-          index === 4 ||
-          index === 9 ||
-          index === 15 ||
-          index === 18;
-
-        return (
-          <div
-            key={index}
-            className={[
-              "flex h-4 items-center justify-center rounded text-[6px]",
-              active
-                ? "bg-[#CAFB00] text-black"
-                : "bg-white/[0.035] text-white/25",
-            ].join(" ")}
-          >
-            {index + 1}
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
 function MiniWaveform() {
   const heights = [
     20,
@@ -355,16 +326,22 @@ export default function HeroNetworkScene({
     [-7, reduce ? -7 : -14],
   );
 
-  const topCenterY = useTransform(
+  const rightX = useTransform(
     scrollProgress,
     [0, 1],
-    [0, reduce ? 0 : -80],
+    [0, reduce ? 0 : 125],
   );
 
-  const topCenterRotate = useTransform(
+  const rightY = useTransform(
     scrollProgress,
     [0, 1],
-    [3, reduce ? 3 : 8],
+    [0, reduce ? 0 : 25],
+  );
+
+  const rightRotate = useTransform(
+    scrollProgress,
+    [0, 1],
+    [8, reduce ? 8 : 16],
   );
 
   const topRightX = useTransform(
@@ -401,24 +378,6 @@ export default function HeroNetworkScene({
     scrollProgress,
     [0, 1],
     [-8, reduce ? -8 : -16],
-  );
-
-  const rightX = useTransform(
-    scrollProgress,
-    [0, 1],
-    [0, reduce ? 0 : 125],
-  );
-
-  const rightY = useTransform(
-    scrollProgress,
-    [0, 1],
-    [0, reduce ? 0 : 25],
-  );
-
-  const rightRotate = useTransform(
-    scrollProgress,
-    [0, 1],
-    [8, reduce ? 8 : 16],
   );
 
   const bottomLeftX = useTransform(
@@ -592,21 +551,27 @@ export default function HeroNetworkScene({
         </div>
       </FloatingCard>
 
-      {/* TOP CENTER — AI OUTREACH */}
+      {/* RIGHT — AI OUTREACH */}
 
       <FloatingCard
         delay={0.25}
         style={{
-          y: topCenterY,
-          rotate: topCenterRotate,
+          x: useTransform(
+            [rightX, rightParallaxX],
+            ([scrollX, mouseX]) =>
+              (scrollX as number) +
+              (mouseX as number),
+          ),
+          y: rightY,
+          rotate: rightRotate,
         }}
         className="
-          left-1/2
-          top-[8%]
-          w-[145px]
-          -translate-x-1/2
+          right-[1%]
+          top-[43%]
+          w-[130px]
           p-2
-          xl:w-[160px]
+          xl:right-[4%]
+          xl:w-[145px]
         "
       >
         <CardHeader
@@ -706,45 +671,6 @@ export default function HeroNetworkScene({
           <span className="flex items-center gap-1 text-[7px] uppercase tracking-[0.1em] text-[#CAFB00]">
             <span className="h-1 w-1 animate-pulse rounded-full bg-[#CAFB00]" />
             Live
-          </span>
-        </div>
-      </FloatingCard>
-
-      {/* RIGHT — PUBLISHING */}
-
-      <FloatingCard
-        delay={0.55}
-        style={{
-          x: useTransform(
-            [rightX, rightParallaxX],
-            ([scrollX, mouseX]) =>
-              (scrollX as number) +
-              (mouseX as number),
-          ),
-          y: rightY,
-          rotate: rightRotate,
-        }}
-        className="
-          right-[1%]
-          top-[43%]
-          w-[130px]
-          p-2
-          xl:right-[4%]
-          xl:w-[145px]
-        "
-      >
-        <CardHeader
-          icon={<CalendarDays size={13} />}
-          title="Publishing"
-          subtitle="Schedule. Automate. Stay consistent."
-        />
-
-        <MiniCalendar />
-
-        <div className="mt-2 flex items-center justify-between text-[7px] uppercase tracking-[0.1em] text-white/30">
-          <span>Next</span>
-          <span className="text-[#CAFB00]">
-            4:30 PM
           </span>
         </div>
       </FloatingCard>

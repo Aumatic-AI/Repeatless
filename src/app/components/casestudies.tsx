@@ -75,15 +75,12 @@ export default function CaseStudies() {
 
       {/* Marquee wall — two rows, opposite directions, full-bleed */}
       <div className="mt-12 flex flex-col gap-6 sm:mt-14">
-        <Marquee gradient gradientColor="#F8FAFC" gradientWidth={80} speed={32} pauseOnHover play={!reduce} autoFill>
+        <Marquee speed={32} pauseOnHover play={!reduce} autoFill>
           {rowOne.map((cs) => (
             <WorkTile key={cs.slug} cs={cs} />
           ))}
         </Marquee>
         <Marquee
-          gradient
-          gradientColor="#F8FAFC"
-          gradientWidth={80}
           speed={32}
           direction="right"
           pauseOnHover

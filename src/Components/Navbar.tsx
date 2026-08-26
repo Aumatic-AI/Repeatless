@@ -93,10 +93,10 @@ const Navbar: React.FC = () => {
           <span className="hidden lg:inline">Book a strategy call</span>
         </a>
 
-        {/* Mobile Toggle */}
+        {/* Mobile Toggle — Book a call lives inside the menu it opens */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden flex items-center justify-center w-11 h-11 rounded-full border border-ink/10 bg-surface text-ink text-xl shadow-[0_8px_24px_-16px_rgba(8,18,26,0.5)]"
+          className="md:hidden flex h-11 w-11 shrink-0 items-center justify-center rounded-none border border-ink/10 bg-surface text-ink text-xl shadow-[0_8px_24px_-16px_rgba(8,18,26,0.5)]"
           aria-label="Toggle menu"
           aria-expanded={isOpen}
         >
@@ -112,25 +112,31 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.28, ease: "easeOut" }}
-            className="md:hidden mt-3 mx-1 rounded-3xl border border-white/10 bg-ink shadow-xl text-white flex flex-col items-center gap-5 py-8"
+            className="md:hidden mt-3 mx-1 rounded-none border border-white/10 bg-ink shadow-xl text-white flex flex-col items-center"
           >
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className="text-lg font-medium text-white/80 hover:text-white transition"
-              >
-                {link.label}
-              </Link>
-            ))}
+            <div className="flex flex-col items-center gap-5 px-6 pb-8 pt-8">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className="text-lg font-medium text-white/80 hover:text-white transition"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+
+            {/* Full-width, zero-margin footer button — a direct child of the
+                panel (not the padded div above) so it always sits flush
+                against the panel's own left/right/bottom edges. */}
             <a
               href={CALENDLY}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 h-11 px-6 rounded-full bg-sky hover:bg-skydeep transition-colors text-white font-medium text-sm justify-center"
+              className="flex w-full items-center justify-center gap-2 bg-sky px-8 py-4 text-base font-medium text-white transition-colors hover:bg-skydeep"
             >
-              <FiPhoneCall className="w-4 h-4" />
+              <FiPhoneCall className="w-5 h-5" />
               <span>Book a strategy call</span>
             </a>
           </motion.div>

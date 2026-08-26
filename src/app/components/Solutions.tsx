@@ -196,7 +196,7 @@ export default function SolutionsSection() {
             onPointerLeave={() => setHeld(false)}
             onFocusCapture={() => setHeld(true)}
             onBlurCapture={() => setHeld(false)}
-            className="mt-7"
+            className="mt-7 -mx-6 sm:mx-0"
           >
             <div
               ref={tabsRef}
@@ -204,9 +204,12 @@ export default function SolutionsSection() {
                 mx-auto
                 flex
                 max-w-6xl
-                justify-center
+                justify-start
                 gap-1.5
                 overflow-x-auto
+                px-6
+                sm:justify-center
+                sm:px-0
                 [-ms-overflow-style:none]
                 [scrollbar-width:none]
                 [&::-webkit-scrollbar]:hidden

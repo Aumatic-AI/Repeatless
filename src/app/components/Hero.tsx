@@ -74,7 +74,7 @@ const Hero = () => {
               )}
               <span className="relative inline-flex h-2 w-2 rounded-full bg-[#CAFB00]" />
             </span>
-            <p className="eyebrow m-0 text-white/60">
+            <p className="eyebrow m-0 text-white/80">
               AI automation agency · Serving B2B worldwide
             </p>
           </motion.div>
