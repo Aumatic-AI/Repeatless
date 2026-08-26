@@ -5,7 +5,6 @@ import Marquee from "react-fast-marquee";
 import { blogs } from "../../../public/data/blogs";
 import { useReducedMotion } from "framer-motion";
 import { FiArrowUpRight, FiArrowRight } from "react-icons/fi";
-import CaseStudyVisual from "./CaseStudyVisual";
 
 const caseStudies = blogs.filter((b) => b.category === "Case Study");
 const rowOne = caseStudies.slice(0, Math.ceil(caseStudies.length / 2));
@@ -28,16 +27,19 @@ function WorkTile({ cs }: { cs: CaseStudy }) {
             workflow · {cs.hero.meta.solution}
           </span>
         </div>
-        <CaseStudyVisual
-          solution={cs.hero.meta.solution}
-          stat={cs.hero.meta.stat}
-          className="aspect-[16/10] w-full"
-        />
-      </div>
-      <div className="mt-3 px-1 sm:mt-4">
-        <h4 className="truncate text-sm font-medium text-ink transition-colors group-hover:text-sky sm:text-base">
-          {cs.title}
-        </h4>
+        <div className="relative aspect-[16/10] w-full overflow-hidden">
+          <div className="absolute inset-0 flex flex-col justify-center gap-2 p-5 opacity-100 transition-opacity duration-300 ease-out group-hover:opacity-0">
+            <p className="font-monoui text-[10px] uppercase tracking-[0.14em] text-skybright/80">
+              {cs.hero.meta.solution}
+            </p>
+            <p className="font-display text-xl font-semibold leading-snug text-white sm:text-2xl">
+              {cs.hero.meta.stat}
+            </p>
+          </div>
+          <div className="absolute inset-0 flex flex-col justify-center p-5 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100">
+            <p className="line-clamp-4 text-sm leading-relaxed text-white/80">{cs.excerpt}</p>
+          </div>
+        </div>
       </div>
     </Link>
   );
@@ -97,7 +99,7 @@ export default function CaseStudies() {
       <div className="mx-auto mt-16 max-w-6xl px-6">
         <Link
           href="/casestudies"
-          className="group inline-flex items-center gap-2 rounded-xl bg-ink px-6 py-3.5 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-skydeep"
+          className="group inline-flex items-center gap-2 rounded-xl bg-ink px-8 py-4 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-lime-400 hover:text-ink"
         >
           View all case studies
           <FiArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
