@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion, Variants } from "framer-motion";
 import CaseStudyAbstract from "../../components/CaseStudyAbstract";
 
@@ -8,6 +9,7 @@ type HeroProps = {
   description: string;
   meta: { solution: string; stat: string };
   video?: string;
+  image?: string;
 };
 
 const fadeUp: Variants = {
@@ -19,7 +21,9 @@ const fadeUp: Variants = {
   },
 };
 
-export default function BlogHero({ title, description, meta, video }: HeroProps) {
+export default function BlogHero({ title, description, meta, video, image }: HeroProps) {
+  const [imageErrored, setImageErrored] = useState(false);
+
   return (
     <section className="relative mx-auto flex w-full max-w-6xl flex-col items-center justify-center gap-8 px-6 pt-16 sm:gap-12 sm:pt-20 lg:pt-24">
       {/* Title + Description */}
@@ -75,6 +79,13 @@ export default function BlogHero({ title, description, meta, video }: HeroProps)
           ) : (
             <video src={video} className="h-full w-full object-cover" controls />
           )
+        ) : typeof image === "string" && image.length > 0 && !imageErrored ? (
+          <img
+            src={image}
+            alt={title}
+            onError={() => setImageErrored(true)}
+            className="h-full w-full object-contain"
+          />
         ) : (
           <div className="flex h-full w-full items-center justify-center p-8">
             <CaseStudyAbstract solution={meta.solution} active className="h-full w-full" />

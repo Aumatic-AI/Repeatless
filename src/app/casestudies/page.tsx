@@ -64,6 +64,7 @@ export default function Page() {
               className="group block overflow-hidden rounded-none border border-ink/10 bg-surface shadow-[0_20px_50px_-32px_rgba(8,18,26,0.4)] transition-all duration-300 hover:-translate-y-1 hover:border-sky/40"
             >
               <CaseStudyVisual
+                image={b.image}
                 solution={b.hero.meta.solution}
                 stat={b.hero.meta.stat}
                 className="h-48 w-full"

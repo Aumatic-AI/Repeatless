@@ -50,6 +50,7 @@ export default async function BlogPage({ params }: Props) {
           description={blog.hero.description}
           meta={blog.hero.meta}
           video={blog.hero.video}
+          image={blog.image}
         />
         <BlogBody sections={blog.body.sections} solution={blog.hero.meta.solution} />
       </section>

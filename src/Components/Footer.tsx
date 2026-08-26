@@ -91,7 +91,7 @@ export default function Footer() {
         <div className="mx-auto max-w-[1600px] overflow-hidden px-4 sm:px-6">
           {/* leading-none, not tighter: a cropped 'p' descender reads as a bug
               rather than a deliberate crop. */}
-          <span className="block select-none bg-gradient-to-b from-white/[0.15] via-white/[0.07] to-white/[0.02] bg-clip-text text-center font-sans text-[clamp(2.75rem,18.8vw,18.4rem)] font-semibold leading-none tracking-[-0.055em] text-transparent">
+          <span className="block select-none bg-gradient-to-b from-[#cafb00]/[0.35] via-[#cafb00]/[0.15] to-[#cafb00]/[0.03] bg-clip-text text-center font-sans text-[clamp(2.75rem,18.8vw,18.4rem)] font-semibold leading-none tracking-[-0.055em] text-transparent">
             Repeatless
           </span>
         </div>

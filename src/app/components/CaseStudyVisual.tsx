@@ -1,41 +1,38 @@
 "use client";
 
 import { useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import CaseStudyAbstract from "./CaseStudyAbstract";
 
 type Props = {
+  image: string;
   solution: string;
   stat: string;
   className?: string;
 };
 
-export default function CaseStudyVisual({ solution, stat, className }: Props) {
-  const [active, setActive] = useState(false);
-  const reduce = useReducedMotion();
+export default function CaseStudyVisual({ image, solution, stat, className }: Props) {
+  const [errored, setErrored] = useState(false);
 
   return (
-    <div
-      className={`relative overflow-hidden bg-[#0B0E1A] ${className ?? ""}`}
-      onMouseEnter={() => setActive(true)}
-      onMouseLeave={() => setActive(false)}
-      onFocus={() => setActive(true)}
-      onBlur={() => setActive(false)}
-    >
-      {/* Text layer — default state */}
-      <motion.div
-        className="absolute inset-0 flex flex-col justify-center gap-2 p-5"
-        animate={{ opacity: active ? 0 : 1 }}
-        transition={{ duration: reduce ? 0 : 0.3 }}
-      >
-        <p className="font-monoui text-[10px] uppercase tracking-[0.14em] text-skybright/80">{solution}</p>
-        <p className="font-display text-xl font-semibold leading-snug text-white sm:text-2xl">{stat}</p>
-      </motion.div>
-
-      {/* Abstract layer — hover / focus state */}
-      <div className="absolute inset-0 flex items-center justify-center p-4">
-        <CaseStudyAbstract solution={solution} active={active} className="h-full w-full" />
-      </div>
+    <div className={`relative overflow-hidden bg-[#0B0E1A] ${className ?? ""}`}>
+      {!errored ? (
+        <>
+          <img
+            src={image}
+            alt={solution}
+            onError={() => setErrored(true)}
+            className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+          />
+          <div className="absolute inset-0 flex flex-col justify-center gap-2 bg-[#0B0E1A]/0 p-5 opacity-0 transition-all duration-300 ease-out group-hover:bg-[#0B0E1A]/70 group-hover:opacity-100">
+            <p className="font-monoui text-[10px] uppercase tracking-[0.14em] text-skybright/80">{solution}</p>
+            <p className="font-display text-xl font-semibold leading-snug text-white sm:text-2xl">{stat}</p>
+          </div>
+        </>
+      ) : (
+        <div className="flex h-full w-full flex-col justify-center gap-2 p-5">
+          <p className="font-monoui text-[10px] uppercase tracking-[0.14em] text-skybright/80">{solution}</p>
+          <p className="font-display text-xl font-semibold leading-snug text-white sm:text-2xl">{stat}</p>
+        </div>
+      )}
     </div>
   );
 }

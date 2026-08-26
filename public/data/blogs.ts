@@ -40,7 +40,7 @@ export const blogs: Blog[] = [
   date: "2025-11-05",
   excerpt:
     "We automated a New York ad-creative agency — turning product photos into high-end video ads in hours instead of weeks. No photoshoots. No studios. Just AI-powered creative production at scale.",
-  image: "https://res.cloudinary.com/ds10dzkpj/image/upload/v1762263083/repeatless/newyork_casestudy_h0knjf.png",
+  image: "/images/case-studies/cs1.png",
   hero: {
     title: "AI-Powered Video Ad Creative System",
     description:
@@ -103,7 +103,7 @@ export const blogs: Blog[] = [
   date: "2025-11-10",
   excerpt:
     "We built a fully automated short-video content engine for a Toronto client — auto-creating and auto-publishing Reels every 2 days, with an optional manual trigger for custom topics.",
-  image: "https://res.cloudinary.com/ds10dzkpj/image/upload/v1767760008/shorts_pi1oti.png",
+  image: "/images/case-studies/cs2.png",
   hero: {
     title: "Short Video (Reels) Content Automation",
     description:
@@ -167,7 +167,7 @@ export const blogs: Blog[] = [
   date: "2025-11-06",
   excerpt:
     "We built an AI-powered SEO content engine for a Canadian client — auto-researching keywords, writing SEO-optimized blogs, generating branded images, and publishing directly to WordPress.",
-  image: "https://res.cloudinary.com/ds10dzkpj/image/upload/v1762323483/seo_omnsuv.png",
+  image: "/images/case-studies/cs3.png",
   hero: {
     title: "AI-Driven SEO Content Automation",
     description:
@@ -232,7 +232,7 @@ export const blogs: Blog[] = [
   date: "2025-10-04",
   excerpt:
     "AI agent + n8n turned Instagram comments & DMs into 24/7 sales chats—62% more replies and 41% more qualified leads.",
-  image: "https://res.cloudinary.com/ds10dzkpj/image/upload/v1759665534/repeatless/insta_dm_hpng0l.png",
+  image: "/images/case-studies/cs4.png",
   hero: {
     title: "Instagram DM & Comments Automation",
     description:
@@ -291,7 +291,7 @@ export const blogs: Blog[] = [
   date: "2025-10-04",
   excerpt:
     "AI discovers proven LinkedIn ideas, rewrites them in your voice, posts daily—driving inbound leads and new client acquisition without manual work.",
-  image: "https://res.cloudinary.com/ds10dzkpj/image/upload/v1759665812/repeatless/linkedin_q4ttbl.png",
+  image: "/images/case-studies/cs5.png",
   hero: {
     title: "LinkedIn Post Generator for B2B Growth",
     description:
@@ -356,7 +356,7 @@ export const blogs: Blog[] = [
   date: "2025-10-05",
   excerpt:
     "We turned newsletter subscriptions into a lead engine by detecting senders landing in spam and triggering tailored outreach—fueling a marketing agency's pipeline.",
-  image: "https://res.cloudinary.com/ds10dzkpj/image/upload/v1759666185/repeatless/seannewsletter_g8mzip.png",
+  image: "/images/case-studies/cs6.png",
   hero: {
     title: "Newsletter Automation for Agency Lead Generation",
     description:
@@ -419,7 +419,7 @@ export const blogs: Blog[] = [
   date: "2025-10-05",
   excerpt:
     "When a publisher releases a new book, our automation broadcasts rich WhatsApp messages to opted‑in readers—driving immediate awareness and sales at scale.",
-  image: "https://res.cloudinary.com/ds10dzkpj/image/upload/v1759666496/repeatless/publications_dsrg9k.png",
+  image: "/images/case-studies/cs7.png",
   hero: {
     title: "WhatsApp Broadcast Automation for Publishers",
     description:
@@ -482,7 +482,7 @@ export const blogs: Blog[] = [
   date: "2025-10-10",
   excerpt:
     "An always-on content automation system that publishes daily across Instagram, TikTok, X, YouTube & LinkedIn for a Chicago luxury bike shop — turning local discovery into DMs and foot traffic.",
-  image: "https://res.cloudinary.com/ds10dzkpj/image/upload/v1760271382/social_media_yusuf_pceijg.png",
+  image: "/images/case-studies/cs8.png",
   hero: {
     title: "Social Media Automation for a Chicago Luxury Bike Shop",
     description:
@@ -546,7 +546,7 @@ export const blogs: Blog[] = [
   date: "2025-10-05",
   excerpt:
     "An AI+automation workflow that connects residents to vetted plumbers, electricians, and AC techs via WhatsApp—routing in seconds and boosting provider subscriptions.",
-  image: "https://res.cloudinary.com/ds10dzkpj/image/upload/v1759668522/repeatless/serviceprovider_srwmjd.png",
+  image: "/images/case-studies/cs9.png",
   hero: {
     title: "WhatsApp Local Service Connector",
     description:
@@ -610,7 +610,7 @@ export const blogs: Blog[] = [
   date: "2025-10-13",
   excerpt:
     "Zero third‑party fees: our QR system verifies attendees against your database, blocks duplicate scans, and updates attendance in real time.",
-  image: "https://res.cloudinary.com/ds10dzkpj/image/upload/v1760339555/ticket_qr_cyff8c.png",
+  image: "/images/case-studies/cs10.png",
   hero: {
     title: "QR-Based Event Attendance Automation",
     description:
@@ -674,7 +674,7 @@ export const blogs: Blog[] = [
   date: "2025-10-16",
   excerpt:
     "We built an n8n workflow that auto-replies to every YouTube comment in the creator’s tone — saving hours weekly and improving engagement, all with zero third-party tools.",
-  image: "https://res.cloudinary.com/ds10dzkpj/image/upload/v1760554512/repeatless/youtube_qa6uvx.png",
+  image: "/images/case-studies/cs11.png",
   hero: {
     title: "Automating YouTube Engagement with N8N",
     description:
@@ -738,7 +738,7 @@ export const blogs: Blog[] = [
   date: "2025-10-05",
   excerpt:
     "For consultancy teams: one form generates all client documents, auto‑names/files them in Google Drive, and supports image uploads—saving hours every week.",
-  image: "https://res.cloudinary.com/ds10dzkpj/image/upload/v1759666970/repeatless/consultation_niszxz.png",
+  image: "/images/case-studies/cs12.png",
   hero: {
     title: "Document Consolidation & Auto‑Foldering for Consultancy Clients",
     description:
@@ -803,7 +803,7 @@ export const blogs: Blog[] = [
   category: "Blog",
   date: "2025-12-01",
   excerpt: "Most real estate leads go cold within 5 minutes of contact. Here's the exact n8n + Claude AI system that follows up instantly — 24/7 — without you lifting a finger.",
-  image: "https://res.cloudinary.com/ds10dzkpj/image/upload/v1759668522/repeatless/serviceprovider_srwmjd.png",
+  image: "/images/case-studies/cs13.png",
   hero: {
     title: "Automate Real Estate Lead Follow-Up with AI",
     description: "Real estate agents in the USA lose deals every day because follow-up is slow or inconsistent. This guide shows you the exact automation system that responds to every lead in under 60 seconds — using n8n and Claude AI.",
@@ -858,7 +858,7 @@ export const blogs: Blog[] = [
   category: "Blog",
   date: "2025-12-05",
   excerpt: "Both tools automate your workflows — but one costs 10x more and locks you in. Here's an honest breakdown for small business owners in the USA and Canada.",
-  image: "https://res.cloudinary.com/ds10dzkpj/image/upload/v1762323483/seo_omnsuv.png",
+  image: "/images/case-studies/cs14.png",
   hero: {
     title: "n8n vs Zapier for Small Business Automation",
     description: "If you're a small business owner looking to automate operations, you've probably seen both n8n and Zapier. This is the honest comparison — cost, power, ease of use — so you can make the right call for your business.",
@@ -913,7 +913,7 @@ export const blogs: Blog[] = [
   category: "Blog",
   date: "2025-12-08",
   excerpt: "Twenty hours a week is 1,000 hours a year. Here are the exact automations — built for real businesses in the USA, Canada, and Europe — that reclaim that time.",
-  image: "https://res.cloudinary.com/ds10dzkpj/image/upload/v1759666970/repeatless/consultation_niszxz.png",
+  image: "/images/case-studies/cs15.png",
   hero: {
     title: "Save 20 Hours a Week with Business Automation",
     description: "Every business owner I've worked with in the USA and Canada says the same thing: 'I'm drowning in tasks that feel important but aren't.' Here's the exact playbook — with real automation examples — to get 20 hours back every week.",
@@ -967,7 +967,7 @@ export const blogs: Blog[] = [
   category: "Blog",
   date: "2025-12-10",
   excerpt: "Posting consistently on Instagram without burning out is a solved problem. Here's the exact AI automation stack that keeps accounts active, on-brand, and growing — without daily effort.",
-  image: "https://res.cloudinary.com/ds10dzkpj/image/upload/v1759665534/repeatless/insta_dm_hpng0l.png",
+  image: "/images/case-studies/cs16.png",
   hero: {
     title: "AI Content Automation for Instagram in 2025",
     description: "Instagram rewards consistency — but consistency is hard when you're running a business. This guide covers the exact AI automation stack that keeps your Instagram active, on-brand, and generating leads without you posting manually every day.",
@@ -1022,7 +1022,7 @@ export const blogs: Blog[] = [
   category: "Blog",
   date: "2025-12-14",
   excerpt: "Marketing agencies waste hours on repetitive client work. Here's the exact tool stack — ranked and compared — that the best agencies in the USA and Canada are using to automate and scale.",
-  image: "https://res.cloudinary.com/ds10dzkpj/image/upload/v1759665812/repeatless/linkedin_q4ttbl.png",
+  image: "/images/case-studies/cs17.png",
   hero: {
     title: "Best Automation Tools for Marketing Agencies (USA & Canada)",
     description: "Whether you're running a boutique agency in Toronto or a growth shop in Chicago, these are the automation tools worth your time — ranked by ROI, ease of use, and real-world agency performance.",
@@ -1078,7 +1078,7 @@ export const blogs: Blog[] = [
   category: "Blog",
   date: "2025-12-18",
   excerpt: "WhatsApp has a 98% open rate. Here's how service businesses — plumbers, cleaners, consultants, agencies — are automating customer conversations, bookings, and follow-ups on WhatsApp.",
-  image: "https://res.cloudinary.com/ds10dzkpj/image/upload/v1759666496/repeatless/publications_dsrg9k.png",
+  image: "/images/case-studies/cs18.png",
   hero: {
     title: "WhatsApp Automation for Service Businesses",
     description: "Email open rates average 20%. WhatsApp open rates average 98%. If your service business isn't automating on WhatsApp, you're leaving significant revenue on the table. This guide covers everything — from setup to advanced automation flows.",
@@ -1133,7 +1133,7 @@ export const blogs: Blog[] = [
   category: "Blog",
   date: "2025-12-22",
   excerpt: "Claude AI handles the thinking. n8n handles the doing. Together, they form the most capable — and most cost-effective — automation stack available to businesses right now.",
-  image: "https://res.cloudinary.com/ds10dzkpj/image/upload/v1762263083/repeatless/newyork_casestudy_h0knjf.png",
+  image: "/images/case-studies/cs19.png",
   hero: {
     title: "Claude AI + n8n: The Ultimate Business Automation Stack",
     description: "Most automation tools move data. Claude AI + n8n moves data AND thinks about it. This combination lets you build automations that understand context, make decisions, write content, and handle exceptions — not just trigger actions when conditions are met.",
@@ -1190,7 +1190,7 @@ export const blogs: Blog[] = [
   date: "2026-03-12",
   excerpt:
     "Taashee Linux Services ran five separate manual processes for outreach and content. We replaced all of them with one connected system — LinkedIn, WhatsApp, blog, email and publishing running as a single infrastructure.",
-  image: "/images/casestudies/taashee.svg",
+  image: "/images/case-studies/cs20.png",
   hero: {
     title: "One System Instead of Five Tools",
     description:
@@ -1251,7 +1251,7 @@ export const blogs: Blog[] = [
   date: "2026-04-20",
   excerpt:
     "RC Trend Setters, a Shopify D2C brand, was losing carts and leads to manual follow-up. We built an automated system that captures leads, recovers abandoned carts, and runs broadcast campaigns without anyone touching a spreadsheet.",
-  image: "/images/casestudies/rc-trend-setters.svg",
+  image: "/images/case-studies/cs21.png",
   hero: {
     title: "Every Cart Followed Up, Automatically",
     description:
@@ -1307,7 +1307,7 @@ export const blogs: Blog[] = [
   date: "2026-05-15",
   excerpt:
     "Amazinga (SPORTKART), a Croatian retailer, needed a way to handle customer calls and WhatsApp messages without adding headcount. We built a voice and WhatsApp AI agent on Retell AI and Twilio that answers, qualifies, and routes every conversation.",
-  image: "/images/casestudies/amazinga-sportkart.svg",
+  image: "/images/case-studies/cs22.png",
   hero: {
     title: "One Agent, Every Call and Message Answered",
     description:
@@ -1363,7 +1363,7 @@ export const blogs: Blog[] = [
   date: "2026-06-28",
   excerpt:
     "True North Homes, a Canadian home services company, wanted one system that could actually run the business day-to-day — not just automate a single task. We built a multi-agent AI infrastructure with a central orchestrating agent at the center.",
-  image: "/images/casestudies/true-north-homes.svg",
+  image: "/images/case-studies/cs23.png",
   hero: {
     title: "One Orchestrating Agent, the Whole Operation",
     description:
