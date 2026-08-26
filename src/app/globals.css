@@ -1,0 +1,887 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #F4F4EC;
+  --color-surface: #FFFFFF;
+  --color-surface2: #E8E8DE;
+  --color-ink: #090909;
+  --color-slate: #30302D;
+  --color-slate2: #66665F;
+  --color-sky: #090909;
+  --color-skydeep: #090909;
+  --color-skysoft: #CAFF04;
+  --color-skybright: #CAFF04;
+  --color-lime: #CAFF04;
+  --font-sans: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-monoui: var(--font-geist-mono), ui-monospace, Menlo, monospace;
+}
+
+:root {
+  --paper: #F4F4EC;
+  --surface2: #E8E8DE;
+  --ink: #090909;
+  --lime: #CAFF04;
+  --muted: #66665F;
+  --line: rgba(9, 9, 9, .14);
+  --dark-line: rgba(255, 255, 255, .16);
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  color-scheme: light;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--paper);
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--lime);
+  color: var(--ink);
+}
+
+a {
+  color: inherit;
+}
+
+/* =========================================================
+   CUSTOM SCROLLBAR
+   ========================================================= */
+
+html {
+  scrollbar-gutter: stable;
+  scrollbar-color: var(--ink) var(--paper);
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--ink);
+  background-clip: padding-box;
+  border: 4px solid transparent;
+  border-radius: 999px;
+  transition: background-color .2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--lime);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: var(--lime);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--paper);
+}
+
+/* =========================================================
+   GLOBAL PALETTE
+   ========================================================= */
+
+.text-sky,
+.text-skydeep,
+.text-skybright {
+  color: var(--ink) !important;
+}
+
+.bg-sky {
+  background: var(--lime) !important;
+  color: var(--ink) !important;
+}
+
+.bg-skydeep {
+  background: var(--ink) !important;
+  color: #fff !important;
+}
+
+.bg-skysoft {
+  background: var(--lime) !important;
+  color: var(--ink) !important;
+}
+
+.bg-paper {
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+}
+
+.bg-surface {
+  background: #fff !important;
+  color: var(--ink) !important;
+}
+
+.bg-surface2 {
+  background: var(--surface2) !important;
+  color: var(--ink) !important;
+}
+
+.bg-ink {
+  background: var(--ink) !important;
+}
+
+.border-sky,
+.border-sky\/40,
+.border-sky\/50,
+.border-sky\/10 {
+  border-color: var(--ink) !important;
+}
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+
+.eyebrow {
+  font-family: var(--font-monoui);
+  font-size: .64rem !important;
+  letter-spacing: .15em !important;
+  text-transform: uppercase;
+  color: var(--muted) !important;
+}
+
+.font-display {
+  font-family: var(--font-display) !important;
+}
+
+/* =========================================================
+   PAGE ATMOSPHERE
+   ========================================================= */
+
+main {
+  background: var(--paper);
+}
+
+main > *:not(.fixed) {
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+header.fixed {
+  top: 1rem !important;
+  width: min(94%, 1320px) !important;
+  max-width: none !important;
+}
+
+header.fixed > div {
+  background: rgba(9, 9, 9, .96);
+  border: 1px solid rgba(255, 255, 255, .12);
+  padding: .55rem .65rem .55rem 1rem !important;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, .2);
+  backdrop-filter: blur(16px);
+}
+
+header.fixed img {
+  filter: brightness(0) invert(1) !important;
+}
+
+header.fixed nav > div {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: rgba(255, 255, 255, .68) !important;
+  padding: .35rem .8rem !important;
+}
+
+header.fixed nav a {
+  color: rgba(255, 255, 255, .72) !important;
+}
+
+header.fixed nav a:hover {
+  color: #fff !important;
+}
+
+header.fixed nav a::after {
+  background: var(--lime) !important;
+}
+
+header.fixed a[href*="calendly"] {
+  background: var(--lime) !important;
+  color: var(--ink) !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  align-self: stretch !important;
+  height: auto !important;
+  margin: -.55rem -.65rem -.55rem 0 !important;
+}
+
+header.fixed a[href*="calendly"] svg {
+  color: var(--ink) !important;
+}
+
+header.fixed button {
+  background: var(--lime) !important;
+  color: var(--ink) !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* =========================================================
+   HOME HERO
+   ========================================================= */
+
+#home {
+  scroll-margin-top: 6rem;
+}
+
+main > section:first-of-type {
+  background: var(--ink) !important;
+  color: #fff !important;
+}
+
+main > section:first-of-type .text-sky,
+main > section:first-of-type .text-skybright {
+  color: var(--lime) !important;
+}
+
+main > section:first-of-type .bg-sky {
+  background: var(--lime) !important;
+  color: var(--ink) !important;
+}
+
+/* =========================================================
+   HERO SECTION AFTER INTRO
+   ========================================================= */
+
+main > section:nth-of-type(2) {
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+  border-bottom: 1px solid var(--line);
+}
+
+main > section:nth-of-type(2)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0 49.8%,
+      rgba(9, 9, 9, .1) 50%,
+      transparent 50.2%
+    );
+  opacity: .45;
+  pointer-events: none;
+}
+
+main > section:nth-of-type(2) h1,
+main > section:nth-of-type(2) h2 {
+  font-size: clamp(3.5rem, 9vw, 9.5rem) !important;
+  line-height: .86 !important;
+  letter-spacing: -.075em !important;
+}
+
+/* =========================================================
+   GENERIC SECTIONS
+   ========================================================= */
+
+section {
+  scroll-margin-top: 5rem;
+}
+
+section .rounded-2xl,
+section .rounded-3xl {
+  border-radius: 0 !important;
+}
+
+section .rounded-xl {
+  border-radius: 0 !important;
+}
+
+section .shadow-\[0_20px_50px_-32px_rgba\(8\,18px\,26px\,0\.4\)\] {
+  box-shadow: none !important;
+}
+
+/* =========================================================
+   WHY REPEATLESS / SCROLL
+   ========================================================= */
+
+#features-section {
+  background: var(--paper) !important;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+#features-section section {
+  background: var(--paper) !important;
+}
+
+#features-section h2 {
+  max-width: 12ch;
+}
+
+#features-section .sticky {
+  background: var(--ink) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, .1) !important;
+  box-shadow: 0 35px 100px rgba(0, 0, 0, .2) !important;
+}
+
+#features-section .sticky .text-skybright,
+#features-section .sticky .text-sky {
+  color: var(--lime) !important;
+}
+
+#features-section .sticky .bg-skybright {
+  background: var(--lime) !important;
+}
+
+#features-section .sticky .bg-sky {
+  background: var(--lime) !important;
+  color: var(--ink) !important;
+}
+
+#features-section .sticky::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, .08) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, .08) 1px,
+      transparent 1px
+    );
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, black, transparent 80%);
+  pointer-events: none;
+}
+
+/* =========================================================
+   TWO TRACKS
+   ========================================================= */
+
+#two-tracks,
+section:has(.two-tracks) {
+  background: var(--ink) !important;
+  color: #fff !important;
+}
+
+section:has(.two-tracks) .bg-surface,
+section:has(.two-tracks) .bg-paper {
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+}
+
+section:has(.two-tracks) .text-sky,
+section:has(.two-tracks) .text-skybright {
+  color: var(--lime) !important;
+}
+
+/* =========================================================
+   SOLUTIONS / WHAT WE AUTOMATE
+   ========================================================= */
+
+/*
+ * IMPORTANT:
+ *
+ * The entire #solutions section is PAPER.
+ *
+ * Only .solutions-tabs gets the green background.
+ */
+
+#solutions {
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+}
+
+#solutions .text-sky,
+#solutions .text-skydeep,
+#solutions .text-skybright {
+  color: var(--ink) !important;
+}
+
+#solutions .border-white\/10 {
+  border-color: rgba(9, 9, 9, .2) !important;
+}
+
+#solutions .bg-ink {
+  background: var(--ink) !important;
+  color: #fff !important;
+}
+
+#solutions .text-white\/55,
+#solutions .text-white\/60,
+#solutions .text-white\/70,
+#solutions .text-white\/80 {
+  color: rgba(255, 255, 255, .72) !important;
+}
+
+#solutions .rounded-3xl,
+#solutions .rounded-2xl {
+  border-radius: 0 !important;
+}
+
+/*
+ * GREEN TAB AREA ONLY
+ */
+
+#solutions .solutions-tabs {
+  background: var(--lime) !important;
+  color: var(--ink) !important;
+}
+
+/*
+ * The individual inactive tabs remain transparent.
+ */
+
+#solutions .solutions-tabs button {
+  background: transparent;
+  color: var(--ink);
+}
+
+/*
+ * Active tab stays black.
+ */
+
+#solutions .solutions-tabs button[aria-pressed="true"] {
+  background: var(--ink) !important;
+  color: #fff !important;
+  border-color: var(--ink) !important;
+}
+
+/*
+ * Decorative orbit stays subtle on the PAPER background.
+ */
+
+#solutions::after {
+  content: "";
+  position: absolute;
+  right: -8rem;
+  bottom: -10rem;
+  width: 32rem;
+  height: 32rem;
+  border: 1px solid rgba(9, 9, 9, .15);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 4rem rgba(9, 9, 9, .025),
+    0 0 0 8rem rgba(9, 9, 9, .015);
+  animation: slow-orbit 18s linear infinite;
+  pointer-events: none;
+}
+
+/* =========================================================
+   HOW WE WORK / AUTOMATION
+   ========================================================= */
+
+section:has(.font-monoui) .bg-ink {
+  background: var(--ink) !important;
+  color: #fff !important;
+}
+
+section:has(.font-monoui) .bg-ink .text-sky,
+section:has(.font-monoui) .bg-ink .text-skybright {
+  color: var(--lime) !important;
+}
+
+section:has(.font-monoui) .bg-surface {
+  background: var(--paper) !important;
+}
+
+/* =========================================================
+   CASE STUDIES
+   ========================================================= */
+
+#case-studies {
+  background: var(--paper) !important;
+  border-top: 1px solid var(--line);
+}
+
+#case-studies .group {
+  border-radius: 0 !important;
+  background: #fff !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: none !important;
+}
+
+#case-studies .group:hover {
+  border-color: var(--ink) !important;
+  transform: translateY(-6px) rotate(-.4deg);
+}
+
+#case-studies .text-sky {
+  color: var(--ink) !important;
+}
+
+#case-studies .bg-ink {
+  background: var(--ink) !important;
+}
+
+/* =========================================================
+   TESTIMONIAL / FOUNDER
+   ========================================================= */
+
+section:has(.testimonial),
+section:has(.Founder),
+section:has(img[src*="founder-repeatless"]) {
+  background: var(--paper) !important;
+}
+
+section:has(img[src*="founder-repeatless"]) img {
+  filter: grayscale(1);
+  border-radius: 0 !important;
+}
+
+/* =========================================================
+   OFFER BANNER
+   ========================================================= */
+
+section:has(.offer),
+section:has([class*="offer"]) {
+  background: var(--ink) !important;
+  color: #fff !important;
+}
+
+section:has(.offer) .text-sky,
+section:has(.offer) .text-skybright {
+  color: var(--lime) !important;
+}
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+#contact {
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+  border-top: 1px solid var(--line);
+}
+
+#contact .text-sky,
+#contact .text-skydeep,
+#contact .text-skybright {
+  color: var(--ink) !important;
+}
+
+#contact > div > div > div:last-child {
+  background: #fff !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 0 !important;
+  box-shadow: 14px 14px 0 var(--lime) !important;
+}
+
+#contact input,
+#contact textarea {
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+  border-color: rgba(9, 9, 9, .2) !important;
+  border-radius: 0 !important;
+}
+
+#contact input:focus,
+#contact textarea:focus {
+  border-color: var(--ink) !important;
+  box-shadow: 0 0 0 2px var(--lime) !important;
+}
+
+#contact button {
+  background: var(--ink) !important;
+  color: #fff !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+#contact button:hover {
+  background: var(--lime) !important;
+  color: var(--ink) !important;
+}
+
+#contact .text-emerald-600 {
+  color: var(--ink) !important;
+  background: var(--lime) !important;
+  padding: .5rem;
+}
+
+/* =========================================================
+   BUTTONS / LINKS
+   ========================================================= */
+
+a[class*="rounded-xl"],
+button[class*="rounded-xl"] {
+  border-radius: 0 !important;
+}
+
+a[class*="bg-ink"],
+button[class*="bg-ink"] {
+  background: var(--ink) !important;
+  color: #fff !important;
+}
+
+a[class*="bg-ink"]:hover,
+button[class*="bg-ink"]:hover {
+  background: var(--lime) !important;
+  color: var(--ink) !important;
+}
+
+/* =========================================================
+   FORMS / CARDS
+   ========================================================= */
+
+input,
+textarea {
+  border-radius: 0 !important;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+  background: var(--ink) !important;
+  color: #fff !important;
+  border-top: 1px solid var(--ink);
+}
+
+footer .text-sky,
+footer .text-skybright {
+  color: var(--lime) !important;
+}
+
+footer a:hover {
+  color: var(--lime) !important;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(
+      circle at 1px 1px,
+      rgba(202, 255, 4, .22) 1px,
+      transparent 1.2px
+    );
+  background-size: 18px 18px;
+  opacity: .16;
+  mask-image: linear-gradient(
+    to top,
+    black,
+    transparent 70%
+  );
+}
+
+/* =========================================================
+   CASE-STUDY LISTING / DETAIL PAGES
+   ========================================================= */
+
+body:has(#case-studies) {
+}
+
+main:has(input[aria-label="Search case studies"]) {
+  background: var(--paper);
+}
+
+main:has(input[aria-label="Search case studies"]) .bg-paper {
+  background: var(--paper) !important;
+}
+
+main:has(input[aria-label="Search case studies"]) input {
+  background: #fff !important;
+  border: 1px solid var(--line) !important;
+  color: var(--ink) !important;
+  border-radius: 0 !important;
+}
+
+main:has(input[aria-label="Search case studies"]) a.group {
+  background: #fff !important;
+  border-radius: 0 !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: none !important;
+}
+
+main:has(input[aria-label="Search case studies"]) a.group:hover {
+  border-color: var(--ink) !important;
+  transform: translateY(-5px);
+}
+
+main:has(input[aria-label="Search case studies"]) .text-sky {
+  color: var(--ink) !important;
+}
+
+/* =========================================================
+   CASE-STUDY VISUAL FRAMES
+   ========================================================= */
+
+[class*="bg-\[#0B0E1A\]"] {
+  background: var(--ink) !important;
+  border-radius: 0 !important;
+}
+
+/* =========================================================
+   ABOUT PAGE
+   ========================================================= */
+
+section:has([class*="FounderStory"]),
+section:has([class*="TeamRoster"]) {
+  background: var(--paper) !important;
+}
+
+section:has([class*="FounderStory"]) h1,
+section:has([class*="TeamRoster"]) h2 {
+  font-size: clamp(3rem, 7vw, 7rem) !important;
+  line-height: .9 !important;
+  letter-spacing: -.075em !important;
+}
+
+section:has([class*="TeamRoster"]) .bg-skysoft {
+  background: var(--lime) !important;
+  color: var(--ink) !important;
+}
+
+/* =========================================================
+   CASE DETAIL
+   ========================================================= */
+
+section:has(video) h1 {
+  font-size: clamp(3rem, 8vw, 8rem) !important;
+  line-height: .86 !important;
+  letter-spacing: -.075em !important;
+}
+
+section:has(video) .rounded-2xl,
+section:has(video) .rounded-xl {
+  border-radius: 0 !important;
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes slow-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes lime-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(202, 255, 4, .25);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 18px rgba(202, 255, 4, 0);
+  }
+}
+
+/* =========================================================
+   MOTION CUES
+   ========================================================= */
+
+section .group:hover {
+  transition:
+    transform .55s var(--ease),
+    border-color .35s var(--ease),
+    background .35s var(--ease) !important;
+}
+
+section a,
+section button {
+  transition-duration: .35s !important;
+  transition-timing-function: var(--ease) !important;
+}
+
+/* =========================================================
+   HARD VISIBILITY RULES
+   ========================================================= */
+
+.bg-sky .text-white,
+.bg-sky .text-white\/70,
+.bg-sky .text-white\/80,
+.bg-sky .text-white\/60 {
+  color: var(--ink) !important;
+}
+
+.bg-skysoft .text-white {
+  color: var(--ink) !important;
+}
+
+.bg-white .text-sky,
+.bg-paper .text-sky,
+.bg-surface .text-sky {
+  color: var(--ink) !important;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+  header.fixed {
+    width: calc(100% - 1.5rem) !important;
+  }
+
+  main > section:nth-of-type(2) h1,
+  main > section:nth-of-type(2) h2 {
+    font-size: clamp(3.1rem, 13vw, 6rem) !important;
+  }
+
+  #contact > div > div > div:last-child {
+    box-shadow: 8px 8px 0 var(--lime) !important;
+  }
+}
+
+@media (max-width: 700px) {
+  header.fixed > div {
+    padding: .55rem !important;
+  }
+
+  header.fixed nav > div {
+    background: var(--ink) !important;
+    color: #fff !important;
+  }
+
+  header.fixed .md\\:hidden {
+    display: flex !important;
+  }
+
+  #features-section .sticky {
+    min-height: 80svh;
+  }
+
+  section:has(.font-monoui) .sticky {
+    top: 0 !important;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
