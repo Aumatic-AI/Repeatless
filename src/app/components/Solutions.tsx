@@ -75,7 +75,10 @@ export default function SolutionsSection() {
     show: {
       opacity: 1,
       y: 0,
-      transition: { duration: reduce ? 0 : 0.55, ease: [0.4, 0, 0.2, 1] },
+      transition: {
+        duration: reduce ? 0 : 0.55,
+        ease: [0.4, 0, 0.2, 1],
+      },
     },
   };
 
@@ -88,7 +91,7 @@ export default function SolutionsSection() {
 
     const current =
       strip?.querySelector<HTMLElement>(
-        '[aria-pressed="true"]',
+        '[aria-pressed="true"]'
       );
 
     if (!strip || !current) return;
@@ -109,7 +112,7 @@ export default function SolutionsSection() {
     const id = setInterval(() => {
       setActive(
         (current) =>
-          (current + 1) % solutions.length,
+          (current + 1) % solutions.length
       );
     }, AUTOPLAY_MS);
 
@@ -125,7 +128,7 @@ export default function SolutionsSection() {
     >
       {/* =====================================================
           GREEN INTRO AREA
-          ===================================================== */}
+      ===================================================== */}
 
       <div
         className="
@@ -254,45 +257,45 @@ export default function SolutionsSection() {
                       }
                     `}
                   >
-                      {sol.tab}
+                    {sol.tab}
 
-                      {current &&
-                        !reduce &&
-                        !held && (
-                          <motion.span
-                            key={active}
-                            className="
-                              absolute
-                              inset-x-0
-                              bottom-0
-                              h-[2px]
-                              origin-left
-                              bg-white
-                            "
-                            initial={{
-                              scaleX: 0,
-                            }}
-                            animate={{
-                              scaleX: 1,
-                            }}
-                            transition={{
-                              duration:
-                                AUTOPLAY_MS / 1000,
-                              ease: "linear",
-                            }}
-                          />
-                        )}
-                    </button>
-                  );
-                })}
-              </div>
+                    {current &&
+                      !reduce &&
+                      !held && (
+                        <motion.span
+                          key={active}
+                          className="
+                            absolute
+                            inset-x-0
+                            bottom-0
+                            h-[2px]
+                            origin-left
+                            bg-white
+                          "
+                          initial={{
+                            scaleX: 0,
+                          }}
+                          animate={{
+                            scaleX: 1,
+                          }}
+                          transition={{
+                            duration:
+                              AUTOPLAY_MS / 1000,
+                            ease: "linear",
+                          }}
+                        />
+                      )}
+                  </button>
+                );
+              })}
+            </div>
           </motion.div>
         </div>
       </div>
 
       {/* =====================================================
           NORMAL BACKGROUND CONTENT AREA
-          ===================================================== */}
+      ===================================================== */}
 
       <div className="relative bg-paper">
         <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
@@ -308,48 +311,32 @@ export default function SolutionsSection() {
           >
             {/* =================================================
                 LEFT COPY
-            ================================================== */}
+            ================================================= */}
 
             <div
               className="
                 relative
                 grid
                 items-start
+                lg:pl-12
                 [&>*]:col-start-1
                 [&>*]:row-start-1
               "
             >
-              {/* Background card behind the copy — a lime panel that slides
-                  in from the left every time the active solution changes,
-                  keyed on `active` so it remounts (and replays its entrance)
-                  on each swap instead of just sitting there. */}
-              <AnimatePresence mode="sync">
-                <motion.div
-                  key={active}
-                  aria-hidden="true"
-                  initial={{
-                    x: reduce ? 0 : -72,
-                    opacity: 0,
-                  }}
-                  animate={{
-                    x: 0,
-                    opacity: 1,
-                  }}
-                  exit={{
-                    opacity: 0,
-                  }}
-                  transition={{
-                    duration: reduce ? 0 : 0.45,
-                    ease: [0.23, 1, 0.32, 1],
-                  }}
-                  className="
-                    absolute
-                    -inset-x-6
-                    -inset-y-5
-                    bg-[#CAFB00]
-                  "
-                />
-              </AnimatePresence>
+              {/* Vertical divider */}
+              <div
+                aria-hidden="true"
+                className="
+                  pointer-events-none
+                  absolute
+                  inset-y-0
+                  -left-6
+                  hidden
+                  w-1.5
+                  bg-black
+                  lg:block
+                "
+              />
 
               {solutions.map((sol, i) => (
                 <motion.div
@@ -366,12 +353,11 @@ export default function SolutionsSection() {
                         : "blur(3px)",
                   }}
                   transition={{
-                    duration:
-                      reduce
-                        ? 0
-                        : i === active
-                          ? 0.32
-                          : 0.22,
+                    duration: reduce
+                      ? 0
+                      : i === active
+                        ? 0.32
+                        : 0.22,
                     ease: "easeOut",
                   }}
                 >

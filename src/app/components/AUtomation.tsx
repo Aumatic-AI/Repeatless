@@ -405,7 +405,7 @@ export default function ProcessSection() {
         </div>
       </div>
 
-      <div className="relative mx-auto max-w-6xl px-6">
+      <div className="relative mx-auto mt-12 max-w-6xl px-6 sm:mt-0">
         <Link
           href="/casestudies"
           className="group inline-flex items-center gap-1.5 font-medium text-sky transition-colors hover:text-skydeep"
