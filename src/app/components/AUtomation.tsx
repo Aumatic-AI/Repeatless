@@ -88,38 +88,41 @@ const TRACK = "h-[260vh] sm:h-[320vh]";
 /** The schematic in the right-hand panel: three nodes wired in sequence. */
 function PanelSchematic({ phase, reduce }: { phase: Phase; reduce: boolean | null }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 sm:p-6">
+    <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-4 sm:p-6">
       <div className="flex items-center justify-between gap-3">
-        <span className="font-monoui text-[10px] tracking-[0.16em] text-white/35">{phase.panel.title}</span>
+        <span className="min-w-0 font-monoui text-[10px] tracking-[0.16em] text-white/35">{phase.panel.title}</span>
         <span className="relative flex h-2 w-2 shrink-0" aria-hidden>
           {!reduce && <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-skybright opacity-40" />}
           <span className="relative inline-flex h-2 w-2 rounded-full bg-skybright" />
         </span>
       </div>
 
-      {/* Three wired nodes */}
-      <div className="mt-7 flex items-start justify-between">
+      {/* Three wired nodes. Nodes flex to fill the available width (min-w-0
+          so they can shrink below their content size) instead of a fixed
+          rem width — a fixed width overflowed the panel on phones, where the
+          vertical phase rail already claims a chunk of the horizontal space. */}
+      <div className="mt-7 flex items-start gap-1.5 sm:gap-3">
         {phase.panel.nodes.map((label, i) => (
           <Fragment key={label}>
             {i > 0 && (
               <motion.span
                 aria-hidden
-                className="mt-[19px] h-px flex-1 origin-left bg-gradient-to-r from-white/25 to-white/10"
+                className="mt-[15px] h-px w-3 shrink-0 origin-left bg-gradient-to-r from-white/25 to-white/10 sm:mt-[19px] sm:w-8"
                 initial={{ scaleX: reduce ? 1 : 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ duration: reduce ? 0 : 0.5, delay: reduce ? 0 : 0.24 + i * 0.12, ease: [0.4, 0, 0.2, 1] }}
               />
             )}
             <motion.div
-              className="flex w-[4.75rem] shrink-0 flex-col items-center gap-2.5"
+              className="flex min-w-0 flex-1 flex-col items-center gap-2 sm:max-w-[4.75rem] sm:flex-none sm:gap-2.5"
               initial={{ opacity: 0, y: reduce ? 0 : 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: reduce ? 0 : 0.45, delay: reduce ? 0 : 0.14 + i * 0.12 }}
             >
-              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/12 bg-white/[0.06] font-monoui text-[11px] text-white/70">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/12 bg-white/[0.06] font-monoui text-[10px] text-white/70 sm:h-10 sm:w-10 sm:text-[11px]">
                 {`0${i + 1}`}
               </span>
-              <span className="text-center font-monoui text-[9px] leading-tight tracking-[0.12em] text-white/40">
+              <span className="text-center font-monoui text-[8.5px] leading-tight tracking-[0.1em] text-white/40 sm:text-[9px] sm:tracking-[0.12em]">
                 {label}
               </span>
             </motion.div>
@@ -128,11 +131,11 @@ function PanelSchematic({ phase, reduce }: { phase: Phase; reduce: boolean | nul
       </div>
 
       {/* Flow chips */}
-      <div className="mt-7 grid grid-cols-3 gap-2">
+      <div className="mt-7 grid grid-cols-3 gap-1.5 sm:gap-2">
         {phase.panel.flow.map((f, i) => (
           <motion.span
             key={f}
-            className="rounded-lg border border-white/10 bg-white/[0.03] py-2 text-center font-monoui text-[9px] tracking-[0.12em] text-white/45"
+            className="rounded-lg border border-white/10 bg-white/[0.03] px-1 py-2 text-center font-monoui text-[8.5px] leading-tight tracking-[0.1em] text-white/45 sm:px-0 sm:text-[9px] sm:tracking-[0.12em]"
             initial={{ opacity: 0, y: reduce ? 0 : 6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reduce ? 0 : 0.4, delay: reduce ? 0 : 0.44 + i * 0.08 }}
@@ -219,7 +222,7 @@ export default function ProcessSection() {
           this track passes through the viewport. */}
       <div ref={trackRef} className={`relative ${TRACK}`}>
         <div className="sticky top-0 flex h-[100svh] items-center">
-          <div className="relative mx-auto w-full max-w-6xl px-6">
+          <div className="relative mx-auto w-full max-w-6xl px-0 sm:px-6">
           <motion.span
             aria-hidden
             style={{ y: ghostY }}
