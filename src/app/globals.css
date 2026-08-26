@@ -9,9 +9,10 @@
   --color-slate2: #66665F;
   --color-sky: #090909;
   --color-skydeep: #090909;
-  --color-skysoft: #CAFF04;
-  --color-skybright: #CAFF04;
-  --color-lime: #CAFF04;
+  --color-skysoft: #CAFB00;
+  --color-skybright: #CAFB00;
+  --color-lime: #CAFB00;
+
   --font-sans: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
   --font-monoui: var(--font-geist-mono), ui-monospace, Menlo, monospace;
@@ -21,7 +22,7 @@
   --paper: #F4F4EC;
   --surface2: #E8E8DE;
   --ink: #090909;
-  --lime: #CAFF04;
+  --lime: #CAFB00;
   --muted: #66665F;
   --line: rgba(9, 9, 9, .14);
   --dark-line: rgba(255, 255, 255, .16);
@@ -530,6 +531,11 @@ section:has(.font-monoui) .bg-surface {
   background: var(--ink) !important;
 }
 
+#case-studies .bg-ink:hover {
+  background: var(--lime) !important;
+  color: var(--ink) !important;
+}
+
 /* =========================================================
    TESTIMONIAL / FOUNDER
    ========================================================= */
@@ -624,6 +630,11 @@ button[class*="rounded-xl"] {
   border-radius: 0 !important;
 }
 
+/*
+ * Standard dark buttons.
+ * On hover they become the CBF green.
+ */
+
 a[class*="bg-ink"],
 button[class*="bg-ink"] {
   background: var(--ink) !important;
@@ -632,7 +643,7 @@ button[class*="bg-ink"] {
 
 a[class*="bg-ink"]:hover,
 button[class*="bg-ink"]:hover {
-  background: var(--lime) !important;
+  background: #CAFB00 !important;
   color: var(--ink) !important;
 }
 
@@ -650,18 +661,18 @@ textarea {
    ========================================================= */
 
 footer {
-  background: var(--ink) !important;
-  color: #fff !important;
+  background: var(--ink);
+  color: #fff;
   border-top: 1px solid var(--ink);
 }
 
 footer .text-sky,
 footer .text-skybright {
-  color: var(--lime) !important;
+  color: var(--lime);
 }
 
 footer a:hover {
-  color: var(--lime) !important;
+  color: var(--lime);
 }
 
 footer::before {
@@ -672,7 +683,7 @@ footer::before {
   background-image:
     radial-gradient(
       circle at 1px 1px,
-      rgba(202, 255, 4, .22) 1px,
+      rgba(202, 251, 0, .22) 1px,
       transparent 1.2px
     );
   background-size: 18px 18px;
@@ -781,12 +792,12 @@ section:has(video) .rounded-xl {
   0%,
   100% {
     box-shadow:
-      0 0 0 0 rgba(202, 255, 4, .25);
+      0 0 0 0 rgba(202, 251, 0, .25);
   }
 
   50% {
     box-shadow:
-      0 0 0 18px rgba(202, 255, 4, 0);
+      0 0 0 18px rgba(202, 251, 0, 0);
   }
 }
 
@@ -883,4 +894,4 @@ section button {
     transition-duration: .001ms !important;
     scroll-behavior: auto !important;
   }
-}
+} 
