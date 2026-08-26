@@ -9,7 +9,7 @@ const team: Member[] = [
   { name: "Lakshmi", role: "Automation Development" },
   { name: "Srivali", role: "Automation Development" },
   { name: "Shiva", role: "Automation Development" },
-  { name: "Smanth", role: "Automation Development" },
+  { name: "Nishtha", role: "Automation Development" },
 ];
 
 function initials(name: string) {
