@@ -35,7 +35,7 @@ const deliverables = [
 export default function OfferBanner() {
   return (
     <section className="relative bg-paper py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto max-w-6xl px-0 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30, scale: 0.97 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}

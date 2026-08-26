@@ -48,12 +48,20 @@ export default function Footer() {
         {/* Contact */}
         <div className="flex flex-col gap-3">
           <h4 className="mb-1 font-medium text-white">Contact</h4>
-          <span className="flex items-center gap-2 text-sm text-white/60">
+          <a
+            href="mailto:contact@repeatless.in"
+            className="flex items-center gap-2 text-sm text-white/60 transition-colors hover:text-white"
+          >
             <FiMail className="h-4 w-4 shrink-0 text-skybright" /> contact@repeatless.in
-          </span>
-          <span className="flex items-center gap-2 text-sm text-white/60">
+          </a>
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=Hyderabad%2C+L.B.+Nagar"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-sm text-white/60 transition-colors hover:text-white"
+          >
             <FiMapPin className="h-4 w-4 shrink-0 text-skybright" /> Hyderabad, L.B. Nagar
-          </span>
+          </a>
           <span className="flex items-center gap-2 text-sm text-white/60">
             <FiPhone className="h-4 w-4 shrink-0 text-skybright" /> +91 98498 84501
           </span>
