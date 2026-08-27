@@ -52,7 +52,7 @@ export default function TwoTracks() {
             className="relative mt-4 inline-block max-w-[80%] font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl"
             style={{ textWrap: "balance" } as React.CSSProperties}
           >
-            Done for you, or done with your team.
+            Done for you. Built with your team.
             <motion.span aria-hidden="true" variants={slideInRight} className="pointer-events-none absolute left-full top-0 h-full w-screen bg-lime" />
           </motion.h2>
           <p className="mt-5 text-lg leading-relaxed text-slate">

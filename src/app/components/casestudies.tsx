@@ -7,8 +7,6 @@ import { useReducedMotion } from "framer-motion";
 import { FiArrowUpRight } from "react-icons/fi";
 
 const caseStudies = blogs;
-const rowOne = caseStudies.slice(0, Math.ceil(caseStudies.length / 2));
-const rowTwo = caseStudies.slice(Math.ceil(caseStudies.length / 2));
 
 type CaseStudy = (typeof caseStudies)[number];
 
@@ -82,22 +80,12 @@ export default function CaseStudies() {
           play={!reduce}
           autoFill
         >
-          {rowOne.map((cs) => (
+          {caseStudies.map((cs) => (
             <WorkTile key={cs.slug} cs={cs} />
           ))}
         </Marquee>
 
-        <Marquee
-          speed={32}
-          direction="right"
-          pauseOnHover
-          play={!reduce}
-          autoFill
-        >
-          {rowTwo.map((cs) => (
-            <WorkTile key={cs.slug} cs={cs} />
-          ))}
-        </Marquee>
+        
       </div>
 
       {/* Bottom CTA */}
