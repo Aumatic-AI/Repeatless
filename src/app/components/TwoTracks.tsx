@@ -49,7 +49,7 @@ export default function TwoTracks() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: false, amount: 0.6 }}
-            className="relative mt-4 inline-block max-w-[80%] font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl"
+            className="relative mt-4 inline-block max-w-[80%] font-display text-3xl font-semibold leading-[1] tracking-tight text-ink sm:text-4xl"
             style={{ textWrap: "balance" } as React.CSSProperties}
           >
             Done for you. Built with your team.
