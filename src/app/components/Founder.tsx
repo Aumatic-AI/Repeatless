@@ -58,12 +58,12 @@ export default function FounderSection() {
               that software should quietly handle.
             </p>
             <p>
-              Today my team and I build real AI infrastructure for $5M+ businesses — the latest tools
+              Today my team and I build real AI infrastructure for $1M+ businesses — the latest tools
               like Claude and Antigravity, combined with the systems you already run —{" "}
               <span className="font-semibold text-ink">fully done-for-you, so your team never touches the plumbing.</span>
             </p>
             <p>
-              Companies representing <span className="font-semibold text-ink">$100M+ in combined revenue</span>{" "}
+              Companies representing <span className="font-semibold text-ink">$50M+ in combined revenue</span>{" "}
               move faster because we removed the busywork entirely.
             </p>
           </div>

@@ -461,10 +461,10 @@ export default function FeaturesSection() {
           </motion.div>
         </div>
 
-        {/* Reason cards — bento: proof spans full width, tooling and team sit side by side */}
+        Reason cards — bento: proof spans full width, tooling and team sit side by side
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {/* 1 — Proven results, counting up live */}
-          <motion.article
+          {/* <motion.article
             variants={rise}
             initial="hidden"
             whileInView="show"
@@ -494,7 +494,7 @@ export default function FeaturesSection() {
                 </div>
               ))}
             </div>
-          </motion.article>
+          </motion.article> */}
 
           {/* 2 — One system, not a patchwork; built to scale, for B2B and D2C alike */}
           <motion.article

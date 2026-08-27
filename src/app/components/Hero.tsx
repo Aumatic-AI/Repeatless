@@ -14,8 +14,8 @@ import { MagneticText } from "./hero/MagneticText";
 import HeroNetworkScene from "./hero/HeroNetworkScene";
 
 const proofPoints = [
-  { value: "$100M+", label: "Combined client revenue" },
-  { value: "100+", label: "Automations built" },
+  { value: "$50M+", label: "Combined client revenue" },
+  { value: "40+", label: "Automations built" },
   { value: "30+", label: "Businesses automated" },
 ];
 
@@ -82,11 +82,11 @@ const Hero = () => {
           <motion.h1
             variants={rise}
             style={{ y: titleY, opacity: heroOpacity }}
-            className="relative mt-7 max-w-5xl font-sans text-[clamp(3.5rem,8vw,7.5rem)] font-semibold leading-[0.98] tracking-[-0.06em] text-white [text-wrap:balance]"
+            className="relative mt-7 max-w-5xl font-sans text-[clamp(3rem,7vw,6.5rem)] font-semibold leading-[0.98] tracking-[-0.06em] text-white [text-wrap:balance]"
           >
-            <span className="block text-[#CAFB00]">We build AI that</span>
+            <span className="block text-[#CAFB00]">We build custom AI that</span>
             <MagneticText
-              text="runs your business."
+              text="scales your business."
               hoverText="works while you sleep."
               circleSize={240}
               className="mt-1 w-full"

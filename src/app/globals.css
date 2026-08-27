@@ -865,7 +865,7 @@ section button {
     color: #fff !important;
   }
 
-  header.fixed .md\\:hidden {
+  header.fixed .md\:hidden {
     display: flex !important;
   }
 
