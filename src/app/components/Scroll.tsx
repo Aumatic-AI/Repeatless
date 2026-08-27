@@ -161,7 +161,7 @@ function TeamRail() {
   return (
     <div
       ref={ref}
-      className="relative mt-6 pl-6"
+      className="relative mt-5 pl-6"
     >
       <div className="absolute inset-y-1 left-[3px] w-[2px] overflow-hidden rounded-full bg-ink/10">
         <motion.div
@@ -183,7 +183,7 @@ function TeamRail() {
         />
       </div>
 
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-5">
         {teamStages.map((stage, i) => (
           <motion.div
             key={stage.label}
@@ -210,11 +210,11 @@ function TeamRail() {
           >
             <span className="absolute -left-6 top-[7px] h-2 w-2 rounded-full bg-sky ring-4 ring-surface" />
 
-            <p className="font-display text-lg font-semibold leading-snug text-ink">
+            <p className="font-display text-base font-semibold leading-relaxed text-ink">
               {stage.label}
             </p>
 
-            <p className="mt-0.5 text-base leading-snug text-slate">
+            <p className="mt-1 text-sm leading-relaxed text-slate">
               {stage.scope}
             </p>
           </motion.div>
@@ -527,7 +527,7 @@ function ContextWheel() {
   return (
     <div
       ref={ref}
-      className="relative mt-4 h-48 overflow-hidden"
+      className="relative mt-4 h-36 overflow-hidden"
     >
       <ArrowRight
         className="absolute left-0 top-1/2 h-4 w-4 -translate-y-1/2 text-ink"
@@ -612,7 +612,7 @@ export default function FeaturesSection() {
           </p>
 
           <h2
-            className="mt-4 font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl"
+            className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl"
             style={
               {
                 textWrap: "balance",
@@ -622,13 +622,13 @@ export default function FeaturesSection() {
             Built to deliver, not to dazzle.
           </h2>
 
-          <p className="mt-5 max-w-md text-lg leading-relaxed text-slate">
+          <p className="mt-3 max-w-md text-base leading-relaxed text-slate">
             The proof, the tooling, and the team standing behind both.
           </p>
 
           <a
             href="/casestudies"
-            className="group mt-7 inline-flex items-center gap-1.5 font-medium text-sky transition-colors hover:text-skydeep"
+            className="group mt-4 inline-flex items-center gap-1.5 font-medium text-sky transition-colors hover:text-skydeep"
           >
             See the results
 
@@ -679,17 +679,17 @@ export default function FeaturesSection() {
           }}
           className="rounded-3xl border border-ink/10 bg-surface p-7 shadow-[0_20px_50px_-32px_rgba(8,18,26,0.4)] sm:p-8 lg:col-span-4 lg:col-start-5 lg:row-span-2 lg:row-start-1"
         >
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-skysoft text-sky">
               <Network className="h-5 w-5" />
             </span>
 
-            <h3 className="font-display text-2xl font-semibold text-ink">
+            <h3 className="font-display text-xl font-semibold text-ink">
               One system. Not a patchwork.
             </h3>
           </div>
 
-          <p className="mt-4 text-lg text-slate">
+          <p className="mt-4 text-base text-slate">
             Built for B2B and D2C teams who refuse to repeat themselves.
           </p>
 
@@ -714,27 +714,27 @@ export default function FeaturesSection() {
           }}
           className="rounded-3xl border border-ink/10 bg-surface p-7 shadow-[0_20px_50px_-32px_rgba(8,18,26,0.4)] sm:p-8 lg:col-span-4 lg:col-start-9 lg:row-span-2 lg:row-start-1"
         >
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-skysoft text-sky">
               <Users className="h-5 w-5" />
             </span>
 
-            <h3 className="font-display text-2xl font-semibold text-ink">
+            <h3 className="font-display text-xl font-semibold text-ink">
               A dedicated team, senior-led
             </h3>
           </div>
 
-          <p className="mt-4 text-lg text-slate">
+          <p className="mt-4 text-base text-slate">
             No offshore queue. No hand-offs.
           </p>
 
           <TeamRail />
 
-          <div className="mt-4 flex flex-wrap gap-2.5">
+          <div className="mt-5 flex flex-wrap gap-2.5">
             {teamTraits.map((trait) => (
               <span
                 key={trait}
-                className="rounded-full bg-surface2 px-3.5 py-1.5 text-base font-medium text-ink"
+                className="rounded-full bg-surface2 px-3.5 py-1.5 text-sm font-medium text-ink"
               >
                 {trait}
               </span>

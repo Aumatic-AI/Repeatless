@@ -3,7 +3,7 @@ import React, { useMemo, useState } from "react";
 import Link from "next/link";
 import { FiSearch } from "react-icons/fi";
 import CTASection from "./components/CTA";
-import { visibleBlogs } from "../../../public/data/blogs";
+import { blogs } from "../../../public/data/blogs";
 import CaseStudyVisual from "../components/CaseStudyVisual";
 
 const PER_PAGE = 4;
@@ -14,8 +14,8 @@ export default function Page() {
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return visibleBlogs;
-    return visibleBlogs.filter((b) =>
+    if (!q) return blogs;
+    return blogs.filter((b) =>
       [b.title, b.category, b.excerpt].some((t) => t.toLowerCase().includes(q))
     );
   }, [query]);
@@ -59,6 +59,7 @@ export default function Page() {
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
           {current.map((b) => (
             <Link
+            
               href={`/casestudies/${b.slug}`}
               key={b.slug}
               className="group block overflow-hidden rounded-none border border-ink/10 bg-surface shadow-[0_20px_50px_-32px_rgba(8,18,26,0.4)] transition-all duration-300 hover:-translate-y-1 hover:border-sky/40"
