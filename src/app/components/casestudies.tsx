@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import Marquee from "react-fast-marquee";
-import { blogs } from "../../../public/data/blogs";
+import { visibleBlogs } from "../../../public/data/blogs";
 import { useReducedMotion } from "framer-motion";
 import { FiArrowUpRight } from "react-icons/fi";
 
-const caseStudies = blogs.filter((b) => b.category === "Case Study");
+const caseStudies = visibleBlogs;
 const rowOne = caseStudies.slice(0, Math.ceil(caseStudies.length / 2));
 const rowTwo = caseStudies.slice(Math.ceil(caseStudies.length / 2));
 

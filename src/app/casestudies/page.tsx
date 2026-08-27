@@ -3,10 +3,10 @@ import React, { useMemo, useState } from "react";
 import Link from "next/link";
 import { FiSearch } from "react-icons/fi";
 import CTASection from "./components/CTA";
-import { blogs } from "../../../public/data/blogs";
+import { visibleBlogs } from "../../../public/data/blogs";
 import CaseStudyVisual from "../components/CaseStudyVisual";
 
-const PER_PAGE = 6;
+const PER_PAGE = 4;
 
 export default function Page() {
   const [query, setQuery] = useState("");
@@ -14,8 +14,8 @@ export default function Page() {
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return blogs;
-    return blogs.filter((b) =>
+    if (!q) return visibleBlogs;
+    return visibleBlogs.filter((b) =>
       [b.title, b.category, b.excerpt].some((t) => t.toLowerCase().includes(q))
     );
   }, [query]);
@@ -56,7 +56,7 @@ export default function Page() {
         </div>
 
         {/* Grid */}
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
           {current.map((b) => (
             <Link
               href={`/casestudies/${b.slug}`}
@@ -67,7 +67,7 @@ export default function Page() {
                 image={b.image}
                 solution={b.hero.meta.solution}
                 stat={b.hero.meta.stat}
-                className="h-48 w-full"
+                className="h-72 w-full"
               />
               <div className="p-5">
                 <div className="eyebrow text-slate2">

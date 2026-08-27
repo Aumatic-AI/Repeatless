@@ -1419,3 +1419,12 @@ export function getBlogBySlug(slug: string): Blog | undefined {
   return blogs.find((b) => b.slug === slug);
 }
 
+const VISIBLE_SLUGS = [
+  "ai-video-ad-automation",
+  "seo-blog-automation",
+  "instagram-dm-comments-automation",
+  "qr-event-attendance-automation",
+];
+
+export const visibleBlogs = blogs.filter((b) => VISIBLE_SLUGS.includes(b.slug));
+

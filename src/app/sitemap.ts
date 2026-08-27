@@ -1,10 +1,10 @@
 import { MetadataRoute } from "next";
-import { blogs } from "../../public/data/blogs";
+import { visibleBlogs } from "../../public/data/blogs";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://www.repeatless.in";
 
-  const blogRoutes = blogs.map((blog) => ({
+  const blogRoutes = visibleBlogs.map((blog) => ({
     url: `${base}/casestudies/${blog.slug}`,
     lastModified: new Date(blog.date),
     changeFrequency: "monthly" as const,
