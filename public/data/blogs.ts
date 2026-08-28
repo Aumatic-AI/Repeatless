@@ -285,6 +285,205 @@ export const blogs: Blog[] = [
     ]
   }
 }
+,
+{
+  "slug": "atlas-outbound-operations-dashboard",
+  "title": "Atlas: From a Raw Company List to Classified Replies, in One Dashboard",
+  "category": "Case Study",
+  "date": "2026-08-28",
+  "excerpt": "Atlas replaced a five-tool outbound workflow with a single dashboard — finding the right people at target companies, writing personalized emails at scale, sending them, and sorting every reply by intent automatically.",
+  "image": "/images/case-studies/cst5.png",
+  "hero": {
+    "title": "The entire outbound engine — research, personalization, sending and reply triage — in one place.",
+    "description": "Outbound usually means a chain of disconnected tools: a list somewhere, an enrichment tool somewhere else, a spreadsheet of AI-written emails, a sending platform, and an inbox nobody has time to read. Every handoff is a CSV export and a chance to email the wrong person twice. Atlas collapses that chain into one dashboard. Upload a list of target companies and it finds the decision-makers, verifies their email addresses, writes a personalized sequence for each one, pushes it live, and then reads every reply and sorts it by intent — so the team only ever looks at the conversations that are worth their time.",
+    "meta": {
+      "solution": "OUTBOUND OPERATIONS DASHBOARD",
+      "stat": "A 5-TOOL WORKFLOW COLLAPSED INTO ONE SYSTEM"
+    },
+    "image": "/images/case-studies/atlas-hero.webp"
+  },
+  "body": {
+    "sections": [
+      {
+        "title": "Challenge",
+        "text": "The outbound process worked, but it lived across five places and one very brave spreadsheet. Target companies sat in one list, the tool that found contacts at those companies exported to another, email verification happened somewhere else, the AI-written copy was pasted into a sheet, and the sending platform had its own separate view of reality. Nobody could answer basic questions with confidence: how many verified contacts do we actually have, which companies have already been approached, what did we say to them, and who replied with real interest? The last question was the most expensive one — replies arrived mixed together, so genuine buying signals sat in the same pile as out-of-office bounces and unsubscribes, and got read days late. And because no single system knew the full picture, the same company could be approached twice by two different campaigns."
+      },
+      {
+        "title": "Solution",
+        "text": [
+          "Upload a list, get real contacts. Atlas takes a list of target companies and finds the relevant people inside them — filtered by seniority, department and job title — then finds and verifies their email addresses, so campaigns go out to addresses that actually exist instead of quietly bouncing.",
+          "Personalization at real volume. Instead of one generic template, Atlas generates a tailored opening email and two follow-ups for every single recipient, drawing on what it knows about their company — industry, size, revenue band, website traffic, platform, location. Batches of up to ten thousand recipients are generated from one setup screen.",
+          "Nothing goes out unreviewed. Every batch records the exact filters and the exact instructions used to create it, so any campaign can be traced back to how it was built. The generated emails are readable in the dashboard before they are pushed live.",
+          "One-click launch. Approved batches are pushed straight into the live sending sequence and the campaign is activated from the same screen — no exports, no re-uploading, no manual field mapping.",
+          "A guardrail that cannot be bypassed. Once a company has been contacted, it is locked out of every future sending path — at list-building time, at generation time, and again at the moment of sending. The same company physically cannot be approached twice, even by a different campaign built weeks later.",
+          "Replies read themselves. Incoming responses are pulled back in and sorted by intent — interested, not interested, meeting booked, out of office, unsubscribe — with a filtered view per category and a one-click manual override whenever a human disagrees with the call.",
+          "Live performance in one strip. Total leads, emails sent, opens, clicks, replies, bounces, unsubscribes, interested contacts and meetings booked, all visible at a glance without opening the sending platform."
+        ],
+        "image": "/images/case-studies/atlas-solution.webp"
+      },
+      {
+        "title": "Why It Works",
+        "iconList": [
+          "One system from raw company list to classified reply — no CSV handoffs",
+          "Verified email addresses before sending, protecting sender reputation",
+          "Genuinely per-recipient personalization, generated in batches of thousands",
+          "A hard guarantee that no company is ever contacted twice",
+          "Replies triaged by intent, so the team reads signal instead of noise",
+          "Every campaign auditable — the filters and instructions behind it are stored",
+          "Deliberately cost-efficient AI usage, so scale doesn't mean runaway spend",
+          "Built for volume from the start — ten-thousand-recipient batches, live progress tracking"
+        ]
+      },
+      {
+        "text": "In practice the team works in one screen and one direction. A list comes in; Atlas fills in the people behind those companies and confirms their emails are real. The operator opens the generation screen, narrows the audience with a few filters, watches the eligible count update live, writes the four instructions that shape the sequence, and starts the batch. Progress is visible as it runs. When it finishes, the generated emails can be read, then pushed live and activated in a single action — and every company in that batch is immediately marked as contacted, permanently removing them from future sends. From then on the work is reading replies that have already been sorted: the interested ones sit in their own view, meetings booked in another, and the noise filtered out of the way. What used to be a week of coordination between tools became a session in one dashboard.",
+        "image": "/images/case-studies/atlas-workflow.webp"
+      },
+      {
+        "title": "Impact",
+        "bullets": [
+          "Five disconnected tools and a spreadsheet became one dashboard, removing every export-import handoff and the errors that came with them.",
+          "Duplicate outreach was eliminated outright — the contacted-company lock is enforced at three separate points, so it cannot be forgotten or overridden by accident.",
+          "Email addresses are verified before a campaign runs, protecting deliverability and sender reputation instead of discovering problems from bounce reports.",
+          "Personalized sequences are produced for thousands of recipients from a single setup, replacing template-blast outreach with something recipients actually answer.",
+          "Reply triage stopped being manual — buying signals surface the same day instead of being buried under out-of-office and unsubscribe noise.",
+          "Campaign performance is visible in one strip, so decisions about what to scale are made on live numbers rather than end-of-month reconstruction.",
+          "Every campaign is fully auditable — the exact audience and instructions behind any batch can be recovered, which makes results repeatable rather than lucky.",
+          "AI spend was kept intentionally low by design, so growing volume doesn't mean an unpredictable bill."
+        ]
+      }
+    ]
+  }
+}
+,
+{
+  "slug": "compass-whatsapp-dashboard",
+  "title": "Compass: One Dashboard for Every WhatsApp Conversation",
+  "category": "Case Study",
+  "date": "2026-08-28",
+  "excerpt": "Compass turns a business WhatsApp number into a storefront that never sleeps — answering customers instantly from your real catalog, logging every conversation, and showing you exactly what it costs to run.",
+  "image": "/images/case-studies/cst6.png",
+  "hero": {
+    "title": "Every customer answered. Every conversation visible. Every rupee accounted for.",
+    "description": "Most businesses already sell on WhatsApp — through a phone someone has to keep picking up. Compass is the dashboard that sits behind that number. It answers customers in seconds using your own catalog and policies, keeps a complete record of every chat in one place, lets you change how it speaks without touching code, and tracks the running cost of every conversation so the whole thing stays measurable instead of mysterious.",
+    "meta": {
+      "solution": "WHATSAPP AI SALES & SUPPORT DASHBOARD",
+      "stat": "INSTANT REPLIES, 24/7 — WITH COST PER CONVERSATION TRACKED"
+    },
+    "image": "/images/case-studies/compass-hero.webp"
+  },
+  "body": {
+    "sections": [
+      {
+        "title": "Challenge",
+        "text": "WhatsApp had quietly become the main sales counter — and nobody was staffing it properly. Enquiries arrived at midnight, on holidays, and in bursts during promotions. Replies depended on whoever happened to be free, so the same question got three different answers, prices were quoted from memory, and interested buyers went cold while waiting. Worse, none of it was visible: no record of how many people asked, what they asked for, which products came up again and again, or what all this activity was actually costing the business. The number was generating revenue and blind spots in equal measure."
+      },
+      {
+        "title": "Solution",
+        "text": [
+          "A single dashboard for the entire WhatsApp channel — every customer, every conversation, and every reply in one live view, so nothing depends on one person's phone anymore.",
+          "Answers that come from the business, not from guesswork. Compass replies using the actual product catalog, prices, and policies the owner has loaded in — so a customer at 2 a.m. gets the same accurate answer as one who walks in at noon.",
+          "Full control without a developer. Branding, tone of voice, what the assistant is allowed to say, and which parts of the journey are switched on are all configurable from the settings screen. Upload an updated catalog and the answers update with it.",
+          "Built-in cost tracking. Every conversation is measured, so the owner can see usage and spend as it happens — cost per conversation, cost per period, and where it is trending — rather than discovering it on a bill at month end.",
+          "Safe to change, easy to trust. Connect the WhatsApp number in a few steps and send a test message to confirm the whole loop works before a single real customer sees it."
+        ],
+        "image": "/images/case-studies/compass-solution.webp"
+      },
+      {
+        "title": "Why It Works",
+        "iconList": [
+          "Replies in seconds, at any hour, on the channel customers already use",
+          "One consistent voice — no contradictory answers, no outdated prices",
+          "Complete conversation history, searchable and always in one place",
+          "Owner-controlled branding, catalog and behaviour, no technical help needed",
+          "Transparent cost tracking on every conversation, visible in real time",
+          "Designed to scale — add products, volume, or a second business without rebuilding"
+        ]
+      },
+      {
+        "text": "In practice it is almost invisible. A customer messages the business number the way they always have. Compass recognises whether they are new or returning, pulls up their history, checks the live catalog and the business's own policies, and replies in the brand's voice — usually before the customer has put their phone down. The exchange is logged instantly, so the team can open the dashboard at any point and see who is talking, what they want, what was promised, and what it cost to handle. Nothing needs to be reconstructed later. The owner's job shifts from answering the same questions all day to reviewing what the questions are telling them.",
+        "image": "/images/case-studies/compass-workflow.webp"
+      },
+      {
+        "title": "Impact",
+        "bullets": [
+          "Enquiries are answered round the clock, including nights, weekends and festival rushes — no missed messages, no cold leads.",
+          "Response time dropped from hours to seconds, without adding a single person to the team.",
+          "Every customer now receives consistent, catalog-accurate information instead of answers that varied by whoever replied.",
+          "Repetitive questions — price, availability, delivery, policies — are handled automatically, freeing the team for real selling.",
+          "Running cost is tracked per conversation and visible in the dashboard, so the channel can be judged on returns like any other spend.",
+          "The full conversation record turns WhatsApp from an untracked inbox into a source of insight on demand, products and objections.",
+          "Volume can grow sharply without a matching rise in staffing or a drop in service quality."
+        ]
+      }
+    ]
+  }
+}
+,
+{
+  "slug": "pharma-whatsapp-operations-system",
+  "title": "One WhatsApp Number That Runs an Entire Pharma Operation",
+  "category": "Case Study",
+  "date": "2026-08-28",
+  "excerpt": "A pharmaceutical distributor replaced hundreds of manual follow-ups a month with a single WhatsApp number that chases suppliers, checks in with the field team, and re-opens quiet customers on its own — with every reply routed to the one person who owns it.",
+  "image": "/images/case-studies/cst7.png",
+  "hero": {
+    "title": "One number. Three automatic follow-up loops. A dashboard that shows each team only what belongs to them.",
+    "description": "In pharma distribution, the work that decides the month is follow-up work: asking a supplier whether a fast-moving product is available and at what price, asking a field salesperson what customers are actually demanding, asking a customer why they have gone quiet. It is simple work that never gets done consistently, because it depends on someone remembering. This system does the remembering. One business WhatsApp number reaches out on a schedule and on triggers from live stock data, and every reply that comes back is sorted and delivered to exactly the right person — procurement, sales, director or owner — inside one shared dashboard where nobody sees anyone else's conversations.",
+    "meta": {
+      "solution": "INTERNAL WHATSAPP OPERATIONS SYSTEM",
+      "stat": "3 AUTOMATED FOLLOW-UP LOOPS · 20+ USERS · 1 NUMBER"
+    },
+    "image": "/images/case-studies/pharma-operations-hero.webp"
+  },
+  "body": {
+    "sections": [
+      {
+        "title": "Challenge",
+        "text": "Three critical loops were all running on human memory. Procurement only discovered a product was short when someone happened to notice, then messaged suppliers one by one from a personal phone to ask about availability, price and current schemes. The director had fifteen salespeople in the field and no reliable way to hear what was happening, so field intelligence arrived late, in fragments, or not at all — after repeated chasing. And customers whose orders had quietly slowed down went weeks without contact, because no one owned the job of noticing. Everything happened on individual phones, which meant no history, no oversight, and no way for the business to see its own conversations. When a team member left, their entire relationship record left with them."
+      },
+      {
+        "title": "Solution",
+        "text": [
+          "One business WhatsApp number replaced dozens of personal phones — for suppliers, customers and the field team alike. Every thread stays separate and private, the way email works: one address, many conversations, no crossover.",
+          "Three follow-up loops now run on their own. Stock levels are checked continuously and the moment a product falls to or below its minimum, the supplier who carries it is messaged automatically with the details needed to quote back — including products that have been sitting below minimum without being chased. Salespeople receive a field check-in every few days, targeted at accounts that are underperforming or haven't been visited. Customers who have gone quiet get a light-touch availability and feedback message on a set rhythm.",
+          "Replies route themselves to the right owner. Each supplier belongs to a procurement member, each customer to a salesperson. When a reply lands, it appears only for that owner — enforced by the system, not by a filter someone can switch off. Unrecognised numbers go to the owner for review.",
+          "One dashboard, a different view for every role. A procurement member sees their own suppliers. A salesperson sees their own customers. The director sees all field check-ins together, and can filter to today's replies or open threads. The owner sees everything across every team, filterable by team, label, date, person or status.",
+          "Conversations are labelled automatically — supplier, customer, field check-in, stock alert, feedback — so the dashboard stays organised without anyone tagging anything by hand.",
+          "Built on open-source, self-hosted foundations. There are no per-seat licence fees as the team grows, the conversation history belongs to the business, and the running cost is small and fully predictable — modest server hosting plus a known per-message fee, so the monthly figure can be calculated before a campaign is ever sent."
+        ],
+        "image": "/images/case-studies/pharma-operations-solution.webp"
+      },
+      {
+        "title": "Why It Works",
+        "iconList": [
+          "Follow-ups fire on triggers and schedules, not on whoever remembers",
+          "Strict conversation privacy — one team member can never see another's threads",
+          "Every role gets its own view of the same single system",
+          "Automatic labelling and routing, with zero manual sorting",
+          "The full conversation record stays with the business, not on personal phones",
+          "Reassigning a supplier or customer to a new team member takes minutes",
+          "Open-source and self-hosted — no per-user licensing, predictable monthly cost"
+        ]
+      },
+      {
+        "text": "Day to day, nobody has to operate it. Stock dips below its threshold and the supplier is already being asked about availability and price before procurement has opened the dashboard. Field check-ins go out on their own cadence, and the director simply reads the answers side by side instead of chasing fifteen people for them. Quiet customers hear from the business on a rhythm someone would otherwise have had to maintain manually. Each person opens the dashboard, sees their own list with the new replies marked, and answers directly — no forwarding, no screenshots, no group chats, no asking who is handling what. The team stopped doing the routing and went back to doing the negotiating and the selling.",
+        "image": "/images/case-studies/pharma-operations-workflow.webp"
+      },
+      {
+        "title": "Impact",
+        "bullets": [
+          "Low-stock situations now reach the supplier within hours of the data changing, instead of whenever someone noticed — and long-standing shortfalls stop slipping through unchased.",
+          "The director receives structured field updates every few days without a single reminder sent, replacing weeks of chasing with a review that takes minutes.",
+          "Customers who had gone quiet re-enter conversation automatically on a set rhythm, turning a job nobody owned into a system that never forgets.",
+          "Hundreds of manual outbound messages a month became scheduled and triggered ones, freeing procurement and sales for the judgement work only they can do.",
+          "Twenty-plus people work inside one system while each seeing only their own conversations, so oversight increased without any loss of confidentiality.",
+          "Conversation history became a business asset rather than personal phone data — staff changes now mean a few minutes of reassignment, not a lost relationship.",
+          "Running cost stayed small and fully predictable — self-hosted infrastructure with no per-seat licence fees and a known cost per message that can be forecast before any campaign goes out."
+        ]
+      }
+    ]
+  }
+}
 ];
 
 export function getBlogBySlug(slug: string): Blog | undefined {
