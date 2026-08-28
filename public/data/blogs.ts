@@ -40,7 +40,7 @@ export const blogs: Blog[] = [
   date: "2025-11-05",
   excerpt:
     "We automated a New York ad-creative agency — turning product photos into high-end video ads in hours instead of weeks. No photoshoots. No studios. Just AI-powered creative production at scale.",
-  image: "/images/case-studies/cs1.png",
+  image: "/images/case-studies/cs1.webp",
   hero: {
     title: "AI-Powered Video Ad Creative System",
     description:
@@ -104,7 +104,7 @@ export const blogs: Blog[] = [
   date: "2025-11-06",
   excerpt:
     "We built an AI-powered SEO content engine for a Canadian client — auto-researching keywords, writing SEO-optimized blogs, generating branded images, and publishing directly to WordPress.",
-  image: "/images/case-studies/cs2.png",
+  image: "/images/case-studies/cs2.webp",
   hero: {
     title: "AI-Driven SEO Content Automation",
     description:
@@ -169,7 +169,7 @@ export const blogs: Blog[] = [
   date: "2025-10-04",
   excerpt:
     "AI agent + n8n turned Instagram comments & DMs into 24/7 sales chats—62% more replies and 41% more qualified leads.",
-  image: "/images/case-studies/cs3.png",
+  image: "/images/case-studies/cs3.webp",
   hero: {
     title: "Instagram DM & Comments Automation",
     description:
@@ -229,7 +229,7 @@ export const blogs: Blog[] = [
   date: "2025-10-13",
   excerpt:
     "Zero third‑party fees: our QR system verifies attendees against your database, blocks duplicate scans, and updates attendance in real time.",
-  image: "/images/case-studies/cs4.png",
+  image: "/images/case-studies/cs4.webp",
   hero: {
     title: "QR-Based Event Attendance Automation",
     description:

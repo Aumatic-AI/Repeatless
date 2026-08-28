@@ -1,7 +1,16 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+} from "framer-motion";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { introScenes } from "./introScenes";
 import HeroIntroLogo from "./HeroIntroLogo";
 
@@ -20,19 +29,21 @@ const DURATIONS = [
 
 type Props = {
   onComplete?: () => void;
+  canFinish?: boolean;
 };
 
-export default function HeroIntro({ onComplete }: Props) {
+export default function HeroIntro({
+  onComplete,
+  canFinish = false,
+}: Props) {
   const reduce = useReducedMotion() ?? false;
 
   const [frame, setFrame] = useState(0);
   const [exiting, setExiting] = useState(false);
 
-  // Guards onComplete so it only ever fires once, and only for the genuine
-  // exit-fade completion — not the (possibly no-op) mount-time animation.
   const hasCompletedRef = useRef(false);
 
-  // 5 images × 2 cycles
+  // Play the intro sequence continuously while the page loads.
   const sequence = useMemo(
     () => [...introScenes, ...introScenes],
     []
@@ -40,13 +51,15 @@ export default function HeroIntro({ onComplete }: Props) {
 
   const scene = sequence[frame];
 
-  // Image transition duration.
-  // Fast at the beginning → progressively slower toward the end.
   const transitionDuration = reduce
     ? 0
-    : Math.min((DURATIONS[frame] ?? 300) / 1000, 0.55);
+    : Math.min(
+        (DURATIONS[frame] ?? 300) / 1000,
+        0.55
+      );
 
-  // Preload all intro images.
+  // Preload intro images.
+  // Image optimization will be handled separately later.
   useEffect(() => {
     introScenes.forEach(({ src }) => {
       const image = new Image();
@@ -54,7 +67,7 @@ export default function HeroIntro({ onComplete }: Props) {
     });
   }, []);
 
-  // Hide scrollbar during intro.
+  // Hide scrollbar while intro is visible.
   useEffect(() => {
     document.documentElement.classList.add(
       "intro-scrollbar-hidden"
@@ -67,43 +80,60 @@ export default function HeroIntro({ onComplete }: Props) {
     };
   }, []);
 
-  // Image sequence controller.
+  // HeroGate dispatches this event once:
+  // 1. The page has loaded.
+  // 2. At least 3 seconds have passed.
+  useEffect(() => {
+    const handleReady = () => {
+      if (!canFinish || exiting) return;
+
+      setExiting(true);
+    };
+
+    window.addEventListener(
+      "hero-intro-ready",
+      handleReady
+    );
+
+    return () => {
+      window.removeEventListener(
+        "hero-intro-ready",
+        handleReady
+      );
+    };
+  }, [canFinish, exiting]);
+
+  // Continue cycling through the intro scenes.
+  // The sequence itself no longer determines when the intro ends.
   useEffect(() => {
     if (exiting) return;
 
-    // Reduced motion:
-    // immediately jump to the final frame.
     if (reduce) {
-      setFrame(sequence.length - 1);
-
-      const timer = window.setTimeout(() => {
-        setExiting(true);
-      }, 400);
-
-      return () => window.clearTimeout(timer);
-    }
-
-    // Final frame:
-    // hold the final image before fading out.
-    if (frame === sequence.length - 1) {
-      const timer = window.setTimeout(() => {
-        setExiting(true);
-      }, 700);
-
-      return () => window.clearTimeout(timer);
+      return;
     }
 
     const timer = window.setTimeout(() => {
-      setFrame((current) => current + 1);
+      setFrame((current) => {
+        if (current >= sequence.length - 1) {
+          return 0;
+        }
+
+        return current + 1;
+      });
     }, DURATIONS[frame] ?? 300);
 
-    return () => window.clearTimeout(timer);
-  }, [frame, exiting, reduce, sequence.length]);
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, [
+    frame,
+    exiting,
+    reduce,
+    sequence.length,
+  ]);
 
   return (
     <motion.div
-      // No pointer-events-none here: while the intro is up it must block
-      // interaction with whatever is behind it, not let clicks pass through.
       className="fixed inset-0 z-[100] overflow-hidden bg-black"
       initial={{ opacity: 1 }}
       animate={{
@@ -114,21 +144,22 @@ export default function HeroIntro({ onComplete }: Props) {
         ease: [0.22, 1, 0.36, 1],
       }}
       onAnimationComplete={() => {
-        // `animate` above also resolves (trivially) on mount, while
-        // `exiting` is still false — ignore that call and only treat the
-        // fade-to-0 as done, and only once.
-        if (exiting && !hasCompletedRef.current) {
+        if (
+          exiting &&
+          !hasCompletedRef.current
+        ) {
           hasCompletedRef.current = true;
           onComplete?.();
         }
       }}
       aria-hidden="true"
     >
-      {/* =====================================================
-          IMAGE
-      ===================================================== */}
+      {/* IMAGE */}
 
-      <AnimatePresence initial={false} mode="sync">
+      <AnimatePresence
+        initial={false}
+        mode="sync"
+      >
         <motion.img
           key={frame}
           src={scene.src}
@@ -159,9 +190,7 @@ export default function HeroIntro({ onComplete }: Props) {
         />
       </AnimatePresence>
 
-      {/* =====================================================
-          OVERLAYS
-      ===================================================== */}
+      {/* OVERLAY */}
 
       <div className="pointer-events-none absolute inset-0 bg-black/10" />
 
@@ -173,10 +202,7 @@ export default function HeroIntro({ onComplete }: Props) {
         }}
       />
 
-      {/* =====================================================
-          PERSISTENT LOGO
-          Color changes SNAP instantly between scenes.
-      ===================================================== */}
+      {/* LOGO */}
 
       <motion.div
         className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center"

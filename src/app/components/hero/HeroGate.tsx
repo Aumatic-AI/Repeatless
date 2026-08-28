@@ -5,52 +5,100 @@ import Hero from "../Hero";
 import HeroIntro from "./HeroIntro";
 import { hasSeenIntro, markIntroSeen } from "./introSeen";
 
-// Hero is not mounted until HeroIntro finishes, so its entrance animations
-// (initial/animate) start fresh at the right moment instead of playing out
-// hidden underneath the intro.
-//
-// The intro is a loading screen for an actual page load, not a splash that
-// replays every time this route is visited. It should play on a genuine
-// first load or hard reload, but not when a client-side navigation (e.g. a
-// <Link> back from /casestudies) simply remounts this component. The lazy
-// initializer reads `hasSeenIntro()` at mount time: false on a real
-// load/reload (the module has just re-evaluated from scratch), still true
-// if this is a same-session remount after the intro already played once.
-export default function HeroGate() {
-  const [introComplete, setIntroComplete] = useState(() => hasSeenIntro());
+const MIN_INTRO_DURATION = 1000;
 
-  const handleIntroComplete = useCallback(() => {
-    markIntroSeen();
-    setIntroComplete(true);
+export default function HeroGate() {
+  const [introComplete, setIntroComplete] = useState(() =>
+    hasSeenIntro()
+  );
+
+  const [pageReady, setPageReady] = useState(false);
+  const [minimumTimePassed, setMinimumTimePassed] = useState(false);
+
+  // Detect when the browser has finished the initial page load.
+  useEffect(() => {
+    if (hasSeenIntro()) {
+      setPageReady(true);
+      setMinimumTimePassed(true);
+      return;
+    }
+
+    if (document.readyState === "complete") {
+      setPageReady(true);
+    } else {
+      const handleLoad = () => {
+        setPageReady(true);
+      };
+
+      window.addEventListener("load", handleLoad);
+
+      return () => {
+        window.removeEventListener("load", handleLoad);
+      };
+    }
   }, []);
 
-  // Locked only while the intro is up, and restored to whatever it was
-  // before as soon as it completes/unmounts — never a hardcoded "auto".
+  // Keep the intro visible for at least 3 seconds.
+  useEffect(() => {
+    if (hasSeenIntro()) return;
+
+    const timer = window.setTimeout(() => {
+      setMinimumTimePassed(true);
+    }, MIN_INTRO_DURATION);
+
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, []);
+
+  // The intro can finish only when both conditions are met.
+  const canFinishIntro =
+    pageReady && minimumTimePassed;
+
+  const handleIntroComplete = useCallback(() => {
+    if (!canFinishIntro) return;
+
+    markIntroSeen();
+    setIntroComplete(true);
+  }, [canFinishIntro]);
+
+  // Tell HeroIntro that the page is ready and the minimum
+  // intro duration has passed.
+  useEffect(() => {
+    if (!canFinishIntro || introComplete) return;
+
+    window.dispatchEvent(
+      new CustomEvent("hero-intro-ready")
+    );
+  }, [canFinishIntro, introComplete]);
+
+  // Prevent scrolling while the intro is visible.
   useEffect(() => {
     if (introComplete) return;
 
-    const original = document.body.style.overflow;
+    const originalBodyOverflow =
+      document.body.style.overflow;
+
     document.body.style.overflow = "hidden";
 
     return () => {
-      document.body.style.overflow = original;
+      document.body.style.overflow =
+        originalBodyOverflow;
     };
   }, [introComplete]);
 
   return (
     <>
-      {!introComplete && <HeroIntro onComplete={handleIntroComplete} />}
+      {/* Hero mounts immediately behind the intro. */}
+      <Hero introComplete={introComplete} />
+
+      {/* Intro sits above the Hero while the page loads. */}
       {!introComplete && (
-        // Not mounting Hero yet means nothing occupies its slot, so every
-        // section below it would sit ~100svh higher in the document than it
-        // normally does — right at the top of the (locked, invisible-behind-
-        // the-intro) viewport. Any of their whileInView(once: true) reveals
-        // would then fire for real while genuinely hidden, and never replay
-        // once Hero mounts and pushes them back down. This inert placeholder
-        // just reserves Hero's real footprint so nothing below moves.
-        <div aria-hidden="true" className="min-h-[100svh] w-full bg-black" />
+        <HeroIntro
+          onComplete={handleIntroComplete}
+          canFinish={canFinishIntro}
+        />
       )}
-      {introComplete && <Hero />}
     </>
   );
 }
