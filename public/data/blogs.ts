@@ -483,6 +483,76 @@ export const blogs: Blog[] = [
       }
     ]
   }
+},
+{
+  "slug": "kinetix-marketing-automation-platform",
+  "title": "Kinetix: An AI Marketing Engine That Builds Ads, Tests Them, and Moves the Budget Itself",
+  "category": "Case Study",
+  "date": "2026-08-28",
+  "excerpt": "Kinetix replaced the agency production pipeline with AI-generated ads, ran them against each other from day one, and shifted spend toward the winner automatically — with paid ads, organic social, and outreach all running from one platform.",
+  "image": "/images/case-studies/cst8.png",
+  "hero": {
+    "title": "Ads made in minutes, tested against each other from day one, and funded by whichever one is actually working.",
+    "description": "Organic content builds authority, but it builds it slowly — there is no way to create demand on a Tuesday because the quarter needs it. Paid advertising is the fast lane, and it was closed, because producing an ad meant weeks of agency time and thousands of rupees for a single creative that may or may not work. Kinetix removes that bottleneck entirely. Ads — script, voice, image and video — are generated from a brief in minutes, launched as a set of competing variations, measured live, and then funded according to results, with spend moving automatically toward whatever is winning. Paid ads, organic social and cold outreach all run from the same platform, off the same brand and business context.",
+    "meta": {
+      "solution": "AI ADS + SOCIAL + OUTREACH PLATFORM",
+      "stat": "ONE AGENCY AD'S BUDGET NOW TESTS MANY IN A DAY"
+    },
+    "image": "/images/case-studies/kinetix-hero.webp"
+  },
+  "body": {
+    "sections": [
+      {
+        "title": "Challenge",
+        "text": "The organic side of the business was working — content and social were publishing consistently and steadily building authority and traffic. But it was all slow lane. Growth was capped at whatever pace organic content allowed, with no way to accelerate on demand when a launch, a season or a slow month called for it. The obvious answer was paid advertising, and the obvious answer was blocked by production: every ad needed a script, a voiceover, footage, editing and copy, which meant weeks of turnaround and thousands per creative through an agency. At that cost, a business gets one expensive guess instead of ten cheap experiments — and finds out whether the guess worked from a report that arrives a month later, by which time the budget is already spent. Meanwhile the paid side, the organic side and the outreach side each lived with different tools and different vendors, none of them working off the same picture of the business."
+      },
+      {
+        "title": "Solution",
+        "text": [
+          "AI replaces the entire production pipeline. A complete ad — script, voiceover, imagery and video — is generated from a brief in minutes. No shoots, no editors, no copywriters, no scheduling around anyone's calendar. The gap between having an idea and having a live ad simply closes.",
+          "Every ad is grounded in the business, not in generic templates. The platform holds the brand's own positioning, offers and product context, and every generated ad is built from it — so output sounds like the business rather than like software.",
+          "Set the budget once. The system handles how that budget is distributed across the competing ad variations, instead of requiring someone to nurse allocations manually.",
+          "Competitive testing from day one. Rather than launching one creative and hoping, the system runs several against each other immediately and identifies the genuine performer using live data.",
+          "Budget follows the winner automatically. As results come in, spend is reallocated toward the ad that is actually driving traffic and sales — so money stops funding losers within the same campaign cycle, not after the next monthly review.",
+          "Live performance, never stale. Spend, click-through rate and budget consumption are pulled from the ad platform in real time on every view, so the answer to 'what is this costing us and what is it returning' is always current.",
+          "Nothing goes live by accident. New campaigns, ad sets and ads are always created paused; activating them is a separate, deliberate action.",
+          "Leads land and stay. Enquiries captured by ad forms flow into the platform automatically and are never dropped or overwritten, so paid traffic turns into a contactable list rather than a number on a chart.",
+          "One engine, not three vendors. Paid ads, organic social scheduling and analytics, and cold email outreach all run inside the same platform, off the same business data — so nothing falls through the cracks between tools."
+        ],
+        "image": "/images/case-studies/kinetix-solution.webp"
+      },
+      {
+        "title": "Why It Works",
+        "iconList": [
+          "Idea to live ad in minutes — no shoots, no editors, no agency queue",
+          "Many tested ads for the price of one produced ad",
+          "Winners identified by live data, not by opinion in a review meeting",
+          "Spend reallocates itself toward whatever is performing",
+          "Real-time cost and performance visibility, never a month-late report",
+          "Paid, organic and outreach in one platform, on one set of brand facts",
+          "Safe by default — everything is created paused until a human activates it",
+          "Ad enquiries captured and retained automatically"
+        ]
+      },
+      {
+        "text": "Day to day it takes very little operating. Someone describes the offer or the angle they want to try, and within minutes there is a set of finished ads — voiced, cut, written — ready to review. A budget is set once. The variations launch together and start competing, and the dashboard shows spend, clicks and budget usage as they happen rather than as a summary later. From there the system does the part people are worst at: killing its own darlings, moving money away from the creative that isn't landing and toward the one that is. The recommended human involvement is light — one person keeping a general eye on campaigns and analytics, not a full-time operator. It is automated, but it was never designed to be a black box.",
+        "image": "/images/case-studies/kinetix-workflow.webp"
+      },
+      {
+        "title": "Impact",
+        "bullets": [
+          "The business gained a fast, on-demand growth channel to sit alongside slow organic content — traffic can now be accelerated deliberately instead of waited for.",
+          "Ad production went from weeks and thousands per creative to minutes at a fraction of the cost, removing the single biggest barrier to advertising at all.",
+          "The same budget that once bought one agency ad now produces and tests many in a single day, replacing one expensive guess with a real shot at a winner.",
+          "Budget stopped funding underperformers — reallocation happens on live results, within the campaign, rather than after a post-mortem.",
+          "Spend, click-through and budget consumption are visible in real time, so cost per result is a live number rather than a monthly reconstruction.",
+          "Paid, organic and outreach activity consolidated into one platform, ending the coordination loss between separate agencies and tools.",
+          "Enquiries generated by paid campaigns are captured and retained automatically, so ad spend converts into a usable contact list.",
+          "Ongoing human effort stayed light — oversight rather than operation, with no in-house creative team required."
+        ]
+      }
+    ]
+  }
 }
 ];
 
