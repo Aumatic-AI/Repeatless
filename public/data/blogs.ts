@@ -39,7 +39,7 @@ export const blogs: Blog[] = [
   "category": "Case Study",
   "date": "2026-08-28",
   "excerpt": "Kinetix replaced the agency production pipeline with AI-generated ads, ran them against each other from day one, and shifted spend toward the winner automatically — with paid ads, organic social, and outreach all running from one platform.",
-  "image": "/images/case-studies/kinetix-marketing-automation-platform.png",
+  "image": "/images/case-studies/kinetix-marketing-automation-platform.webp",
   "hero": {
     "title": "Ads made in minutes, tested against each other from day one, and funded by whichever one is actually working.",
     "description": "Organic content builds authority, but it builds it slowly — there is no way to create demand on a Tuesday because the quarter needs it. Paid advertising is the fast lane, and it was closed, because producing an ad meant weeks of agency time and thousands of rupees for a single creative that may or may not work. Kinetix removes that bottleneck entirely. Ads — script, voice, image and video — are generated from a brief in minutes, launched as a set of competing variations, measured live, and then funded according to results, with spend moving automatically toward whatever is winning. Paid ads, organic social and cold outreach all run from the same platform, off the same brand and business context.",
@@ -109,7 +109,7 @@ export const blogs: Blog[] = [
   "category": "Case Study",
   "date": "2026-08-28",
   "excerpt": "A pharmaceutical distributor replaced hundreds of manual follow-ups a month with a single WhatsApp number that chases suppliers, checks in with the field team, and re-opens quiet customers on its own — with every reply routed to the one person who owns it.",
-  "image": "/images/case-studies/pharma-whatsapp-operations-system.png",
+  "image": "/images/case-studies/pharma-whatsapp-operations-system.webp",
   "hero": {
     "title": "One number. Three automatic follow-up loops. A dashboard that shows each team only what belongs to them.",
     "description": "In pharma distribution, the work that decides the month is follow-up work: asking a supplier whether a fast-moving product is available and at what price, asking a field salesperson what customers are actually demanding, asking a customer why they have gone quiet. It is simple work that never gets done consistently, because it depends on someone remembering. This system does the remembering. One business WhatsApp number reaches out on a schedule and on triggers from live stock data, and every reply that comes back is sorted and delivered to exactly the right person — procurement, sales, director or owner — inside one shared dashboard where nobody sees anyone else's conversations.",
@@ -174,7 +174,7 @@ export const blogs: Blog[] = [
   "category": "Case Study",
   "date": "2026-08-28",
   "excerpt": "Compass turns a business WhatsApp number into a storefront that never sleeps — answering customers instantly from your real catalog, logging every conversation, and showing you exactly what it costs to run.",
-  "image": "/images/case-studies/compass-whatsapp-dashboard.png",
+  "image": "/images/case-studies/compass-whatsapp-dashboard.webp",
   "hero": {
     "title": "Every customer answered. Every conversation visible. Every rupee accounted for.",
     "description": "Most businesses already sell on WhatsApp — through a phone someone has to keep picking up. Compass is the dashboard that sits behind that number. It answers customers in seconds using your own catalog and policies, keeps a complete record of every chat in one place, lets you change how it speaks without touching code, and tracks the running cost of every conversation so the whole thing stays measurable instead of mysterious.",
@@ -237,7 +237,7 @@ export const blogs: Blog[] = [
   "category": "Case Study",
   "date": "2026-08-28",
   "excerpt": "Atlas replaced a five-tool outbound workflow with a single dashboard — finding the right people at target companies, writing personalized emails at scale, sending them, and sorting every reply by intent automatically.",
-  "image": "/images/case-studies/atlas-outbound-operations-dashboard.png",
+  "image": "/images/case-studies/atlas-outbound-operations-dashboard.webp",
   "hero": {
     "title": "The entire outbound engine — research, personalization, sending and reply triage — in one place.",
     "description": "Outbound usually means a chain of disconnected tools: a list somewhere, an enrichment tool somewhere else, a spreadsheet of AI-written emails, a sending platform, and an inbox nobody has time to read. Every handoff is a CSV export and a chance to email the wrong person twice. Atlas collapses that chain into one dashboard. Upload a list of target companies and it finds the decision-makers, verifies their email addresses, writes a personalized sequence for each one, pushes it live, and then reads every reply and sorts it by intent — so the team only ever looks at the conversations that are worth their time.",
