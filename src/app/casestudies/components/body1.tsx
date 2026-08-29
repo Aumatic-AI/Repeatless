@@ -72,41 +72,16 @@ export default function BlogBody({
             {/* Text */}
             {section.text &&
               (Array.isArray(section.text) ? (
-                section.text.map((t, i) => {
-                  const colonIndex = t.indexOf(":");
-
-                  // If there is no colon, render the text normally
-                  if (colonIndex === -1) {
-                    return (
-                      <motion.p
-                        key={i}
-                        variants={fadeUpVariants}
-                        custom={i + 1}
-                        className="text-base sm:text-lg lg:text-[18px] leading-6 sm:leading-7 lg:leading-[27px] font-normal text-slate"
-                      >
-                        {t}
-                      </motion.p>
-                    );
-                  }
-
-                  // Split text at the first colon
-                  const label = t.slice(0, colonIndex);
-                  const description = t.slice(colonIndex + 1).trim();
-
-                  return (
-                    <motion.p
-                      key={i}
-                      variants={fadeUpVariants}
-                      custom={i + 1}
-                      className="text-base sm:text-lg lg:text-[18px] leading-6 sm:leading-7 lg:leading-[27px] font-normal text-slate"
-                    >
-                      <span className="font-semibold ">
-                        {label}:
-                      </span>{" "}
-                      {description}
-                    </motion.p>
-                  );
-                })
+                section.text.map((t, i) => (
+                  <motion.p
+                    key={i}
+                    variants={fadeUpVariants}
+                    custom={i + 1}
+                    className="text-base sm:text-lg lg:text-[18px] leading-6 sm:leading-7 lg:leading-[27px] font-normal text-slate"
+                  >
+                    {t}
+                  </motion.p>
+                ))
               ) : (
                 <motion.p
                   variants={fadeUpVariants}
