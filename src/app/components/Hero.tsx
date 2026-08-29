@@ -169,7 +169,7 @@ const Hero = ({ introComplete }: HeroProps) => {
             }}
             className="mt-8 max-w-2xl text-base leading-relaxed text-white/70 sm:text-xl"
           >
-            Unified AI infrastructure for B2B companies past $5M—built,
+            Unified AI infrastructure for B2B companies past $5M: built,
             operated, and maintained around the systems you already use.
           </motion.p>
 

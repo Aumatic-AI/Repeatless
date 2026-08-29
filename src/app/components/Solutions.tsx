@@ -21,37 +21,37 @@ const solutions = [
   {
     name: "WhatsApp & CRM automation",
     tab: "WhatsApp & CRM",
-    desc: "Every lead captured, qualified and followed up — WhatsApp, your CRM and your pipeline moving as one.",
+    desc: "Every lead captured, qualified and followed up: WhatsApp, your CRM and your pipeline moving as one.",
     Demo: WhatsAppDemo,
   },
   {
     name: "Lead gen & outreach",
     tab: "Lead gen",
-    desc: "LinkedIn, email and cold calls that run themselves — pipeline that fills while your team sells.",
+    desc: "LinkedIn, email and cold calls that run themselves: pipeline that fills while your team sells.",
     Demo: LeadGenDemo,
   },
   {
     name: "Content & publishing",
     tab: "Content",
-    desc: "Blogs, images and video — researched, produced and published on schedule, on autopilot.",
+    desc: "Blogs, images and video: researched, produced and published on schedule, on autopilot.",
     Demo: ContentDemo,
   },
   {
     name: "Voice AI agents",
     tab: "Voice AI",
-    desc: "Lifelike AI calls that book, remind and follow up — thousands of conversations, no call center.",
+    desc: "Lifelike AI calls that book, remind and follow up: thousands of conversations, no call center.",
     Demo: VoiceDemo,
   },
   {
     name: "Dashboards & internal tools",
     tab: "Dashboards",
-    desc: "One live view of your business — custom dashboards and tools built around how you actually work.",
+    desc: "One live view of your business: custom dashboards and tools built around how you actually work.",
     Demo: DashboardDemo,
   },
   {
     name: "Multi-agent AI systems",
     tab: "Multi-agent AI",
-    desc: "Full AI infrastructure — agents that plan, delegate and execute across your business. The whole machine, built and run for you.",
+    desc: "Full AI infrastructure: agents that plan, delegate and execute across your business. The whole machine, built and run for you.",
     Demo: AgentsDemo,
   },
 ];
@@ -179,7 +179,7 @@ export default function SolutionsSection() {
 
             <p className="mx-auto mt-3 max-w-3xl text-lg leading-relaxed text-black/65 sm:text-xl">
               Real interfaces, real workflows. Pick one,
-              combine them — or have us build the whole
+              combine them, or have us build the whole
               machine.
             </p>
           </motion.div>

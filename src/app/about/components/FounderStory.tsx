@@ -34,7 +34,7 @@ export default function FounderStory() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/founder-repeatless.webp"
-                alt="Chandan Kumar — founder & CEO of Repeatless"
+                alt="Chandan Kumar, founder & CEO of Repeatless"
                 className="aspect-[4/5] w-full object-cover object-top"
               />
             </div>
@@ -76,8 +76,8 @@ export default function FounderStory() {
               work that software should quietly handle.
             </p>
             <p>
-              Today my team and I build real AI infrastructure for $5M+ businesses — the latest
-              tools like Claude and Antigravity, combined with the systems you already run —{" "}
+              Today my team and I build real AI infrastructure for $5M+ businesses (the latest
+              tools like Claude and Antigravity, combined with the systems you already run),{" "}
               <span className="font-semibold text-ink">
                 fully done-for-you, so your team never touches the plumbing.
               </span>
@@ -85,7 +85,7 @@ export default function FounderStory() {
             <p>
               Companies representing <span className="font-semibold text-ink">$100M+ in combined revenue</span>{" "}
               move faster because we removed the busywork entirely. And for teams who want to build
-              that capability in-house instead, we run Training &amp; Consulting — the same
+              that capability in-house instead, we run Training &amp; Consulting: the same
               expertise, handed to your team rather than run for you.
             </p>
             <p>

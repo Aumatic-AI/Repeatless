@@ -56,7 +56,7 @@ export default function TwoTracks() {
             <motion.span aria-hidden="true" variants={slideInRight} className="pointer-events-none absolute left-full top-0 h-full w-screen bg-lime" />
           </motion.h2>
           <p className="mt-5 text-lg leading-relaxed text-slate">
-            Two ways to work with us — most companies want it built and run; some want the
+            Two ways to work with us: most companies want it built and run; some want the
             capability in-house. Both get the same expertise.
           </p>
         </div>
@@ -83,8 +83,8 @@ export default function TwoTracks() {
                 Done-For-You AI Infrastructure
               </h3>
               <p className="mt-3 text-white/60">
-                We build, run and maintain the entire system — operations, marketing, content,
-                outreach — without your team touching the plumbing.
+                We build, run and maintain the entire system (operations, marketing, content,
+                outreach) without your team touching the plumbing.
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {dfyStages.map((s, i) => (
@@ -128,7 +128,7 @@ export default function TwoTracks() {
                 Training &amp; Consulting
               </h3>
               <p className="mt-3 text-slate">
-                For teams who want to build AI capability in-house — the same expertise, handed to
+                For teams who want to build AI capability in-house: the same expertise, handed to
                 your people instead of run for you.
               </p>
               <ul className="mt-6 flex flex-col gap-3">

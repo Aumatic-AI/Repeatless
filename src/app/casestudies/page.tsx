@@ -90,7 +90,7 @@ export default function Page() {
 
         {filtered.length === 0 && (
           <p className="mt-12 text-center text-slate">
-            Nothing matches &ldquo;{query}&rdquo; — try another term.
+            Nothing matches &ldquo;{query}&rdquo;, try another term.
           </p>
         )}
 

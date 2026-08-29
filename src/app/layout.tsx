@@ -15,13 +15,13 @@ const fraunces = Fraunces({
 
 // SEO Metadata
 export const metadata: Metadata = {
-  title: "Repeatless — India's Leading AI Automation Agency for B2B Companies",
+  title: "Repeatless: India's Leading AI Automation Agency for B2B Companies",
   description:
-    "Repeatless is India's leading AI automation agency, building done-for-you AI infrastructure for $5M+ B2B companies worldwide — WhatsApp & CRM automation, content pipelines, voice AI agents and full multi-agent systems, powered by Claude, Antigravity and n8n. Book a strategy call.",
+    "Repeatless is India's leading AI automation agency, building done-for-you AI infrastructure for $5M+ B2B companies worldwide: WhatsApp & CRM automation, content pipelines, voice AI agents and full multi-agent systems, powered by Claude, Antigravity and n8n. Book a strategy call.",
   openGraph: {
-    title: "Repeatless — India's Leading AI Automation Agency for B2B Companies",
+    title: "Repeatless: India's Leading AI Automation Agency for B2B Companies",
     description:
-      "Done-for-you AI infrastructure for $5M+ B2B companies — WhatsApp & CRM automation, content pipelines, voice AI agents and multi-agent systems. Built on Claude, Antigravity and n8n.",
+      "Done-for-you AI infrastructure for $5M+ B2B companies: WhatsApp & CRM automation, content pipelines, voice AI agents and multi-agent systems. Built on Claude, Antigravity and n8n.",
     url: "https://www.repeatless.in",
     siteName: "Repeatless",
     images: [
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
         url: "https://www.repeatless.in/images/thumbnail.png",
         width: 1140,
         height: 548,
-        alt: "Repeatless — AI automation agency",
+        alt: "Repeatless, AI automation agency",
       },
     ],
     locale: "en_US",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Repeatless — India's Leading AI Automation Agency",
+    title: "Repeatless: India's Leading AI Automation Agency",
     description:
       "Done-for-you AI infrastructure for $5M+ B2B companies, worldwide. Claude, Antigravity & n8n. Book a free strategy call.",
     images: ["https://www.repeatless.in/images/thumbnail.png"],

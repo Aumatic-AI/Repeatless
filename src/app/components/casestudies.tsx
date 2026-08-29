@@ -68,7 +68,7 @@ export default function CaseStudies() {
           </h2>
 
           <p className="mt-5 text-lg leading-relaxed text-slate">
-            Every build below is a live automation we shipped — and still maintain.
+            Every build below is a live automation we shipped, and still maintain.
           </p>
         </div>
       </div>

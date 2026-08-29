@@ -15,7 +15,7 @@ export async function POST(request: Request) {
     }
 
     const { error } = await resend.emails.send({
-      from: "Website Contact <onboarding@resend.dev>",
+      from: "Repeatless Agency <hello@repeatlessagency.com>",
       to: process.env.CONTACT_EMAIL!,
       replyTo: email,
       subject: `New website enquiry from ${name}`,

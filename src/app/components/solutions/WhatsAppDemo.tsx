@@ -99,7 +99,7 @@ export default function WhatsAppDemo() {
               exit="exit"
               className="max-w-[80%] self-end rounded-lg rounded-tr-none bg-[#DCF8C6] px-2.5 py-1.5 shadow-sm"
             >
-              Hey Sarah 👋 Yes — here&apos;s our full catalog with bulk rates.
+              Hey Sarah 👋 Yes, here&apos;s our full catalog with bulk rates.
               <span className="ml-2 inline-flex items-center gap-1 align-bottom text-[9px] text-[#667781]">
                 10:24 <Ticks />
               </span>

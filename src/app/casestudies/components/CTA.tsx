@@ -16,7 +16,7 @@ export default function CTASection() {
             Ready to repeat less &amp; grow more?
           </h2>
           <p className="text-base leading-relaxed text-slate sm:text-lg">
-            We&apos;ll map exactly what to automate first — no pitch, no commitment.
+            We&apos;ll map exactly what to automate first: no pitch, no commitment.
           </p>
         </div>
 

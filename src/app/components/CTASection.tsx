@@ -75,7 +75,7 @@ export default function CTASection() {
 
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate">
               Tell us what&apos;s slowing your team down. We&apos;ll figure out
-              what can be automated first — no pitch, no commitment.
+              what can be automated first: no pitch, no commitment.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-5">

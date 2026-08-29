@@ -8,19 +8,19 @@ const CALENDLY = "https://calendly.com/chandannetha/30min";
 const deliverables = [
   {
     title: "Done-for-you build",
-    desc: "Fully built, tested and deployed by senior specialists — your first system live in days, not quarters.",
+    desc: "Fully built, tested and deployed by senior specialists: your first system live in days, not quarters.",
   },
   {
     title: "1 month free support",
-    desc: "Free bug fixes and tweaks for 30 days after launch — no extra charge.",
+    desc: "Free bug fixes and tweaks for 30 days after launch: no extra charge.",
   },
   {
     title: "Ongoing maintenance",
-    desc: "After that, monitoring, alerts and optimisations continue — nothing breaks silently.",
+    desc: "After that, monitoring, alerts and optimisations continue: nothing breaks silently.",
   },
   {
     title: "ROI dashboard",
-    desc: "A live dashboard showing hours saved, tasks automated and real business impact — every week.",
+    desc: "A live dashboard showing hours saved, tasks automated and real business impact, every week.",
   },
   {
     title: "30-day guarantee",
@@ -28,7 +28,7 @@ const deliverables = [
   },
   {
     title: "One unified infrastructure",
-    desc: "Every automation lives in one system — not a patchwork of disconnected bots.",
+    desc: "Every automation lives in one system, not a patchwork of disconnected bots.",
   },
 ];
 
@@ -60,7 +60,7 @@ export default function OfferBanner() {
                 </h2>
                 <p className="mt-4 leading-relaxed text-white/60">
                   No templates. No offshore team. A senior team building, running and optimising your
-                  systems — with the guarantees to back it.
+                  systems, with the guarantees to back it.
                 </p>
               </div>
               <a

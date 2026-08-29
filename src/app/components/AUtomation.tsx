@@ -46,7 +46,7 @@ const phases: Phase[] = [
     kicker: "DESIGN",
     duration: "Days 2–4",
     title: "Blueprint, not a template",
-    desc: "A build plan around your stack — your CRM, your tools, your data.",
+    desc: "A build plan around your stack: your CRM, your tools, your data.",
     artifact: "Stack locked: n8n · Claude · Slack",
     ghost: "BLUEPRINT",
     panel: { title: "SYSTEM HANDOFF", nodes: ["CRM", "AI LAYER", "OPERATIONS"], flow: ["INPUT", "LOGIC", "OUTPUT"] },
@@ -58,7 +58,7 @@ const phases: Phase[] = [
     kicker: "DEPLOY",
     duration: "Days 5–12",
     title: "Built, tested, live",
-    desc: "Senior specialists build, integrate and ship — no offshore queue.",
+    desc: "Senior specialists build, integrate and ship: no offshore queue.",
     artifact: "24/24 tests passed · shipped to production",
     ghost: "DEPLOY",
     panel: { title: "BUILD PIPELINE", nodes: ["STAGING", "TESTS", "PRODUCTION"], flow: ["BUILD", "VERIFY", "SHIP"] },
@@ -70,8 +70,8 @@ const phases: Phase[] = [
     kicker: "SCALE",
     duration: "Ongoing",
     title: "Monitored, optimized, expanded",
-    desc: "We stay on after launch — nothing breaks silently, nothing stops improving.",
-    artifact: "68% less manual work — and counting",
+    desc: "We stay on after launch: nothing breaks silently, nothing stops improving.",
+    artifact: "68% less manual work, and counting",
     ghost: "SCALE",
     panel: { title: "LIVE OPERATIONS", nodes: ["MONITOR", "ALERT", "IMPROVE"], flow: ["WATCH", "TUNE", "EXPAND"] },
     status: "ongoing",
@@ -213,7 +213,7 @@ export default function ProcessSection() {
             From first call to fully automated.
           </h2>
           <p className="mt-5 max-w-md text-lg leading-relaxed text-slate">
-            No black box — here&apos;s exactly what happens after you book a call.
+            No black box: here&apos;s exactly what happens after you book a call.
           </p>
         </div>
       </div>
@@ -297,7 +297,7 @@ export default function ProcessSection() {
                       aria-controls={`phase-panel-${i}`}
                       tabIndex={isActive ? 0 : -1}
                       onClick={() => goToPhase(i)}
-                      aria-label={`Phase ${p.step} — ${p.title}`}
+                      aria-label={`Phase ${p.step}: ${p.title}`}
                       /* px-2.5 widens the hit area to ~44px without moving the dot */
                       className="group flex cursor-pointer flex-col items-center gap-1.5 rounded-full px-2.5 outline-none focus-visible:ring-2 focus-visible:ring-skybright focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
                     >

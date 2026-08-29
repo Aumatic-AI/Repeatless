@@ -37,7 +37,7 @@ export default function FounderSection() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/founder-repeatless.webp"
-              alt="Chandan Kumar — founder & CEO of Repeatless"
+              alt="Chandan Kumar, founder & CEO of Repeatless"
               className="aspect-[4/5] w-full object-cover object-top"
             />
           </motion.div>
@@ -58,8 +58,8 @@ export default function FounderSection() {
               that software should quietly handle.
             </p>
             <p>
-              Today my team and I build real AI infrastructure for $1M+ businesses — the latest tools
-              like Claude and Antigravity, combined with the systems you already run —{" "}
+              Today my team and I build real AI infrastructure for $1M+ businesses (the latest tools
+              like Claude and Antigravity, combined with the systems you already run),{" "}
               <span className="font-semibold text-ink">fully done-for-you, so your team never touches the plumbing.</span>
             </p>
             <p>

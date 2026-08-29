@@ -39,7 +39,7 @@ export default function TeamRoster() {
           The specialists who build and run every system.
         </h2>
         <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate">
-          No offshore queue, no rotating contractors — the same named people ship your build and
+          No offshore queue, no rotating contractors: the same named people ship your build and
           stay on after launch.
         </p>
 
