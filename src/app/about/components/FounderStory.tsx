@@ -83,7 +83,7 @@ export default function FounderStory() {
               </span>
             </p>
             <p>
-              Companies representing <span className="font-semibold text-ink">$100M+ in combined revenue</span>{" "}
+              Companies representing <span className="font-semibold text-ink">$50M+ in combined revenue</span>{" "}
               move faster because we removed the busywork entirely. And for teams who want to build
               that capability in-house instead, we run Training &amp; Consulting: the same
               expertise, handed to your team rather than run for you.
