@@ -9,6 +9,8 @@ const quickLinks = [
   { label: "Home", href: "/#home" },
   { label: "Solutions", href: "/#solutions" },
   { label: "Case Studies", href: "/casestudies" },
+  { label: "Webinar", href: "/webinar" },
+  { label: "Cohort", href: "/cohort" },
   { label: "About", href: "/about" },
   { label: "Book a strategy call", href: "https://calendly.com/chandannetha/30min" },
 ];
