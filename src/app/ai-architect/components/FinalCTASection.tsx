@@ -26,7 +26,7 @@ export default function FinalCTASection() {
         <AIArchitectCTAButton label="Join AI Architect" className="mt-4" />
         <p className="max-w-lg text-sm text-white/60">
           Once you&apos;re in, you&apos;ll get added to the cohort group with onboarding details,
-          and the program officially kicks off on the 20th.
+          and the program officially kicks off on September 20, 2026.
         </p>
       </motion.div>
     </section>

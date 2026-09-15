@@ -7,7 +7,7 @@ import { FiChevronDown } from "react-icons/fi";
 const faqs = [
   {
     q: "What time is the webinar and how do I join?",
-    a: "[Date] at [Time]. You'll get the live link via WhatsApp/email right after you register.",
+    a: "September 20, 2026 at [Time]. You'll get the live link via WhatsApp/email right after you register.",
   },
   {
     q: "Do I need any prior AI or technical knowledge to attend?",

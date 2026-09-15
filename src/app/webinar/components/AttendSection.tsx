@@ -85,7 +85,7 @@ export default function AttendSection() {
           className="mt-12 flex flex-col items-center gap-3"
         >
           <ReserveSeatButton />
-          <p className="text-sm text-slate2">[Date] | [Time] | Month</p>
+          <p className="text-sm text-slate2">September 20, 2026 | [Time]</p>
         </motion.div>
       </div>
     </section>

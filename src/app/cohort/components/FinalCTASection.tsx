@@ -24,7 +24,7 @@ export default function FinalCTASection() {
         <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-white/60">
           <span>Only [X] seats per cohort</span>
           <span className="text-white/30">|</span>
-          <span>Next batch starts [date]</span>
+          <span>Next batch starts September 20, 2026</span>
           <span className="text-white/30">|</span>
           <span>Backed by 100% money-back guarantee</span>
         </p>

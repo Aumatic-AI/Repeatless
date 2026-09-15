@@ -47,7 +47,7 @@ export default function AIArchitectHero() {
         >
           <AIArchitectCTAButton label="Join AI Architect" />
           <p className="text-sm text-white/60">
-            30-day program &middot; Cohort kicks off on the 20th
+            30-day program &middot; Cohort kicks off on September 20, 2026
           </p>
         </motion.div>
       </div>
