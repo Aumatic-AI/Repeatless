@@ -2,12 +2,45 @@
 
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 
+const skills = [
+  <>
+    It wasn&apos;t &quot;learning AI&quot; in general it was one specific, sellable skill:{" "}
+    <span className="font-semibold text-ink">AI Automation as a Service</span>
+  </>,
+  <>
+    Not prompt tricks. Not content creation. A real service businesses pay ₹10,000–₹50,000+ for
+    because it saves them time and money daily
+  </>,
+  <>
+    The market isn&apos;t saturated the approach is. Everyone sells the same chatbot to the same
+    2-3 niches
+  </>,
+  <>
+    The real opportunity is in thousands of untouched niches sweet shops, clinics, gyms, local
+    businesses nobody&apos;s automating for them yet
+  </>,
+  <>
+    This is exactly what I do in my agency every day and exactly what I&apos;ll teach you, step by
+    step, from zero to your first ₹1L in 48 days
+  </>,
+];
+
 export default function SkillSection() {
   const reduce = useReducedMotion();
 
   const rise: Variants = {
     hidden: { opacity: 0, y: reduce ? 0 : 20 },
     show: { opacity: 1, y: 0, transition: { duration: reduce ? 0 : 0.55, ease: [0.4, 0, 0.2, 1] } },
+  };
+
+  const gridContainer: Variants = {
+    hidden: {},
+    show: { transition: { staggerChildren: reduce ? 0 : 0.08 } },
+  };
+
+  const gridItem: Variants = {
+    hidden: { opacity: 0, y: reduce ? 0 : 12 },
+    show: { opacity: 1, y: 0, transition: { duration: reduce ? 0 : 0.4, ease: [0.4, 0, 0.2, 1] } },
   };
 
   return (
@@ -24,39 +57,28 @@ export default function SkillSection() {
           The One Skill That Changed My Life
         </motion.h2>
 
-        <motion.ul
+        <motion.div
           variants={rise}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.3 }}
-          className="mt-8 flex flex-col gap-4 text-lg leading-relaxed text-slate"
+          className="mt-10 rounded-2xl border border-ink/10 bg-surface p-8 sm:p-10"
         >
-          <li className="flex items-start gap-3">
-            <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-sky" />
-            It wasn&apos;t &quot;learning AI&quot; in general it was one specific, sellable skill:{" "}
-            <span className="font-semibold text-ink">AI Automation as a Service</span>
-          </li>
-          <li className="flex items-start gap-3">
-            <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-sky" />
-            Not prompt tricks. Not content creation. A real service businesses pay
-            ₹10,000–₹50,000+ for because it saves them time and money daily
-          </li>
-          <li className="flex items-start gap-3">
-            <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-sky" />
-            The market isn&apos;t saturated the approach is. Everyone sells the same chatbot to the
-            same 2-3 niches
-          </li>
-          <li className="flex items-start gap-3">
-            <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-sky" />
-            The real opportunity is in thousands of untouched niches sweet shops, clinics, gyms,
-            local businesses nobody&apos;s automating for them yet
-          </li>
-          <li className="flex items-start gap-3">
-            <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-sky" />
-            This is exactly what I do in my agency every day and exactly what I&apos;ll teach you,
-            step by step, from zero to your first ₹1L in 48 days
-          </li>
-        </motion.ul>
+          <motion.ul
+            variants={gridContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            className="grid grid-cols-1 gap-x-10 gap-y-6 sm:grid-cols-2"
+          >
+            {skills.map((content, i) => (
+              <motion.li key={i} variants={gridItem} className="flex items-start gap-3">
+                <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-sm bg-lime" />
+                <p className="text-base leading-relaxed text-slate">{content}</p>
+              </motion.li>
+            ))}
+          </motion.ul>
+        </motion.div>
       </div>
     </section>
   );
