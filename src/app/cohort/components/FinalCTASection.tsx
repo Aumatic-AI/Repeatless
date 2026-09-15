@@ -18,7 +18,7 @@ export default function FinalCTASection() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.4 }}
-        className="mx-auto flex max-w-3xl flex-col items-center gap-4 px-6 text-center"
+        className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 text-center"
       >
         <CohortCTAButton label="Your First ₹1L Is 48 Days Away" />
         <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-white/60">

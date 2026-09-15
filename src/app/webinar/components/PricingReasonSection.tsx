@@ -20,7 +20,7 @@ export default function PricingReasonSection() {
 
   return (
     <section className="bg-ink py-20 text-white sm:py-28">
-      <div className="mx-auto max-w-3xl px-6">
+      <div className="mx-auto max-w-6xl px-6">
         <motion.h2
           variants={rise}
           initial="hidden"

@@ -46,7 +46,7 @@ export default function FAQSection() {
 
   return (
     <section className="bg-paper py-20 sm:py-28">
-      <div className="mx-auto max-w-3xl px-6">
+      <div className="mx-auto max-w-6xl px-6">
         <motion.h2
           variants={rise}
           initial="hidden"

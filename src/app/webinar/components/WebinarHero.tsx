@@ -9,7 +9,7 @@ export default function WebinarHero() {
 
   return (
     <section className="relative overflow-hidden bg-ink pb-20 pt-36 text-white sm:pb-28 sm:pt-40">
-      <div className="mx-auto max-w-4xl px-6 text-center">
+      <div className="mx-auto max-w-6xl px-6 text-center">
         <motion.p
           initial={{ opacity: 0, y: reduce ? 0 : 16 }}
           animate={{ opacity: 1, y: 0 }}

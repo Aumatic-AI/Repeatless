@@ -245,17 +245,17 @@ header.fixed button {
   scroll-margin-top: 6rem;
 }
 
-main > section:first-of-type {
+#home {
   background: var(--ink) !important;
   color: #fff !important;
 }
 
-main > section:first-of-type .text-sky,
-main > section:first-of-type .text-skybright {
+#home .text-sky,
+#home .text-skybright {
   color: var(--lime) !important;
 }
 
-main > section:first-of-type .bg-sky {
+#home .bg-sky {
   background: var(--lime) !important;
   color: var(--ink) !important;
 }
@@ -264,13 +264,13 @@ main > section:first-of-type .bg-sky {
    HERO SECTION AFTER INTRO
    ========================================================= */
 
-main > section:nth-of-type(2) {
+#how-we-engage {
   background: var(--paper) !important;
   color: var(--ink) !important;
   border-bottom: 1px solid var(--line);
 }
 
-main > section:nth-of-type(2)::before {
+#how-we-engage::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -285,8 +285,8 @@ main > section:nth-of-type(2)::before {
   pointer-events: none;
 }
 
-main > section:nth-of-type(2) h1,
-main > section:nth-of-type(2) h2 {
+#how-we-engage h1,
+#how-we-engage h2 {
   font-size: clamp(3.5rem, 9vw, 9.5rem) !important;
   letter-spacing: -.075em !important;
 }
@@ -844,8 +844,8 @@ section button {
     width: calc(100% - 1.5rem) !important;
   }
 
-  main > section:nth-of-type(2) h1,
-  main > section:nth-of-type(2) h2 {
+  #how-we-engage h1,
+  #how-we-engage h2 {
     font-size: clamp(3.1rem, 13vw, 6rem) !important;
   }
 

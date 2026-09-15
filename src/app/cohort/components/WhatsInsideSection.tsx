@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { FiArrowUpRight } from "react-icons/fi";
+import { FiArrowRight } from "react-icons/fi";
+
+const heading = "What You Will Learn".split(" ");
 
 export default function WhatsInsideSection() {
   const reduce = useReducedMotion();
@@ -12,18 +14,33 @@ export default function WhatsInsideSection() {
     show: { opacity: 1, y: 0, transition: { duration: reduce ? 0 : 0.55, ease: [0.4, 0, 0.2, 1] } },
   };
 
+  // Each word of the heading pops in on its own beat instead of the whole
+  // line fading up together.
+  const wordContainer: Variants = {
+    hidden: {},
+    show: { transition: { staggerChildren: reduce ? 0 : 0.08 } },
+  };
+
+  const word: Variants = {
+    hidden: { opacity: 0, y: reduce ? 0 : 18 },
+    show: { opacity: 1, y: 0, transition: { duration: reduce ? 0 : 0.45, ease: [0.4, 0, 0.2, 1] } },
+  };
+
   return (
     <section className="bg-paper py-20 sm:py-28">
-      <div className="mx-auto max-w-3xl px-6 text-center">
+      <div className="mx-auto max-w-6xl px-6 text-center">
         <motion.h2
-          variants={rise}
+          variants={wordContainer}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.4 }}
-          className="font-display text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl"
-          style={{ textWrap: "balance" } as React.CSSProperties}
+          className="flex flex-wrap justify-center gap-x-3 font-display text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-6xl"
         >
-          What&apos;s Inside You&apos;ll Learn
+          {heading.map((w, i) => (
+            <motion.span key={i} variants={word}>
+              {w}
+            </motion.span>
+          ))}
         </motion.h2>
 
         <motion.p
@@ -31,9 +48,21 @@ export default function WhatsInsideSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.4 }}
-          className="mt-5 text-lg font-medium leading-relaxed text-sky"
+          className="mx-auto mt-6 max-w-2xl text-xl font-medium leading-relaxed sm:text-2xl"
         >
-          Become an AI Architect Not Another Automation Freelancer
+          Become an{" "}
+          <span className="relative inline-block whitespace-nowrap text-ink">
+            AI Architect
+            <motion.span
+              aria-hidden="true"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true, amount: 0.6 }}
+              transition={{ duration: reduce ? 0 : 0.5, delay: 0.35, ease: [0.4, 0, 0.2, 1] }}
+              className="absolute -bottom-1 left-0 h-[6px] w-full origin-left bg-lime"
+            />
+          </span>{" "}
+          Not Another Automation Freelancer
         </motion.p>
 
         <motion.div
@@ -41,14 +70,14 @@ export default function WhatsInsideSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.4 }}
-          className="mt-6"
+          className="mt-8"
         >
           <Link
             href="/ai-architect"
-            className="group inline-flex items-center justify-center gap-2 rounded-xl border border-sky/30 bg-surface px-6 py-3 text-sm font-semibold text-sky transition-all duration-300 hover:-translate-y-0.5 hover:bg-skysoft"
+            className="group inline-flex items-center gap-1.5 rounded-xl bg-lime px-6 py-3.5 font-medium text-ink transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.97]"
           >
             See the 6-Module Breakdown
-            <FiArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <FiArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </motion.div>
       </div>

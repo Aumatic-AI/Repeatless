@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { FiPhoneCall, FiMenu, FiX } from "react-icons/fi";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -16,13 +17,18 @@ const navLinks = [
   { href: "/#contact", label: "Contact" },
 ];
 
+// Homepage sections tracked for scroll-spy highlighting, in document order.
+const HASH_SECTION_IDS = ["home", "solutions", "contact"];
+
 const CALENDLY = "https://calendly.com/chandannetha/30min";
 
 const Navbar: React.FC = () => {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [visible, setVisible] = useState(true);
   const [scrolled, setScrolled] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [activeHash, setActiveHash] = useState("home");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,6 +43,39 @@ const Navbar: React.FC = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
+
+  // Scroll-spy: only the homepage has sections matching these ids, so this
+  // is a no-op (nothing to observe) on every other route.
+  useEffect(() => {
+    if (pathname !== "/") return;
+
+    const sections = HASH_SECTION_IDS.map((id) => document.getElementById(id)).filter(
+      (el): el is HTMLElement => el !== null
+    );
+
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveHash(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+    );
+
+    sections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [pathname]);
+
+  const isActive = (href: string) => {
+    if (href.startsWith("/#")) {
+      return pathname === "/" && activeHash === href.slice(2);
+    }
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
 
   return (
     <motion.header
@@ -71,15 +110,23 @@ const Navbar: React.FC = () => {
                 : "shadow-[0_8px_24px_-16px_rgba(8,18,26,0.5)]"
             }`}
           >
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="relative whitespace-nowrap py-0.5 transition-colors hover:text-white after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-skybright after:transition-all hover:after:w-full"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const active = isActive(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={active ? "page" : undefined}
+                  className={`relative whitespace-nowrap py-0.5 transition-colors after:absolute after:left-0 after:-bottom-0.5 after:h-px after:bg-skybright after:transition-all ${
+                    active
+                      ? "font-semibold text-white after:w-full"
+                      : "hover:text-white after:w-0 hover:after:w-full"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </div>
         </nav>
 
@@ -117,16 +164,22 @@ const Navbar: React.FC = () => {
             className="md:hidden mt-3 mx-1 rounded-none border border-white/10 bg-ink shadow-xl text-white flex flex-col items-center"
           >
             <div className="flex flex-col items-center gap-5 px-6 pb-8 pt-8">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="text-lg font-medium text-white/80 hover:text-white transition"
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const active = isActive(link.href);
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    aria-current={active ? "page" : undefined}
+                    className={`text-lg transition ${
+                      active ? "font-semibold text-white" : "font-medium text-white/80 hover:text-white"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
             </div>
 
             {/* Full-width, zero-margin footer button — a direct child of the

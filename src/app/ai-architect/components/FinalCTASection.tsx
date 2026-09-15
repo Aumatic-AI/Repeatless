@@ -18,7 +18,7 @@ export default function FinalCTASection() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.4 }}
-        className="mx-auto flex max-w-3xl flex-col items-center gap-4 px-6 text-center"
+        className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 text-center"
       >
         <h2 className="font-display text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
           Ready to join AI Architect?
