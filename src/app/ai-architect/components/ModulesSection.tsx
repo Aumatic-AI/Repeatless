@@ -71,6 +71,29 @@ export default function ModulesSection() {
     show: { opacity: 1, y: 0, transition: { duration: reduce ? 0 : 0.55, ease: [0.4, 0, 0.2, 1] } },
   };
 
+  // Modules step in one after another instead of the whole stack fading up
+  // together.
+  const moduleContainer: Variants = {
+    hidden: {},
+    show: { transition: { staggerChildren: reduce ? 0 : 0.12 } },
+  };
+
+  const moduleCard: Variants = {
+    hidden: { opacity: 0, y: reduce ? 0 : 24 },
+    show: { opacity: 1, y: 0, transition: { duration: reduce ? 0 : 0.5, ease: [0.4, 0, 0.2, 1] } },
+  };
+
+  // The 8-step list inside Module 3 gets its own quick stagger.
+  const stepContainer: Variants = {
+    hidden: {},
+    show: { transition: { staggerChildren: reduce ? 0 : 0.06 } },
+  };
+
+  const stepItem: Variants = {
+    hidden: { opacity: 0, x: reduce ? 0 : -12 },
+    show: { opacity: 1, x: 0, transition: { duration: reduce ? 0 : 0.35, ease: [0.4, 0, 0.2, 1] } },
+  };
+
   return (
     <section className="bg-ink py-20 text-white sm:py-28">
       <div className="mx-auto max-w-6xl px-6">
@@ -85,22 +108,35 @@ export default function ModulesSection() {
         </motion.h2>
 
         <motion.div
-          variants={rise}
+          variants={moduleContainer}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.1 }}
           className="mt-12 flex flex-col gap-5"
         >
           {modules.map((m) => (
-            <div key={m.num} className="rounded-2xl border border-white/10 bg-white/5 p-7">
-              <div className="flex items-baseline gap-3">
-                <span className="font-monoui text-sm text-lime">{m.num}</span>
+            <motion.div
+              key={m.num}
+              variants={moduleCard}
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-7 transition-colors duration-300 hover:border-lime/50"
+            >
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -right-4 -top-6 select-none font-display text-8xl font-semibold text-white/[0.04] transition-colors duration-300 group-hover:text-lime/10"
+              >
+                {m.num}
+              </span>
+
+              <div className="relative flex items-center gap-3">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-lime/40 font-monoui text-xs text-lime transition-colors duration-300 group-hover:bg-lime group-hover:text-ink">
+                  {m.num}
+                </span>
                 <h3 className="font-display text-xl font-semibold text-white">
                   Module {m.num.replace(/^0/, "")}: {m.title}
                 </h3>
               </div>
 
-              <ul className="mt-4 flex flex-col gap-3">
+              <ul className="relative mt-4 flex flex-col gap-3">
                 {m.bullets.map((b) => (
                   <li key={b} className="flex items-start gap-3 text-sm leading-relaxed text-white/70">
                     <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-lime" />
@@ -110,23 +146,33 @@ export default function ModulesSection() {
               </ul>
 
               {m.steps && (
-                <div className="mt-5 rounded-xl border border-white/10 bg-black/20 p-5">
+                <div className="relative mt-5 rounded-xl border border-white/10 bg-black/20 p-5">
                   <p className="font-monoui text-xs uppercase tracking-wide text-white/50">
                     8-Step Build Process
                   </p>
-                  <ol className="mt-3 flex flex-col gap-2.5">
+                  <motion.ol
+                    variants={stepContainer}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.3 }}
+                    className="relative mt-4 flex flex-col gap-3 border-l border-white/10 pl-4"
+                  >
                     {m.steps.map((s, i) => (
-                      <li key={s} className="flex items-start gap-3 text-sm leading-relaxed text-white/70">
-                        <span className="mt-0.5 shrink-0 font-monoui text-xs text-lime">
-                          {i + 1}.
+                      <motion.li
+                        key={s}
+                        variants={stepItem}
+                        className="flex items-start gap-3 text-sm leading-relaxed text-white/70"
+                      >
+                        <span className="mt-0.5 shrink-0 font-monoui text-xs font-semibold text-lime">
+                          {String(i + 1).padStart(2, "0")}
                         </span>
                         {s}
-                      </li>
+                      </motion.li>
                     ))}
-                  </ol>
+                  </motion.ol>
                 </div>
               )}
-            </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>
