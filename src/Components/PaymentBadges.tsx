@@ -7,14 +7,14 @@ type PaymentBadgesProps = {
 export default function PaymentBadges({ className = "" }: PaymentBadgesProps) {
   return (
     <div
-      className={`inline-flex items-center justify-center rounded-full bg-white/90 px-3 py-1.5 backdrop-blur-sm ring-1 ring-black/5 ${className}`}
+      className={`-mb-5 inline-flex items-center justify-center bg-ink/90 px-7 py-5 backdrop-blur-sm ${className}`}
     >
       <Image
-        src="/images/paymentlogos.png"
+        src="/images/paylogo.png"
         alt="UPI, Visa, Mastercard, RuPay accepted · PCI compliant"
-        width={422}
-        height={24}
-        className="h-3.5 w-auto"
+        width={866}
+        height={288}
+        className="h-20 w-auto"
       />
     </div>
   );
