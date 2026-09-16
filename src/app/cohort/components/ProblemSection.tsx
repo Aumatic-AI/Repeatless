@@ -64,15 +64,20 @@ export default function ProblemSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.4 }}
-          className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-ink/10 bg-surface2 lg:col-span-2"
+          className="relative lg:col-span-2 lg:sticky lg:top-28"
         >
-          <Image
-            src="/images/marketing/cohort.png"
-            alt="AI automation cohort"
-            fill
-            className="object-cover"
-            priority
-          />
+          {/* Offset lime backdrop echoes the image's own path color and keeps
+              the dark illustration from reading as a flat cutout on bg-paper. */}
+          <div aria-hidden="true" className="absolute -bottom-4 -right-4 h-full w-full rounded-2xl bg-lime" />
+          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-ink/10 bg-surface2">
+            <Image
+              src="/images/marketing/cohort.png"
+              alt="AI automation cohort"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
         </motion.div>
 
         {/* Right: Problems */}
