@@ -2,15 +2,21 @@ import Image from "next/image";
 
 type PaymentBadgesProps = {
   className?: string;
+  src?: string;
+  bgClassName?: string;
 };
 
-export default function PaymentBadges({ className = "" }: PaymentBadgesProps) {
+export default function PaymentBadges({
+  className = "",
+  src = "/images/paylogo.png",
+  bgClassName = "bg-ink/90 backdrop-blur-sm",
+}: PaymentBadgesProps) {
   return (
     <div
-      className={`-mb-5 inline-flex items-center justify-center bg-ink/90 px-7 py-5 backdrop-blur-sm ${className}`}
+      className={`-mb-5 inline-flex items-center justify-center px-7 py-5 ${bgClassName} ${className}`}
     >
       <Image
-        src="/images/paylogo.png"
+        src={src}
         alt="UPI, Visa, Mastercard, RuPay accepted · PCI compliant"
         width={866}
         height={288}

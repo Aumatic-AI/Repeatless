@@ -85,7 +85,7 @@ export default function AttendSection() {
           viewport={{ once: true, amount: 0.4 }}
           className="mt-12 flex flex-col items-center gap-3"
         >
-          <PaymentBadges />
+          <PaymentBadges src="/images/paylogolight.png" bgClassName="" />
           <ReserveSeatButton />
           <p className="text-sm text-slate2">September 27, 2026</p>
         </motion.div>
