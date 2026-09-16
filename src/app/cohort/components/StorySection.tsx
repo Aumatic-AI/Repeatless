@@ -6,7 +6,7 @@ const story = [
   "Then AI started taking over and instead of fearing it, I asked myself one question: if AI is going to replace jobs, why not learn to use it and replace my own paycheck first?",
   "I started learning AI automation on the side nights, weekends, no shortcuts, no \"get rich quick\"",
   "The moment I realized I could build something that paid more than my job I quit. Not out of frustration, but because I knew what I was building was worth more than a monthly salary",
-  "Today, I run my own AI automation agency in Hyderabad [Address] with a team of 5 people working under me",
+  "Today, I run my own AI automation agency in Hyderabad with a team of 5 people working under me",
   "I went from being an employee taking orders, to an employer giving work to others",
   "I bought my own bike, my own car with money I made from skills I taught myself",
   "When my parents went for my marriage proposal, the bride's family asked what I do and my parents proudly said \"my son runs his own business\" not \"he has a job\"",
