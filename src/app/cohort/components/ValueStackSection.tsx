@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import CohortCTAButton from "./CohortCTAButton";
+import PaymentBadges from "@/Components/PaymentBadges";
 
 const rows = [
   { item: "Full 6-Module Cohort", value: "₹15,000" },
@@ -80,6 +81,7 @@ export default function ValueStackSection() {
           viewport={{ once: true, amount: 0.4 }}
           className="mt-10 flex flex-col items-center gap-3 text-center"
         >
+          <PaymentBadges />
           <CohortCTAButton label="Yes, I Want My First ₹1L" />
           <p className="text-sm text-white/60">
             100% Money-Back Guarantee hit your first ₹1L or get every rupee back

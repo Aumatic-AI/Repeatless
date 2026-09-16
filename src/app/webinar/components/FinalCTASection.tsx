@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import ReserveSeatButton from "./ReserveSeatButton";
+import PaymentBadges from "@/Components/PaymentBadges";
 
 export default function FinalCTASection() {
   const reduce = useReducedMotion();
@@ -20,6 +21,7 @@ export default function FinalCTASection() {
         viewport={{ once: true, amount: 0.4 }}
         className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 text-center"
       >
+        <PaymentBadges />
         <ReserveSeatButton />
         <p className="text-sm text-white/60">September 27, 2026</p>
       </motion.div>

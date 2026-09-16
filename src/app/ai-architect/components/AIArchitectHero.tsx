@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import AIArchitectCTAButton from "./AIArchitectCTAButton";
+import PaymentBadges from "@/Components/PaymentBadges";
 
 export default function AIArchitectHero() {
   const reduce = useReducedMotion();
@@ -45,6 +46,7 @@ export default function AIArchitectHero() {
           transition={{ duration: 0.6, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
           className="mt-10 flex flex-col items-center gap-4"
         >
+          <PaymentBadges />
           <AIArchitectCTAButton label="Join AI Architect" />
           <p className="text-sm text-white/60">
             30-day program &middot; Cohort kicks off on September 20, 2026

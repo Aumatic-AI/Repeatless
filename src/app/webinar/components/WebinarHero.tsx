@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { FiPlay, FiUsers } from "react-icons/fi";
 import ReserveSeatButton from "./ReserveSeatButton";
+import PaymentBadges from "@/Components/PaymentBadges";
 
 export default function WebinarHero() {
   const reduce = useReducedMotion();
@@ -68,6 +69,7 @@ export default function WebinarHero() {
           transition={{ duration: 0.6, delay: 0.38, ease: [0.4, 0, 0.2, 1] }}
           className="mt-14 flex flex-col items-center gap-4"
         >
+          <PaymentBadges />
           <ReserveSeatButton />
           <p className="flex items-center gap-2 text-sm text-white/60">
             <FiUsers className="h-4 w-4 text-skybright" />

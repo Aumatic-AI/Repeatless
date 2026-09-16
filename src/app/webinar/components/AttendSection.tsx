@@ -3,6 +3,7 @@
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { FiCheck, FiX } from "react-icons/fi";
 import ReserveSeatButton from "./ReserveSeatButton";
+import PaymentBadges from "@/Components/PaymentBadges";
 
 const attendIf = [
   "Complete beginner exploring AI automation",
@@ -84,6 +85,7 @@ export default function AttendSection() {
           viewport={{ once: true, amount: 0.4 }}
           className="mt-12 flex flex-col items-center gap-3"
         >
+          <PaymentBadges />
           <ReserveSeatButton />
           <p className="text-sm text-slate2">September 27, 2026</p>
         </motion.div>

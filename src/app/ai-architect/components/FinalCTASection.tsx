@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import AIArchitectCTAButton from "./AIArchitectCTAButton";
+import PaymentBadges from "@/Components/PaymentBadges";
 
 export default function FinalCTASection() {
   const reduce = useReducedMotion();
@@ -23,7 +24,8 @@ export default function FinalCTASection() {
         <h2 className="font-display text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
           Ready to join AI Architect?
         </h2>
-        <AIArchitectCTAButton label="Join AI Architect" className="mt-4" />
+        <PaymentBadges className="mt-4" />
+        <AIArchitectCTAButton label="Join AI Architect" />
         <p className="max-w-lg text-sm text-white/60">
           Once you&apos;re in, you&apos;ll get added to the cohort group with onboarding details,
           and the program officially kicks off on September 20, 2026.

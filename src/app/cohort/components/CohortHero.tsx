@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { FiPlay } from "react-icons/fi";
 import CohortCTAButton from "./CohortCTAButton";
+import PaymentBadges from "@/Components/PaymentBadges";
 
 export default function CohortHero() {
   const reduce = useReducedMotion();
@@ -68,6 +69,7 @@ export default function CohortHero() {
           transition={{ duration: 0.6, delay: 0.38, ease: [0.4, 0, 0.2, 1] }}
           className="mt-14 flex flex-col items-center gap-4"
         >
+          <PaymentBadges />
           <CohortCTAButton label="Your First ₹1L Is 48 Days Away" />
           <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-white/60">
             <span>Only 10 seats per cohort</span>

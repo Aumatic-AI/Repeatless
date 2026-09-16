@@ -51,7 +51,7 @@ export default function SkillSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.4 }}
-          className="font-display text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl"
+          className="text-center font-display text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl"
           style={{ textWrap: "balance" } as React.CSSProperties}
         >
           The One Skill That Changed My Life

@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import CohortCTAButton from "./CohortCTAButton";
+import PaymentBadges from "@/Components/PaymentBadges";
 
 export default function FinalCTASection() {
   const reduce = useReducedMotion();
@@ -20,6 +21,7 @@ export default function FinalCTASection() {
         viewport={{ once: true, amount: 0.4 }}
         className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 text-center"
       >
+        <PaymentBadges />
         <CohortCTAButton label="Your First ₹1L Is 48 Days Away" />
         <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-white/60">
           <span>Only 10 seats per cohort</span>
