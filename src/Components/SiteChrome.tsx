@@ -1,13 +1,24 @@
 "use client";
 
+import { usePathname } from 'next/navigation';
 import Navbar from '@/Components/Navbar';
+import MinimalNavbar from '@/Components/MinimalNavbar';
 import Footer from '@/Components/Footer';
 import { FaWhatsapp } from 'react-icons/fa';
 
+// These landing pages run their own funnel (payment CTAs, no site nav) —
+// they get just the logo, linked home, instead of the full Navbar.
+const MINIMAL_NAV_ROUTES = ['/cohort', '/webinar', '/ai-architect'];
+
 export default function SiteChrome({ children }: { children: React.ReactNode }) {
+    const pathname = usePathname();
+    const isMinimalNav = MINIMAL_NAV_ROUTES.some(
+        (route) => pathname === route || pathname.startsWith(`${route}/`)
+    );
+
     return (
         <>
-            <Navbar />
+            {isMinimalNav ? <MinimalNavbar /> : <Navbar />}
             {children}
             <Footer />
             <a
