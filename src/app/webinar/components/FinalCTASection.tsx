@@ -21,7 +21,7 @@ export default function FinalCTASection() {
         className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 text-center"
       >
         <ReserveSeatButton />
-        <p className="text-sm text-white/60">September 20, 2026 | [Time]</p>
+        <p className="text-sm text-white/60">September 27, 2026</p>
       </motion.div>
     </section>
   );

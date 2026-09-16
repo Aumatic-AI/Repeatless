@@ -49,33 +49,33 @@ export default function CohortHero() {
           rupee. No questions, just proof of work.
         </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, y: reduce ? 0 : 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
-          className="mt-10 flex flex-col items-center gap-4"
-        >
-          <CohortCTAButton label="Your First ₹1L Is 48 Days Away" />
-          <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-white/60">
-            <span>Only [X] seats per cohort</span>
-            <span className="text-white/30">|</span>
-            <span>Next batch starts September 20, 2026</span>
-            <span className="text-white/30">|</span>
-            <span>Backed by 100% money-back guarantee</span>
-          </p>
-        </motion.div>
-
         {/* VSL placeholder — no video exists yet */}
         <motion.div
           initial={{ opacity: 0, y: reduce ? 0 : 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.38, ease: [0.4, 0, 0.2, 1] }}
-          className="mx-auto mt-14 flex aspect-video w-full max-w-2xl flex-col items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5"
+          transition={{ duration: 0.6, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
+          className="mx-auto mt-10 flex aspect-video w-full max-w-2xl flex-col items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5"
         >
           <span className="flex h-14 w-14 items-center justify-center rounded-full bg-lime text-ink">
             <FiPlay className="h-5 w-5 translate-x-0.5" />
           </span>
           <p className="text-sm italic text-white/50">Will update soon</p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: reduce ? 0 : 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.38, ease: [0.4, 0, 0.2, 1] }}
+          className="mt-14 flex flex-col items-center gap-4"
+        >
+          <CohortCTAButton label="Your First ₹1L Is 48 Days Away" />
+          <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-white/60">
+            <span>Only 10 seats per cohort</span>
+            <span className="text-white/30">|</span>
+            <span>Next batch starts September 27, 2026</span>
+            <span className="text-white/30">|</span>
+            <span>Backed by 100% money-back guarantee</span>
+          </p>
         </motion.div>
       </div>
     </section>

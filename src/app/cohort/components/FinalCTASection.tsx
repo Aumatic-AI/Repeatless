@@ -22,9 +22,9 @@ export default function FinalCTASection() {
       >
         <CohortCTAButton label="Your First ₹1L Is 48 Days Away" />
         <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-white/60">
-          <span>Only [X] seats per cohort</span>
+          <span>Only 10 seats per cohort</span>
           <span className="text-white/30">|</span>
-          <span>Next batch starts September 20, 2026</span>
+          <span>Next batch starts September 27, 2026</span>
           <span className="text-white/30">|</span>
           <span>Backed by 100% money-back guarantee</span>
         </p>
