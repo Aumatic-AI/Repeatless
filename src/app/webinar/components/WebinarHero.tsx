@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { FiPlay, FiUsers } from "react-icons/fi";
+import { FiUsers } from "react-icons/fi";
 import ReserveSeatButton from "./ReserveSeatButton";
 import PaymentBadges from "@/Components/PaymentBadges";
 
@@ -50,17 +50,22 @@ export default function WebinarHero() {
           (Just ₹99 Less than your Swiggy order, for a system that could change your income)
         </motion.p>
 
-        {/* VSL placeholder — no video exists yet */}
+        {/* VSL */}
         <motion.div
           initial={{ opacity: 0, y: reduce ? 0 : 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
-          className="mx-auto mt-10 flex aspect-video w-full max-w-2xl flex-col items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5"
+          className="mx-auto mt-10 w-full max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-white/5"
         >
-          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-lime text-ink">
-            <FiPlay className="h-5 w-5 translate-x-0.5" />
-          </span>
-          <p className="text-sm italic text-white/50">Will update soon</p>
+          <div className="aspect-video w-full">
+            <iframe
+              className="h-full w-full"
+              src="https://www.youtube.com/embed/ItkN1w0R6PU"
+              title="AI Automation Agency Webinar"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
         </motion.div>
 
         <motion.div
@@ -71,6 +76,7 @@ export default function WebinarHero() {
         >
           <PaymentBadges />
           <ReserveSeatButton />
+
           <p className="flex items-center gap-2 text-sm text-white/60">
             <FiUsers className="h-4 w-4 text-skybright" />
             Only 10 live seats available
