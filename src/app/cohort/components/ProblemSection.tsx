@@ -71,7 +71,7 @@ export default function ProblemSection() {
           <div aria-hidden="true" className="absolute -bottom-4 -right-4 h-full w-full rounded-2xl bg-lime" />
           <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-ink/10 bg-surface2">
             <Image
-              src="/images/marketing/cohort.png"
+              src="/images/marketing/cohort.webp"
               alt="AI automation cohort"
               fill
               className="object-cover"

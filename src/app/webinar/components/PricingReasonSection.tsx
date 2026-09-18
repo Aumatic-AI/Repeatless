@@ -69,7 +69,7 @@ export default function PricingReasonSection() {
           >
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-white/10">
               <Image
-                src="/images/marketing/99img.png"
+                src="/images/marketing/99img.webp"
                 alt="₹99 pricing"
                 fill
                 className="object-cover"
