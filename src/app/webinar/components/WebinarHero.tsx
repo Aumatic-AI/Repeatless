@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { FiUsers } from "react-icons/fi";
 import ReserveSeatButton from "./ReserveSeatButton";
 import PaymentBadges from "@/Components/PaymentBadges";
+import YouTubeFacade from "@/Components/YouTubeFacade";
 
 export default function WebinarHero() {
   const reduce = useReducedMotion();
@@ -23,19 +24,12 @@ export default function WebinarHero() {
           Free Live Training for the Telugu Community
         </motion.p>
 
-        <motion.h1
-          initial={{ opacity: 0, y: reduce ? 0 : 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.6,
-            delay: 0.08,
-            ease: [0.4, 0, 0.2, 1],
-          }}
+        <h1
           className="mt-5 font-display text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl"
           style={{ textWrap: "balance" } as React.CSSProperties}
         >
           How I Built a ₹1L/Month AI Automation Agency (Without Coding)
-        </motion.h1>
+        </h1>
 
         <motion.p
           initial={{ opacity: 0, y: reduce ? 0 : 20 }}
@@ -78,13 +72,7 @@ export default function WebinarHero() {
           className="mx-auto mt-10 w-full max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-white/5"
         >
           <div className="aspect-video w-full">
-            <iframe
-              className="h-full w-full"
-              src="https://www.youtube.com/embed/ItkN1w0R6PU"
-              title="AI Automation Agency Webinar"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
+            <YouTubeFacade videoId="ItkN1w0R6PU" title="AI Automation Agency Webinar" />
           </div>
         </motion.div>
 
@@ -99,7 +87,7 @@ export default function WebinarHero() {
           }}
           className="mt-3 flex flex-col items-center gap-1.5"
         >
-          <PaymentBadges />
+          <PaymentBadges priority />
 
           <ReserveSeatButton />
 
