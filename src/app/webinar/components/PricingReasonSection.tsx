@@ -1,7 +1,5 @@
-"use client";
-
-import { motion, useReducedMotion, type Variants } from "framer-motion";
 import Image from "next/image";
+import Reveal from "@/Components/Reveal";
 
 const reasons = [
   "Free webinars attract people who register and never show up",
@@ -12,70 +10,44 @@ const reasons = [
 ];
 
 export default function PricingReasonSection() {
-  const reduce = useReducedMotion();
-
-  const rise: Variants = {
-    hidden: { opacity: 0, y: reduce ? 0 : 20 },
-    show: { opacity: 1, y: 0, transition: { duration: reduce ? 0 : 0.55, ease: [0.4, 0, 0.2, 1] } },
-  };
-
   return (
     <section className="bg-ink py-20 text-white sm:py-28">
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-5 lg:gap-12">
           <div className="lg:col-span-3">
-            <motion.h2
-              variants={rise}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.4 }}
+            <Reveal
+              as="h2"
+              amount={0.4}
               className="font-display text-3xl font-semibold leading-tight tracking-tight sm:text-4xl"
               style={{ textWrap: "balance" } as React.CSSProperties}
             >
               Why ₹99, Not Free?
-            </motion.h2>
+            </Reveal>
 
-            <motion.div
-              variants={rise}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
-              className="mt-8 flex flex-col gap-5"
-            >
+            <Reveal as="div" amount={0.3} className="mt-8 flex flex-col gap-5">
               {reasons.map((r) => (
                 <p key={r} className="text-lg leading-relaxed text-white/70">
                   {r}
                 </p>
               ))}
-            </motion.div>
+            </Reveal>
 
-            <motion.p
-              variants={rise}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.4 }}
-              className="mt-8 font-display text-xl italic text-lime"
-            >
+            <Reveal as="p" amount={0.4} className="mt-8 font-display text-xl italic text-lime">
               Less than your Swiggy order. More valuable than most ₹5,000 courses.
-            </motion.p>
+            </Reveal>
           </div>
 
-          <motion.div
-            variants={rise}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.4 }}
-            className="relative lg:col-span-2"
-          >
+          <Reveal as="div" amount={0.4} className="relative lg:col-span-2">
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-white/10">
               <Image
                 src="/images/marketing/99img.webp"
                 alt="₹99 pricing"
                 fill
+                sizes="(min-width: 1024px) 420px, calc(100vw - 3rem)"
                 className="object-cover"
               />
             </div>
-          </motion.div>
+          </Reveal>
         </div>
       </div>
     </section>

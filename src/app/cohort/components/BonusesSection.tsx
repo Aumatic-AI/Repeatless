@@ -1,6 +1,4 @@
-"use client";
-
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import Reveal from "@/Components/Reveal";
 
 const bonuses = [
   {
@@ -36,33 +34,18 @@ const bonuses = [
 ];
 
 export default function BonusesSection() {
-  const reduce = useReducedMotion();
-
-  const rise: Variants = {
-    hidden: { opacity: 0, y: reduce ? 0 : 20 },
-    show: { opacity: 1, y: 0, transition: { duration: reduce ? 0 : 0.55, ease: [0.4, 0, 0.2, 1] } },
-  };
-
   return (
     <section className="bg-ink py-20 text-white sm:py-28">
       <div className="mx-auto max-w-6xl px-6">
-        <motion.h2
-          variants={rise}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.4 }}
+        <Reveal
+          as="h2"
+          amount={0.4}
           className="text-center font-display text-3xl font-semibold leading-tight tracking-tight sm:text-4xl"
         >
           Bonuses
-        </motion.h2>
+        </Reveal>
 
-        <motion.div
-          variants={rise}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-          className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2"
-        >
+        <Reveal as="div" amount={0.2} className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
           {bonuses.map((b) => (
             <div key={b.title} className="flex flex-col rounded-2xl border border-white/10 bg-white/5 p-6">
               <h3 className="font-display text-lg font-semibold text-white">{b.title}</h3>
@@ -72,17 +55,11 @@ export default function BonusesSection() {
               </p>
             </div>
           ))}
-        </motion.div>
+        </Reveal>
 
-        <motion.p
-          variants={rise}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.4 }}
-          className="mt-10 text-center font-display text-xl italic text-lime"
-        >
+        <Reveal as="p" amount={0.4} className="mt-10 text-center font-display text-xl italic text-lime">
           Total Bonus Value: ₹27,000 Free with your enrollment
-        </motion.p>
+        </Reveal>
       </div>
     </section>
   );

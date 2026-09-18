@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence, useReducedMotion, type Variants } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { FiChevronDown } from "react-icons/fi";
+import Reveal from "@/Components/Reveal";
 
 const faqs = [
   {
@@ -31,31 +32,18 @@ export default function FAQSection() {
   const reduce = useReducedMotion();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const rise: Variants = {
-    hidden: { opacity: 0, y: reduce ? 0 : 20 },
-    show: { opacity: 1, y: 0, transition: { duration: reduce ? 0 : 0.55, ease: [0.4, 0, 0.2, 1] } },
-  };
-
   return (
     <section className="bg-paper py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-6">
-        <motion.h2
-          variants={rise}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.4 }}
+        <Reveal
+          as="h2"
+          amount={0.4}
           className="text-center font-display text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl"
         >
           FAQ
-        </motion.h2>
+        </Reveal>
 
-        <motion.div
-          variants={rise}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.3 }}
-          className="mt-10 flex flex-col gap-3"
-        >
+        <Reveal as="div" amount={0.3} className="mt-10 flex flex-col gap-3">
           {faqs.map((item, i) => {
             const isOpen = openIndex === i;
             return (
@@ -88,7 +76,7 @@ export default function FAQSection() {
               </div>
             );
           })}
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

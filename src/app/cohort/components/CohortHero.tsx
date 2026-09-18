@@ -1,24 +1,17 @@
-"use client";
-
-import { motion, useReducedMotion } from "framer-motion";
 import CohortCTAButton from "./CohortCTAButton";
 import PaymentBadges from "@/Components/PaymentBadges";
 import YouTubeFacade from "@/Components/YouTubeFacade";
 
 export default function CohortHero() {
-  const reduce = useReducedMotion();
-
   return (
     <section className="relative overflow-hidden bg-ink pb-20 pt-36 text-white sm:pb-28 sm:pt-40">
       <div className="mx-auto max-w-6xl px-6 text-center">
-        <motion.p
-          initial={{ opacity: 0, y: reduce ? 0 : 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-          className="eyebrow text-skybright"
+        <p
+          className="reveal-onload eyebrow text-skybright"
+          style={{ "--reveal-y": "16px" } as React.CSSProperties}
         >
           First Telugu AI Automation Cohort | Limited Seats
-        </motion.p>
+        </p>
 
         <h1
           className="mt-5 font-display text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl"
@@ -27,61 +20,37 @@ export default function CohortHero() {
           Start Your AI Automation Service &amp; Make Your First ₹1L in 48 Days
         </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: reduce ? 0 : 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.6,
-            delay: 0.16,
-            ease: [0.4, 0, 0.2, 1],
-          }}
-          className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/70"
+        <p
+          className="reveal-onload mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/70"
+          style={{ "--reveal-delay": "0.16s" } as React.CSSProperties}
         >
           Learn to find unsaturated business niches, build custom AI workflows,
           and land paying clients even if you&apos;re a complete beginner with
           zero technical background.
-        </motion.p>
+        </p>
 
-        <motion.p
-          initial={{ opacity: 0, y: reduce ? 0 : 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.6,
-            delay: 0.22,
-            ease: [0.4, 0, 0.2, 1],
-          }}
-          className="mx-auto mt-4 max-w-xl text-sm italic text-white/50"
+        <p
+          className="reveal-onload mx-auto mt-4 max-w-xl text-sm italic text-white/50"
+          style={{ "--reveal-y": "16px", "--reveal-delay": "0.22s" } as React.CSSProperties}
         >
           If you don&apos;t make your first ₹1L following our exact strategy,
           we refund every rupee. No questions, just proof of work.
-        </motion.p>
+        </p>
 
         {/* VSL */}
-        <motion.div
-          initial={{ opacity: 0, y: reduce ? 0 : 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.6,
-            delay: 0.3,
-            ease: [0.4, 0, 0.2, 1],
-          }}
-          className="mx-auto mt-10 w-full max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-white/5"
+        <div
+          className="reveal-onload mx-auto mt-10 w-full max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-white/5"
+          style={{ "--reveal-y": "24px", "--reveal-delay": "0.3s" } as React.CSSProperties}
         >
           <div className="aspect-video w-full">
             <YouTubeFacade videoId="ItkN1w0R6PU" title="AI Automation Cohort" />
           </div>
-        </motion.div>
+        </div>
 
         {/* Payment + CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: reduce ? 0 : 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.6,
-            delay: 0.38,
-            ease: [0.4, 0, 0.2, 1],
-          }}
-          className="mt-3 flex flex-col items-center gap-1.5"
+        <div
+          className="reveal-onload mt-3 flex flex-col items-center gap-1.5"
+          style={{ "--reveal-delay": "0.38s" } as React.CSSProperties}
         >
           <PaymentBadges priority />
 
@@ -94,7 +63,7 @@ export default function CohortHero() {
             <span className="text-white/30">|</span>
             <span>Backed by 100% money-back guarantee</span>
           </p>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

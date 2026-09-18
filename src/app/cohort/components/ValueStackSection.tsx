@@ -1,8 +1,6 @@
-"use client";
-
-import { motion, useReducedMotion, type Variants } from "framer-motion";
 import CohortCTAButton from "./CohortCTAButton";
 import PaymentBadges from "@/Components/PaymentBadges";
+import Reveal from "@/Components/Reveal";
 
 const rows = [
   { item: "Full 6-Module Cohort", value: "₹15,000" },
@@ -17,43 +15,22 @@ const rows = [
 ];
 
 export default function ValueStackSection() {
-  const reduce = useReducedMotion();
-
-  const rise: Variants = {
-    hidden: {
-      opacity: 0,
-      y: reduce ? 0 : 20,
-    },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: reduce ? 0 : 0.55,
-        ease: [0.4, 0, 0.2, 1],
-      },
-    },
-  };
-
   return (
     <section className="bg-ink py-16 text-white sm:py-20 lg:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         {/* Heading */}
-        <motion.h2
-          variants={rise}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.4 }}
+        <Reveal
+          as="h2"
+          amount={0.4}
           className="text-center font-display text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-5xl"
         >
           Here&apos;s Everything You Get Today
-        </motion.h2>
+        </Reveal>
 
         {/* Desktop Table */}
-        <motion.div
-          variants={rise}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.3 }}
+        <Reveal
+          as="div"
+          amount={0.3}
           className="mt-8 hidden overflow-hidden rounded-2xl border border-white/10 md:block sm:mt-10"
         >
           <table className="w-full border-collapse text-left">
@@ -96,16 +73,10 @@ export default function ValueStackSection() {
               </tr>
             </tbody>
           </table>
-        </motion.div>
+        </Reveal>
 
         {/* Mobile Cards */}
-        <motion.div
-          variants={rise}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-          className="mt-8 flex flex-col gap-3 md:hidden"
-        >
+        <Reveal as="div" amount={0.2} className="mt-8 flex flex-col gap-3 md:hidden">
           {rows.map((row) => (
             <div
               key={row.item}
@@ -131,16 +102,10 @@ export default function ValueStackSection() {
               ₹87,000
             </p>
           </div>
-        </motion.div>
+        </Reveal>
 
         {/* CTA */}
-        <motion.div
-          variants={rise}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.4 }}
-          className="mt-8 flex flex-col items-center gap-3 text-center sm:mt-10"
-        >
+        <Reveal as="div" amount={0.4} className="mt-8 flex flex-col items-center gap-3 text-center sm:mt-10">
           <PaymentBadges />
 
           <CohortCTAButton label="Yes, I Want My First ₹1L" />
@@ -149,7 +114,7 @@ export default function ValueStackSection() {
             100% Money-Back Guarantee — hit your first ₹1L or get every rupee
             back
           </p>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

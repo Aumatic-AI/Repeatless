@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 type YouTubeFacadeProps = {
   videoId: string;
@@ -29,13 +30,16 @@ export default function YouTubeFacade({ videoId, title }: YouTubeFacadeProps) {
       aria-label={`Play video: ${title}`}
       className="group relative block h-full w-full cursor-pointer"
     >
-      {/* YouTube's static thumbnail CDN — no next/image domain config needed */}
-      <img
-        src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
+      {/* i.ytimg.com directly — img.youtube.com just 302s here, costing a
+          full extra round trip on this LCP-critical request. */}
+      <Image
+        src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`}
         alt={title}
-        className="h-full w-full object-cover"
-        width={480}
-        height={360}
+        fill
+        sizes="(min-width: 768px) 672px, 100vw"
+        className="object-cover"
+        priority
+        fetchPriority="high"
       />
       <span className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors group-hover:bg-black/30">
         <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 shadow-lg transition-transform group-hover:scale-105">

@@ -1,7 +1,5 @@
-"use client";
-
-import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { FiCheck, FiX } from "react-icons/fi";
+import Reveal from "@/Components/Reveal";
 
 const rows = [
   {
@@ -31,43 +29,22 @@ const rows = [
 ];
 
 export default function ComparisonSection() {
-  const reduce = useReducedMotion();
-
-  const rise: Variants = {
-    hidden: {
-      opacity: 0,
-      y: reduce ? 0 : 20,
-    },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: reduce ? 0 : 0.55,
-        ease: [0.4, 0, 0.2, 1],
-      },
-    },
-  };
-
   return (
     <section className="bg-ink py-16 text-white sm:py-20 lg:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         {/* Heading */}
-        <motion.h2
-          variants={rise}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.4 }}
+        <Reveal
+          as="h2"
+          amount={0.4}
           className="text-center font-display text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-5xl"
         >
           Why Different From Others
-        </motion.h2>
+        </Reveal>
 
         {/* Desktop Table */}
-        <motion.div
-          variants={rise}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.3 }}
+        <Reveal
+          as="div"
+          amount={0.3}
           className="mt-10 hidden overflow-hidden rounded-2xl border border-white/10 md:block"
         >
           <table className="w-full border-collapse text-left">
@@ -106,16 +83,10 @@ export default function ComparisonSection() {
               ))}
             </tbody>
           </table>
-        </motion.div>
+        </Reveal>
 
         {/* Mobile Cards */}
-        <motion.div
-          variants={rise}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-          className="mt-8 flex flex-col gap-4 md:hidden"
-        >
+        <Reveal as="div" amount={0.2} className="mt-8 flex flex-col gap-4 md:hidden">
           {rows.map((row) => (
             <div
               key={row.them}
@@ -152,7 +123,7 @@ export default function ComparisonSection() {
               </div>
             </div>
           ))}
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );
