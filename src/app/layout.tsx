@@ -7,10 +7,13 @@ import SiteChrome from "@/Components/SiteChrome";
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 // Editorial display face for the light re-identity — used with restraint on headlines only.
+// Weight 700 is unused anywhere `font-display` appears (headings top out at
+// 600/semibold); dropping it removes 2 unnecessary woff2 requests from the
+// font critical-request chain on every route, incl. /webinar and /cohort.
 const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
 });
 

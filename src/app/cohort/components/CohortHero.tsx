@@ -52,7 +52,7 @@ export default function CohortHero() {
           className="reveal-onload mt-3 flex flex-col items-center gap-1.5"
           style={{ "--reveal-delay": "0.38s" } as React.CSSProperties}
         >
-          <PaymentBadges priority />
+          <PaymentBadges />
 
           <CohortCTAButton label="Your First ₹1L Is 48 Days Away" />
 

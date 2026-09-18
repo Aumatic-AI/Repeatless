@@ -53,7 +53,7 @@ export default function WebinarHero() {
           className="reveal-onload mt-3 flex flex-col items-center gap-1.5"
           style={{ "--reveal-delay": "0.38s" } as React.CSSProperties}
         >
-          <PaymentBadges priority />
+          <PaymentBadges />
 
           <ReserveSeatButton />
 

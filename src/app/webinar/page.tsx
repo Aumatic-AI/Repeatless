@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import dynamic from "next/dynamic";
 
 import WebinarHero from "./components/WebinarHero";
 import ProblemSection from "./components/ProblemSection";
@@ -8,8 +9,12 @@ import SkillSection from "./components/SkillSection";
 import DiscoverSection from "./components/DiscoverSection";
 import AttendSection from "./components/AttendSection";
 import PricingReasonSection from "./components/PricingReasonSection";
-import FAQSection from "./components/FAQSection";
 import FinalCTASection from "./components/FinalCTASection";
+
+// The only framer-motion consumer left on this page — code-split so its JS
+// isn't part of the initial route bundle. Still SSR'd (ssr defaults to true)
+// so content/SEO is unaffected; only hydration is deferred.
+const FAQSection = dynamic(() => import("./components/FAQSection"));
 
 export const metadata: Metadata = {
   title: "Free Live Training: How I Built a ₹1L/Month AI Automation Agency",
@@ -21,6 +26,11 @@ export const metadata: Metadata = {
 export default function WebinarPage() {
   return (
     <>
+      {/* The hero VSL thumbnail is the LCP element and lives on i.ytimg.com —
+          opening the connection early (DNS+TLS) shaves the round trip off
+          the image's load delay instead of waiting for it to be discovered. */}
+      <link rel="preconnect" href="https://i.ytimg.com" crossOrigin="anonymous" />
+
       <Script
         id="meta-pixel"
         strategy="afterInteractive"

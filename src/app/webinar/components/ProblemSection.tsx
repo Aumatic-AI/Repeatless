@@ -26,7 +26,6 @@ export default function ProblemSection() {
                 fill
                 sizes="(min-width: 1024px) 420px, calc(100vw - 3rem)"
                 className="object-cover"
-                priority
               />
             </div>
           </Reveal>

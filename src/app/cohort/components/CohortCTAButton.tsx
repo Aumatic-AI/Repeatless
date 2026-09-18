@@ -1,5 +1,3 @@
-"use client";
-
 const PAYMENT_LINK = "https://rzp.io/rzp/d5ZXxLM";
 
 type CohortCTAButtonProps = {
