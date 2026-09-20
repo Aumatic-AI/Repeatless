@@ -6,10 +6,17 @@ const nextConfig: NextConfig = {
     // build and is slated for removal.
     remotePatterns: [
       { protocol: "https", hostname: "res.cloudinary.com", pathname: "/**" },
-      // YouTube's actual thumbnail CDN (img.youtube.com just 302s here) — used
-      // by the hero video facade's LCP thumbnail.
+      // YouTube's actual thumbnail CDN (img.youtube.com just 302s here) — kept
+      // as YouTubeFacade's fallback for any future video that doesn't have a
+      // downloaded `thumbnailSrc` yet; the current webinar/cohort VSLs are
+      // self-hosted (public/images/marketing/vsl-thumbnail.webp) instead.
       { protocol: "https", hostname: "i.ytimg.com", pathname: "/**" },
     ],
+    // No image anywhere in the app renders wider than 672px (the VSL
+    // thumbnail's slot, whose own source tops out at 1280px anyway) — the
+    // stock deviceSizes go up to 3840 for 4K displays, which this site never
+    // needs and which only bloats every generated srcset.
+    deviceSizes: [640, 750, 828, 1080, 1200],
   },
   experimental: {
     // Named-import tree-shaking for libraries used across nearly every

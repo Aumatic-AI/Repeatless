@@ -43,7 +43,11 @@ export default function CohortHero() {
           style={{ "--reveal-y": "24px", "--reveal-delay": "0.3s" } as React.CSSProperties}
         >
           <div className="aspect-video w-full">
-            <YouTubeFacade videoId="ItkN1w0R6PU" title="AI Automation Cohort" />
+            <YouTubeFacade
+              videoId="ItkN1w0R6PU"
+              title="AI Automation Cohort"
+              thumbnailSrc="/images/marketing/vsl-thumbnail.webp"
+            />
           </div>
         </div>
 

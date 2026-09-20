@@ -6,9 +6,14 @@ import Image from "next/image";
 type YouTubeFacadeProps = {
   videoId: string;
   title: string;
+  // A pre-downloaded local thumbnail (self-hosted, matching the container's
+  // aspect-video ratio) avoids a third-party i.ytimg.com round trip for what
+  // is usually the LCP element. Falls back to the remote hqdefault thumbnail
+  // for callers that haven't downloaded one.
+  thumbnailSrc?: string;
 };
 
-export default function YouTubeFacade({ videoId, title }: YouTubeFacadeProps) {
+export default function YouTubeFacade({ videoId, title, thumbnailSrc }: YouTubeFacadeProps) {
   const [loaded, setLoaded] = useState(false);
 
   if (loaded) {
@@ -33,7 +38,7 @@ export default function YouTubeFacade({ videoId, title }: YouTubeFacadeProps) {
       {/* i.ytimg.com directly — img.youtube.com just 302s here, costing a
           full extra round trip on this LCP-critical request. */}
       <Image
-        src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`}
+        src={thumbnailSrc ?? `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`}
         alt={title}
         fill
         sizes="(min-width: 768px) 672px, 100vw"

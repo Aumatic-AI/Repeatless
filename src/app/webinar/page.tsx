@@ -26,11 +26,6 @@ export const metadata: Metadata = {
 export default function WebinarPage() {
   return (
     <>
-      {/* The hero VSL thumbnail is the LCP element and lives on i.ytimg.com —
-          opening the connection early (DNS+TLS) shaves the round trip off
-          the image's load delay instead of waiting for it to be discovered. */}
-      <link rel="preconnect" href="https://i.ytimg.com" crossOrigin="anonymous" />
-
       <Script
         id="meta-pixel"
         strategy="afterInteractive"

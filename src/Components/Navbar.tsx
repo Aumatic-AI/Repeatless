@@ -11,8 +11,6 @@ const navLinks = [
   { href: "/#home", label: "Home" },
   { href: "/#solutions", label: "Solutions" },
   { href: "/casestudies", label: "Case Studies" },
-  { href: "/webinar", label: "Webinar" },
-  { href: "/cohort", label: "Cohort" },
   { href: "/about", label: "About" },
   { href: "/#contact", label: "Contact" },
 ];
@@ -33,6 +31,7 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScroll = window.scrollY;
+
       setScrolled(currentScroll > 12);
 
       if (Math.abs(currentScroll - lastScrollY) > 10) {
@@ -40,18 +39,21 @@ const Navbar: React.FC = () => {
         setLastScrollY(currentScroll);
       }
     };
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [lastScrollY]);
 
-  // Scroll-spy: only the homepage has sections matching these ids, so this
-  // is a no-op (nothing to observe) on every other route.
+  // Scroll-spy: only the homepage has sections matching these ids.
   useEffect(() => {
     if (pathname !== "/") return;
 
-    const sections = HASH_SECTION_IDS.map((id) => document.getElementById(id)).filter(
-      (el): el is HTMLElement => el !== null
-    );
+    const sections = HASH_SECTION_IDS.map((id) =>
+      document.getElementById(id)
+    ).filter((el): el is HTMLElement => el !== null);
 
     if (sections.length === 0) return;
 
@@ -63,10 +65,14 @@ const Navbar: React.FC = () => {
           }
         });
       },
-      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+      {
+        rootMargin: "-45% 0px -45% 0px",
+        threshold: 0,
+      }
     );
 
     sections.forEach((el) => observer.observe(el));
+
     return () => observer.disconnect();
   }, [pathname]);
 
@@ -74,6 +80,7 @@ const Navbar: React.FC = () => {
     if (href.startsWith("/#")) {
       return pathname === "/" && activeHash === href.slice(2);
     }
+
     return pathname === href || pathname.startsWith(`${href}/`);
   };
 
@@ -82,10 +89,10 @@ const Navbar: React.FC = () => {
       initial={{ y: 0 }}
       animate={{ y: visible ? 0 : -110 }}
       transition={{ duration: 0.4, ease: "easeInOut" }}
-      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-6xl"
+      className="fixed top-4 left-1/2 z-50 w-[92%] max-w-6xl -translate-x-1/2"
     >
       <div className="flex items-center justify-between gap-3">
-        {/* Logo — sits on the page ground, ink via filter (source SVG is white) */}
+        {/* Logo */}
         <Link
           href="/"
           className="shrink-0 transition-opacity hover:opacity-70"
@@ -101,10 +108,10 @@ const Navbar: React.FC = () => {
           />
         </Link>
 
-        {/* The dark pill — links only, Home → Contact */}
-        <nav className="hidden md:flex flex-1 justify-center">
+        {/* Desktop Navigation */}
+        <nav className="hidden flex-1 justify-center md:flex">
           <div
-            className={`flex items-center gap-5 lg:gap-7 px-6 py-2.5 rounded-full border border-white/10 bg-ink text-white/70 font-medium text-[13px] lg:text-sm tracking-wide transition-shadow duration-300 ${
+            className={`flex items-center gap-5 rounded-full border border-white/10 bg-ink px-6 py-2.5 text-[13px] font-medium tracking-wide text-white/70 transition-shadow duration-300 lg:gap-7 lg:text-sm ${
               scrolled
                 ? "shadow-[0_14px_40px_-14px_rgba(8,18,26,0.6)]"
                 : "shadow-[0_8px_24px_-16px_rgba(8,18,26,0.5)]"
@@ -112,6 +119,7 @@ const Navbar: React.FC = () => {
           >
             {navLinks.map((link) => {
               const active = isActive(link.href);
+
               return (
                 <Link
                   key={link.href}
@@ -130,22 +138,23 @@ const Navbar: React.FC = () => {
           </div>
         </nav>
 
-        {/* Book a call (Desktop) — outside the pill, accent lives here */}
+        {/* Desktop Book a Call */}
         <a
           href={CALENDLY}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden md:flex shrink-0 items-center gap-2 h-11 px-5 rounded-none bg-sky hover:bg-skydeep transition-colors text-white font-medium text-sm justify-center whitespace-nowrap shadow-[0_10px_28px_-14px_rgba(2,132,199,0.7)]"
+          className="hidden h-11 shrink-0 items-center justify-center gap-2 rounded-none bg-sky px-5 text-sm font-medium text-white shadow-[0_10px_28px_-14px_rgba(2,132,199,0.7)] transition-colors hover:bg-skydeep md:flex"
         >
-          <FiPhoneCall className="w-4 h-4" />
+          <FiPhoneCall className="h-4 w-4" />
+
           <span className="lg:hidden">Book a call</span>
           <span className="hidden lg:inline">Book a strategy call</span>
         </a>
 
-        {/* Mobile Toggle — Book a call lives inside the menu it opens */}
+        {/* Mobile Toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden flex h-11 w-11 shrink-0 items-center justify-center rounded-none border border-ink/10 bg-surface text-ink text-xl shadow-[0_8px_24px_-16px_rgba(8,18,26,0.5)]"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-none border border-ink/10 bg-surface text-xl text-ink shadow-[0_8px_24px_-16px_rgba(8,18,26,0.5)] md:hidden"
           aria-label="Toggle menu"
           aria-expanded={isOpen}
         >
@@ -161,11 +170,12 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.28, ease: "easeOut" }}
-            className="md:hidden mt-3 mx-1 rounded-none border border-white/10 bg-ink shadow-xl text-white flex flex-col items-center"
+            className="mt-3 mx-1 flex flex-col items-center rounded-none border border-white/10 bg-ink text-white shadow-xl md:hidden"
           >
             <div className="flex flex-col items-center gap-5 px-6 pb-8 pt-8">
               {navLinks.map((link) => {
                 const active = isActive(link.href);
+
                 return (
                   <Link
                     key={link.href}
@@ -173,7 +183,9 @@ const Navbar: React.FC = () => {
                     onClick={() => setIsOpen(false)}
                     aria-current={active ? "page" : undefined}
                     className={`text-lg transition ${
-                      active ? "font-semibold text-white" : "font-medium text-white/80 hover:text-white"
+                      active
+                        ? "font-semibold text-white"
+                        : "font-medium text-white/80 hover:text-white"
                     }`}
                   >
                     {link.label}
@@ -182,16 +194,14 @@ const Navbar: React.FC = () => {
               })}
             </div>
 
-            {/* Full-width, zero-margin footer button — a direct child of the
-                panel (not the padded div above) so it always sits flush
-                against the panel's own left/right/bottom edges. */}
+            {/* Mobile CTA */}
             <a
               href={CALENDLY}
               target="_blank"
               rel="noopener noreferrer"
               className="flex w-full items-center justify-center gap-2 bg-sky px-8 py-4 text-base font-medium text-white transition-colors hover:bg-skydeep"
             >
-              <FiPhoneCall className="w-5 h-5" />
+              <FiPhoneCall className="h-5 w-5" />
               <span>Book a strategy call</span>
             </a>
           </motion.div>
