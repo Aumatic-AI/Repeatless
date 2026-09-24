@@ -1,6 +1,7 @@
 import CohortCTAButton from "./CohortCTAButton";
 import PaymentBadges from "@/Components/PaymentBadges";
 
+
 export default function CohortHero() {
   return (
     <section className="relative overflow-hidden bg-ink pb-20 pt-36 text-white sm:pb-28 sm:pt-40">
@@ -37,13 +38,12 @@ export default function CohortHero() {
             } as React.CSSProperties
           }
         >
-          If you don&apos;t make your first ₹1L following our exact strategy,
-          we refund every rupee. No questions, just proof of work.
+          If you don&apos;t make your first ₹1L following our exact strategy, we
+          refund every rupee. No questions, just proof of work.
         </p>
-
         {/* VSL */}
         <div
-          className="reveal-onload mx-auto mt-10 w-full max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-white/5"
+          className="reveal-onload mx-auto mt-10 w-full max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-black"
           style={
             {
               "--reveal-y": "24px",
@@ -52,13 +52,16 @@ export default function CohortHero() {
           }
         >
           <div className="aspect-video w-full">
-            <iframe
-              src="https://drive.google.com/file/d/1DQpm6KXfyJzrRDYXh-izSWjaBMZJuf8Q/preview"
-              className="h-full w-full"
-              allow="autoplay"
-              allowFullScreen
-              title="AI Automation Cohort"
-            />
+            <video
+              className="h-full w-full object-contain"
+              controls
+              playsInline
+              preload="metadata"
+              poster="/videos/cohort-vsl-thumbnail.webp"
+            >
+              <source src="/videos/cohort-vsl.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
 
