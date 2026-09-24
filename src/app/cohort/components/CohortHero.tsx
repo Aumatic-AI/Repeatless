@@ -1,7 +1,6 @@
 import CohortCTAButton from "./CohortCTAButton";
 import PaymentBadges from "@/Components/PaymentBadges";
 
-
 export default function CohortHero() {
   return (
     <section className="relative overflow-hidden bg-ink pb-20 pt-36 text-white sm:pb-28 sm:pt-40">
@@ -14,7 +13,7 @@ export default function CohortHero() {
         </p>
 
         <h1
-          className="mt-5 font-display text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl"
+          className="mt-5 !text-4xl font-display font-semibold leading-[1.05] tracking-tight sm:!text-5xl lg:!text-6xl"
           style={{ textWrap: "balance" } as React.CSSProperties}
         >
           Start Your AI Automation Service &amp; Make Your First ₹1L in 48 Days
@@ -41,9 +40,10 @@ export default function CohortHero() {
           If you don&apos;t make your first ₹1L following our exact strategy, we
           refund every rupee. No questions, just proof of work.
         </p>
+
         {/* VSL */}
         <div
-          className="reveal-onload mx-auto mt-10 w-full max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-black"
+          className="reveal-onload mx-auto mt-10 w-full max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-white/5"
           style={
             {
               "--reveal-y": "24px",
@@ -59,7 +59,10 @@ export default function CohortHero() {
               preload="metadata"
               poster="/videos/cohort-vsl-thumbnail.webp"
             >
-              <source src="/videos/cohort-vsl.mp4" type="video/mp4" />
+              <source
+                src="https://res.cloudinary.com/dxpja8rom/video/upload/cohort-vsl.mp4"
+                type="video/mp4"
+              />
               Your browser does not support the video tag.
             </video>
           </div>
