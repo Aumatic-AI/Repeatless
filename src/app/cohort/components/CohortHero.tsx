@@ -1,4 +1,5 @@
 import CohortCTAButton from "./CohortCTAButton";
+import YouTubeFacade from "@/Components/YouTubeFacade";
 import PaymentBadges from "@/Components/PaymentBadges";
 
 export default function CohortHero() {
@@ -52,19 +53,10 @@ export default function CohortHero() {
           }
         >
           <div className="aspect-video w-full">
-            <video
-              className="h-full w-full object-contain"
-              controls
-              playsInline
-              preload="metadata"
-              poster="/videos/cohort-vsl-thumbnail.webp"
-            >
-              <source
-                src="https://res.cloudinary.com/dxpja8rom/video/upload/cohort-vsl.mp4"
-                type="video/mp4"
-              />
-              Your browser does not support the video tag.
-            </video>
+            <YouTubeFacade
+              videoId="PpMZywTCtEs"
+              title="AI Architect Cohort"
+            />
           </div>
         </div>
 
