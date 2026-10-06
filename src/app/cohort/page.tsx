@@ -5,6 +5,7 @@ import ProblemSection from "./components/ProblemSection";
 import StorySection from "./components/StorySection";
 import Day30Section from "./components/Day30Section";
 import WhatsInsideSection from "./components/WhatsInsideSection";
+import ModulesSection from "./components/ModulesSection";
 import ComparisonSection from "./components/ComparisonSection";
 import WhoForSection from "./components/WhoForSection";
 import BonusesSection from "./components/BonusesSection";
@@ -32,6 +33,7 @@ export default function CohortPage() {
       <StorySection />
       <Day30Section />
       <WhatsInsideSection />
+      <ModulesSection />
       <ComparisonSection />
       <WhoForSection />
       <BonusesSection />
