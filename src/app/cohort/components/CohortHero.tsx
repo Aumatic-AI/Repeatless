@@ -7,26 +7,25 @@ export default function CohortHero() {
     <section className="relative overflow-hidden bg-ink pb-20 pt-36 text-white sm:pb-28 sm:pt-40">
       <div className="mx-auto max-w-6xl px-6 text-center">
         <p
-          className="reveal-onload eyebrow text-skybright"
+          className="reveal-onload eyebrow text-[#CAFB00]"
           style={{ "--reveal-y": "16px" } as React.CSSProperties}
         >
-          First Telugu AI Automation Cohort | Limited Seats
+          First Telugu AI Architect Cohort
         </p>
 
         <h1
           className="mt-5 !text-4xl font-display font-semibold leading-[1.05] tracking-tight sm:!text-5xl lg:!text-6xl"
           style={{ textWrap: "balance" } as React.CSSProperties}
         >
-          Start Your AI Automation Service &amp; Make Your First ₹1L in 48 Days
+          Your automations are worth ₹1L a month. You&apos;re just selling them as ₹15k gigs
         </h1>
 
         <p
           className="reveal-onload mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/70"
           style={{ "--reveal-delay": "0.16s" } as React.CSSProperties}
         >
-          Learn to find unsaturated business niches, build custom AI workflows,
-          and land paying clients even if you&apos;re a complete beginner with
-          zero technical background.
+          Reposition as an AI architect and land your first ₹1L in 60 days, or
+          get a 100% refund.
         </p>
 
         <p
@@ -67,14 +66,14 @@ export default function CohortHero() {
         >
           <PaymentBadges />
 
-          <CohortCTAButton label="Your First ₹1L Is 48 Days Away" />
+          <CohortCTAButton label="Join now for ₹4999" />
 
           <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-white/60">
-            <span>Only 10 seats per cohort</span>
-            <span className="text-white/30">|</span>
-            <span>Next batch starts September 27, 2026</span>
-            <span className="text-white/30">|</span>
-            <span>Backed by 100% money-back guarantee</span>
+            <span>Instant access</span>
+            <span className="text-white/30">·</span>
+            <span>Lifetime updates</span>
+            <span className="text-white/30">·</span>
+            <span>100% refund guarantee</span>
           </p>
         </div>
       </div>
