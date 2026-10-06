@@ -2,14 +2,12 @@ import Image from "next/image";
 import Reveal from "@/Components/Reveal";
 
 const problems = [
-  "You've seen 100+ reels of people flashing \"AI income\" screenshots but every time you try to start, you don't know what to actually do",
-  "You've tried learning AI tools on YouTube ChatGPT, automation tools, AI agents but it's scattered, random, with no clear path to actual money",
-  "Your job or college life doesn't pay enough, and every side hustle you've tried trading, dropshipping, blogging either needs capital you don't have or takes months to show any result",
-  "You see people selling \"AI chatbot services\" online and think \"isn't this saturated already? Everyone's doing the same thing\"",
-  "You assume AI automation is \"for coders and tech people\" so you talk yourself out of it before even trying",
-  "You've bought courses before that overpromised and underdelivered generic content, no real support, no refund when it didn't work",
-  "Every AI course you find online is built for a global/English-speaking audience nothing made for Telugu people, in a way that actually makes sense to you",
-  "Meanwhile, time keeps passing another month, another \"I'll start next month\" and the gap between you and the people already earning keeps growing",
+  "Your work is solid, but invoices are still ₹10-20k.",
+  "Every month starts at zero.",
+  "You only earn when you deliver.",
+  "Clients compare you to every other bot-seller.",
+  "You have no niche, no premium offer, no outbound.",
+  "Past courses taught tools you already know.",
 ];
 
 export default function ProblemSection() {
@@ -42,8 +40,7 @@ export default function ProblemSection() {
               className="font-display text-[50px] font-semibold leading-tight tracking-tight text-ink"
               style={{ textWrap: "balance" } as React.CSSProperties}
             >
-              Tired of Watching Others Make Money With AI While You&apos;re
-              Stuck Scrolling?
+              You can build it. So why is the income still stuck at ₹30-50k?
             </Reveal>
 
             <Reveal as="ul" variant="group" amount={0.15} y={12} duration={0.4} className="mt-12 flex flex-col gap-5">
@@ -70,9 +67,10 @@ export default function ProblemSection() {
           amount={0.4}
           className="mx-auto mt-12 max-w-2xl border-t-2 border-sky pt-5 text-center text-lg font-medium leading-relaxed text-ink"
         >
-          The problem isn&apos;t AI. The problem is nobody&apos;s shown you the
-          exact, simple path built for a complete beginner, with zero risk if
-          it doesn&apos;t work.
+          The problem isn&apos;t your skill. It&apos;s your offer, your
+          positioning and how you sell.
+          <br />
+          This cohort fixes that, with a 100% refund if it doesn&apos;t.
         </Reveal>
       </div>
     </section>

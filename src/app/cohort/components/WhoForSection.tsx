@@ -2,17 +2,19 @@ import { FiCheck, FiX } from "react-icons/fi";
 import Reveal from "@/Components/Reveal";
 
 const forYou = [
-  "You're a complete beginner, ready to learn and take action",
-  "You want real side income, not another \"maybe it'll work\" hustle",
-  "You're ready to put in daily effort for 48 days",
-  "You're part of the Telugu community and want a course built for you",
+  "You've delivered at least one paid automation project",
+  "You can build in n8n, Make or code",
+  "You're stuck at ₹30-50k a month or earning in one-off gigs",
+  "You're ready to niche down and reposition as an AI architect",
+  "You're willing to do outbound and talk to real clients",
 ];
 
 const notForYou = [
-  "You want overnight results with zero effort",
-  "Who are not ready to give atleasst 1-2hr day",
-  "You're not willing to do outreach or talk to real clients",
-  "You just want to \"watch someday\" this is live and action-based",
+  "You're a complete beginner",
+  "You've never worked with a paying client",
+  "You want a get-rich-quick shortcut",
+  "You don't want to do outbound or sales calls",
+  "You won't pick one niche",
 ];
 
 export default function WhoForSection() {

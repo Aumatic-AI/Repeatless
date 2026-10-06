@@ -1,3 +1,4 @@
+import CohortCTAButton from "./CohortCTAButton";
 import Reveal from "@/Components/Reveal";
 
 const bonuses = [
@@ -59,6 +60,13 @@ export default function BonusesSection() {
 
         <Reveal as="p" amount={0.4} className="mt-10 text-center font-display text-xl italic text-lime">
           Total Bonus Value: ₹27,000 Free with your enrollment
+        </Reveal>
+
+        <Reveal as="div" amount={0.4} className="mt-8 flex flex-col items-center gap-3 text-center">
+          <CohortCTAButton label="Get Instant Access" />
+          <p className="text-xs text-white/60 sm:text-sm">
+            Lifetime updates · 100% refund guarantee
+          </p>
         </Reveal>
       </div>
     </section>

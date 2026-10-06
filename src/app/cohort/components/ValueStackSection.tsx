@@ -108,11 +108,10 @@ export default function ValueStackSection() {
         <Reveal as="div" amount={0.4} className="mt-8 flex flex-col items-center gap-3 text-center sm:mt-10">
           <PaymentBadges />
 
-          <CohortCTAButton label="Yes, I Want My First ₹1L" />
+          <CohortCTAButton label="Get Instant Access" />
 
           <p className="max-w-md text-xs leading-relaxed text-white/60 sm:text-sm">
-            100% Money-Back Guarantee — hit your first ₹1L or get every rupee
-            back
+            Lifetime updates · 100% refund guarantee
           </p>
         </Reveal>
       </div>

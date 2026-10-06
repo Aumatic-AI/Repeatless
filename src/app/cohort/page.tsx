@@ -3,8 +3,7 @@ import dynamic from "next/dynamic";
 import CohortHero from "./components/CohortHero";
 import ProblemSection from "./components/ProblemSection";
 import StorySection from "./components/StorySection";
-import SkillSection from "./components/SkillSection";
-import FrameworkSection from "./components/FrameworkSection";
+import Day30Section from "./components/Day30Section";
 import WhatsInsideSection from "./components/WhatsInsideSection";
 import ComparisonSection from "./components/ComparisonSection";
 import WhoForSection from "./components/WhoForSection";
@@ -31,8 +30,7 @@ export default function CohortPage() {
       <CohortHero />
       <ProblemSection />
       <StorySection />
-      <SkillSection />
-      <FrameworkSection />
+      <Day30Section />
       <WhatsInsideSection />
       <ComparisonSection />
       <WhoForSection />

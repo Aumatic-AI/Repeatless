@@ -1,14 +1,18 @@
 import Reveal from "@/Components/Reveal";
 
 const story = [
-  "Then AI started taking over and instead of fearing it, I asked myself one question: if AI is going to replace jobs, why not learn to use it and replace my own paycheck first?",
-  "I started learning AI automation on the side nights, weekends, no shortcuts, no \"get rich quick\"",
-  "The moment I realized I could build something that paid more than my job I quit. Not out of frustration, but because I knew what I was building was worth more than a monthly salary",
-  "Today, I run my own AI automation agency in Hyderabad with a team of 5 people working under me",
-  "I went from being an employee taking orders, to an employer giving work to others",
-  "I bought my own bike, my own car with money I made from skills I taught myself",
-  "When my parents went for my marriage proposal, the bride's family asked what I do and my parents proudly said \"my son runs his own business\" not \"he has a job\"",
-  "If a regular guy with a ₹70K job could build all this by learning one skill and taking action you can do the exact same thing",
+  "When AI started replacing jobs, I decided to learn it and replace my own paycheck first.",
+  "I learned automation on nights and weekends. No shortcuts.",
+  "When I saw I could build something worth more than my salary, I quit.",
+  "Today I run an AI automation agency in Hyderabad with a team of 5.",
+  "I went from taking orders to giving work to others.",
+  "When my parents went for my marriage proposal, they said \"my son runs his own business,\" not \"he has a job.\" That one line was worth more than any invoice.",
+];
+
+const missed = [
+  "Even after I could build, I was stuck selling small projects.",
+  "My income only moved when I changed my niche, my offer and how I sold.",
+  "Not when I learned another tool.",
 ];
 
 export default function StorySection() {
@@ -21,7 +25,7 @@ export default function StorySection() {
           className="text-center font-display text-3xl font-semibold leading-tight tracking-tight sm:text-4xl"
           style={{ textWrap: "balance" } as React.CSSProperties}
         >
-          I Was Exactly Where You Are Right Now
+          I&apos;m not a guru. I&apos;m a freelancer who made the same jump you&apos;re about to make.
         </Reveal>
 
         <div className="mt-10 border-l-2 border-lime pl-6 sm:pl-8">
@@ -32,8 +36,7 @@ export default function StorySection() {
             className="font-display text-2xl font-medium leading-snug text-white sm:text-3xl"
             style={{ textWrap: "balance" } as React.CSSProperties}
           >
-            I used to work a regular job ₹70,000/month, stable, &quot;safe&quot; the same place
-            most of you are standing right now.
+            I was earning ₹70,000/month in a stable job.
           </Reveal>
 
           {/* Kept simple: no bullets, numbers or badges — this is a narrative,
@@ -51,10 +54,23 @@ export default function StorySection() {
           </Reveal>
         </div>
 
+        <Reveal as="div" amount={0.3} className="mt-10">
+          <h3 className="font-display text-2xl font-semibold text-white">
+            The part most freelancers miss:
+          </h3>
+          <ul className="mt-5 flex flex-col gap-3">
+            {missed.map((m) => (
+              <li key={m} className="flex items-start gap-3 text-lg leading-relaxed text-white/70">
+                <span className="mt-2.5 h-2.5 w-2.5 shrink-0 rounded-sm bg-lime" />
+                {m}
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+
         <Reveal as="p" amount={0.4} className="mt-8 font-display text-xl italic text-white/80">
-          I&apos;m not teaching you theory I read somewhere. I&apos;m teaching you the exact path
-          I walked simplified, shortened, and made beginner-friendly so you don&apos;t take the
-          years I took.
+          This cohort is that path, shortened. It&apos;s what I did to go from project
+          fees to retainers, so you don&apos;t need the years I took.
         </Reveal>
       </div>
     </section>
