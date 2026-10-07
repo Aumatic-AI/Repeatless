@@ -8,12 +8,12 @@ import { FaWhatsapp } from 'react-icons/fa';
 
 // Full Navbar pulls in framer-motion (scroll-hide header, mobile menu
 // AnimatePresence) that the minimal-nav routes never render — code-split it
-// so /webinar, /cohort and /ai-architect don't ship that JS at all.
+// so /webinar and /cohort don't ship that JS at all.
 const Navbar = dynamic(() => import('@/Components/Navbar'));
 
 // These landing pages run their own funnel (payment CTAs, no site nav) —
 // they get just the logo, linked home, instead of the full Navbar.
-const MINIMAL_NAV_ROUTES = ['/cohort', '/webinar', '/ai-architect'];
+const MINIMAL_NAV_ROUTES = ['/cohort', '/webinar'];
 
 export default function SiteChrome({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
