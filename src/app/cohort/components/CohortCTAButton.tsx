@@ -1,4 +1,4 @@
-const PAYMENT_LINK = "https://rzp.io/rzp/d5ZXxLM";
+const PAYMENT_LINK = "https://cohort.repeatless.in/new-courses/2-ai-architect-cohort";
 
 type CohortCTAButtonProps = {
   label: string;

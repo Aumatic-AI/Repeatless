@@ -21,13 +21,16 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
         (route) => pathname === route || pathname.startsWith(`${route}/`)
     );
 
+    const isCohort = pathname === '/cohort' || pathname.startsWith('/cohort/');
+    const whatsappNumber = isCohort ? '919032550956' : '919849884501';
+
     return (
         <>
             {isMinimalNav ? <MinimalNavbar /> : <Navbar />}
             {children}
             <Footer />
             <a
-                href="https://wa.me/919849884501"
+                href={`https://wa.me/${whatsappNumber}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Chat with Repeatless on WhatsApp"
